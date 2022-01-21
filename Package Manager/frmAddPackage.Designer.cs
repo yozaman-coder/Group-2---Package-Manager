@@ -44,12 +44,14 @@ namespace Package_Manager
             this.cboPackageID = new System.Windows.Forms.ComboBox();
             this.lblPackage = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.dgvProducts = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(217, 198);
+            this.btnAddProduct.Location = new System.Drawing.Point(5, 369);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(110, 33);
             this.btnAddProduct.TabIndex = 0;
@@ -62,7 +64,7 @@ namespace Package_Manager
             this.dgvPackages.Location = new System.Drawing.Point(353, 27);
             this.dgvPackages.Name = "dgvPackages";
             this.dgvPackages.RowTemplate.Height = 25;
-            this.dgvPackages.Size = new System.Drawing.Size(298, 293);
+            this.dgvPackages.Size = new System.Drawing.Size(348, 364);
             this.dgvPackages.TabIndex = 1;
             // 
             // lblPackageDisplay
@@ -167,18 +169,28 @@ namespace Package_Manager
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(186, 287);
+            this.btnUpdate.Location = new System.Drawing.Point(186, 369);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(141, 33);
             this.btnUpdate.TabIndex = 14;
             this.btnUpdate.Text = "Update package";
             this.btnUpdate.UseVisualStyleBackColor = true;
             // 
+            // dgvProducts
+            // 
+            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProducts.Location = new System.Drawing.Point(5, 198);
+            this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.RowTemplate.Height = 25;
+            this.dgvProducts.Size = new System.Drawing.Size(322, 165);
+            this.dgvProducts.TabIndex = 15;
+            // 
             // frmAddPackage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 332);
+            this.ClientSize = new System.Drawing.Size(713, 414);
+            this.Controls.Add(this.dgvProducts);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblPackage);
             this.Controls.Add(this.cboPackageID);
@@ -198,6 +210,7 @@ namespace Package_Manager
             this.Text = "Package Manager";
             this.Load += new System.EventHandler(this.frmAddPackage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,5 +233,6 @@ namespace Package_Manager
         private System.Windows.Forms.ComboBox cboPackageID;
         private System.Windows.Forms.Label lblPackage;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.DataGridView dgvProducts;
     }
 }
