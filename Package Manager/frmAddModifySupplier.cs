@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Package_Manager
 {
-    public partial class frmAddProduct : Form
+    public partial class frmAddModifySupplier : Form
     {
-        public frmAddProduct()
+        public frmAddModifySupplier()
         {
             InitializeComponent();
         }

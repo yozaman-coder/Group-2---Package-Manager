@@ -36,6 +36,8 @@ namespace Package_Manager
             this.btnNewProduct = new System.Windows.Forms.Button();
             this.btnNewSupplier = new System.Windows.Forms.Button();
             this.btnAddProductToPackage = new System.Windows.Forms.Button();
+            this.btnModifyProduct = new System.Windows.Forms.Button();
+            this.btnSupplierModify = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cboProducts
@@ -93,18 +95,38 @@ namespace Package_Manager
             // 
             // btnAddProductToPackage
             // 
-            this.btnAddProductToPackage.Location = new System.Drawing.Point(85, 109);
+            this.btnAddProductToPackage.Location = new System.Drawing.Point(85, 135);
             this.btnAddProductToPackage.Name = "btnAddProductToPackage";
             this.btnAddProductToPackage.Size = new System.Drawing.Size(121, 41);
             this.btnAddProductToPackage.TabIndex = 6;
             this.btnAddProductToPackage.Text = "Add to selected package";
             this.btnAddProductToPackage.UseVisualStyleBackColor = true;
             // 
+            // btnModifyProduct
+            // 
+            this.btnModifyProduct.Location = new System.Drawing.Point(19, 94);
+            this.btnModifyProduct.Name = "btnModifyProduct";
+            this.btnModifyProduct.Size = new System.Drawing.Size(54, 23);
+            this.btnModifyProduct.TabIndex = 7;
+            this.btnModifyProduct.Text = "Modify";
+            this.btnModifyProduct.UseVisualStyleBackColor = true;
+            // 
+            // btnSupplierModify
+            // 
+            this.btnSupplierModify.Location = new System.Drawing.Point(156, 94);
+            this.btnSupplierModify.Name = "btnSupplierModify";
+            this.btnSupplierModify.Size = new System.Drawing.Size(62, 23);
+            this.btnSupplierModify.TabIndex = 8;
+            this.btnSupplierModify.Text = "Modify";
+            this.btnSupplierModify.UseVisualStyleBackColor = true;
+            // 
             // frmAddProductSuppier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 178);
+            this.ClientSize = new System.Drawing.Size(298, 198);
+            this.Controls.Add(this.btnSupplierModify);
+            this.Controls.Add(this.btnModifyProduct);
             this.Controls.Add(this.btnAddProductToPackage);
             this.Controls.Add(this.btnNewSupplier);
             this.Controls.Add(this.btnNewProduct);
@@ -128,6 +150,8 @@ namespace Package_Manager
         private System.Windows.Forms.Button btnNewProduct;
         private System.Windows.Forms.Button btnNewSupplier;
         private System.Windows.Forms.Button btnAddProductToPackage;
+        private System.Windows.Forms.Button btnModifyProduct;
+        private System.Windows.Forms.Button btnSupplierModify;
     }
 }
 

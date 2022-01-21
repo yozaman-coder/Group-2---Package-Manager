@@ -19,7 +19,6 @@ namespace Package_Manager
 
         private void frmAddPackage_Load(object sender, EventArgs e)
         {
-
             GetPackages();
             DisplayProducts();
             DisplayPackages();
@@ -52,7 +51,12 @@ namespace Package_Manager
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            // Opens secondForm and passes selectedProduct
+            // Opens secondForm
+        }
+
+        private void btnNewPackage_Click(object sender, EventArgs e)
+        {
+            // Adds new empty package
         }
     }
 }

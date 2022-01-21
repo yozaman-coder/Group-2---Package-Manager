@@ -45,13 +45,15 @@ namespace Package_Manager
             this.lblPackage = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.btnModifyProduct = new System.Windows.Forms.Button();
+            this.btnDeleteProduct = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(5, 369);
+            this.btnAddProduct.Location = new System.Drawing.Point(270, 198);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(110, 33);
             this.btnAddProduct.TabIndex = 0;
@@ -62,16 +64,16 @@ namespace Package_Manager
             // dgvPackages
             // 
             this.dgvPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPackages.Location = new System.Drawing.Point(353, 27);
+            this.dgvPackages.Location = new System.Drawing.Point(417, 27);
             this.dgvPackages.Name = "dgvPackages";
             this.dgvPackages.RowTemplate.Height = 25;
-            this.dgvPackages.Size = new System.Drawing.Size(348, 364);
+            this.dgvPackages.Size = new System.Drawing.Size(284, 364);
             this.dgvPackages.TabIndex = 1;
             // 
             // lblPackageDisplay
             // 
             this.lblPackageDisplay.AutoSize = true;
-            this.lblPackageDisplay.Location = new System.Drawing.Point(353, 9);
+            this.lblPackageDisplay.Location = new System.Drawing.Point(410, 9);
             this.lblPackageDisplay.Name = "lblPackageDisplay";
             this.lblPackageDisplay.Size = new System.Drawing.Size(89, 15);
             this.lblPackageDisplay.TabIndex = 2;
@@ -79,32 +81,33 @@ namespace Package_Manager
             // 
             // btnNewPackage
             // 
-            this.btnNewPackage.Location = new System.Drawing.Point(217, 14);
+            this.btnNewPackage.Location = new System.Drawing.Point(270, 14);
             this.btnNewPackage.Name = "btnNewPackage";
             this.btnNewPackage.Size = new System.Drawing.Size(110, 23);
             this.btnNewPackage.TabIndex = 3;
             this.btnNewPackage.Text = "Add new";
             this.btnNewPackage.UseVisualStyleBackColor = true;
+            this.btnNewPackage.Click += new System.EventHandler(this.btnNewPackage_Click);
             // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(127, 43);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(200, 23);
+            this.txtName.Size = new System.Drawing.Size(284, 23);
             this.txtName.TabIndex = 4;
             // 
             // dateStartDate
             // 
             this.dateStartDate.Location = new System.Drawing.Point(127, 139);
             this.dateStartDate.Name = "dateStartDate";
-            this.dateStartDate.Size = new System.Drawing.Size(200, 23);
+            this.dateStartDate.Size = new System.Drawing.Size(284, 23);
             this.dateStartDate.TabIndex = 5;
             // 
             // dateEndDate
             // 
             this.dateEndDate.Location = new System.Drawing.Point(127, 169);
             this.dateEndDate.Name = "dateEndDate";
-            this.dateEndDate.Size = new System.Drawing.Size(200, 23);
+            this.dateEndDate.Size = new System.Drawing.Size(284, 23);
             this.dateEndDate.TabIndex = 6;
             // 
             // lblStartDate
@@ -139,7 +142,7 @@ namespace Package_Manager
             this.txtDescription.Location = new System.Drawing.Point(127, 69);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(200, 64);
+            this.txtDescription.Size = new System.Drawing.Size(284, 64);
             this.txtDescription.TabIndex = 10;
             // 
             // lblDescription
@@ -156,7 +159,7 @@ namespace Package_Manager
             this.cboPackageID.FormattingEnabled = true;
             this.cboPackageID.Location = new System.Drawing.Point(127, 14);
             this.cboPackageID.Name = "cboPackageID";
-            this.cboPackageID.Size = new System.Drawing.Size(83, 23);
+            this.cboPackageID.Size = new System.Drawing.Size(118, 23);
             this.cboPackageID.TabIndex = 12;
             this.cboPackageID.SelectedIndexChanged += new System.EventHandler(this.cboPackageID_SelectedIndexChanged);
             // 
@@ -171,7 +174,7 @@ namespace Package_Manager
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(186, 369);
+            this.btnUpdate.Location = new System.Drawing.Point(5, 369);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(141, 33);
             this.btnUpdate.TabIndex = 14;
@@ -184,14 +187,34 @@ namespace Package_Manager
             this.dgvProducts.Location = new System.Drawing.Point(5, 198);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowTemplate.Height = 25;
-            this.dgvProducts.Size = new System.Drawing.Size(322, 165);
+            this.dgvProducts.Size = new System.Drawing.Size(259, 165);
             this.dgvProducts.TabIndex = 15;
+            // 
+            // btnModifyProduct
+            // 
+            this.btnModifyProduct.Location = new System.Drawing.Point(270, 237);
+            this.btnModifyProduct.Name = "btnModifyProduct";
+            this.btnModifyProduct.Size = new System.Drawing.Size(124, 33);
+            this.btnModifyProduct.TabIndex = 16;
+            this.btnModifyProduct.Text = "Update product(s)";
+            this.btnModifyProduct.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteProduct
+            // 
+            this.btnDeleteProduct.Location = new System.Drawing.Point(270, 276);
+            this.btnDeleteProduct.Name = "btnDeleteProduct";
+            this.btnDeleteProduct.Size = new System.Drawing.Size(110, 33);
+            this.btnDeleteProduct.TabIndex = 17;
+            this.btnDeleteProduct.Text = "Delete product(s)";
+            this.btnDeleteProduct.UseVisualStyleBackColor = true;
             // 
             // frmAddPackage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 414);
+            this.Controls.Add(this.btnDeleteProduct);
+            this.Controls.Add(this.btnModifyProduct);
             this.Controls.Add(this.dgvProducts);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblPackage);
@@ -236,5 +259,7 @@ namespace Package_Manager
         private System.Windows.Forms.Label lblPackage;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.DataGridView dgvProducts;
+        private System.Windows.Forms.Button btnModifyProduct;
+        private System.Windows.Forms.Button btnDeleteProduct;
     }
 }
