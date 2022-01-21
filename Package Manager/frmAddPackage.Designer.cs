@@ -85,6 +85,7 @@ namespace Package_Manager
             this.btnNewPackage.TabIndex = 3;
             this.btnNewPackage.Text = "Add new";
             this.btnNewPackage.UseVisualStyleBackColor = true;
+            this.btnNewPackage.Click += new System.EventHandler(this.btnNewPackage_Click);
             // 
             // txtName
             // 
@@ -177,6 +178,7 @@ namespace Package_Manager
             this.btnUpdate.TabIndex = 14;
             this.btnUpdate.Text = "Update package";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // dgvProducts
             // 
