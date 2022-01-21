@@ -43,6 +43,7 @@ namespace Package_Manager
         private void cboPackageID_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectPackage();
+            DisplayProducts();
         }
 
         private void SelectPackage()
@@ -53,6 +54,13 @@ namespace Package_Manager
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             // Opens secondForm and passes selectedProduct
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            // Update selected package with form information
+            DisplayProducts();
+            DisplayPackages();
         }
     }
 }
