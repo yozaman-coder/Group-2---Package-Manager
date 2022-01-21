@@ -29,175 +29,175 @@ namespace Package_Manager
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnAddProduct = new System.Windows.Forms.Button();
+            this.dgvPackages = new System.Windows.Forms.DataGridView();
+            this.lblPackageDisplay = new System.Windows.Forms.Label();
+            this.btnNewPackage = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.dateStartDate = new System.Windows.Forms.DateTimePicker();
+            this.dateEndDate = new System.Windows.Forms.DateTimePicker();
+            this.lblStartDate = new System.Windows.Forms.Label();
+            this.lblEndDate = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.cboPackageID = new System.Windows.Forms.ComboBox();
+            this.lblPackage = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btnAddProduct
             // 
-            this.button1.Location = new System.Drawing.Point(217, 198);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 33);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Add product(s)";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Location = new System.Drawing.Point(217, 198);
+            this.btnAddProduct.Name = "btnAddProduct";
+            this.btnAddProduct.Size = new System.Drawing.Size(110, 33);
+            this.btnAddProduct.TabIndex = 0;
+            this.btnAddProduct.Text = "Add product(s)";
+            this.btnAddProduct.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgvPackages
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(353, 27);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(298, 293);
-            this.dataGridView1.TabIndex = 1;
+            this.dgvPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPackages.Location = new System.Drawing.Point(353, 27);
+            this.dgvPackages.Name = "dgvPackages";
+            this.dgvPackages.RowTemplate.Height = 25;
+            this.dgvPackages.Size = new System.Drawing.Size(298, 293);
+            this.dgvPackages.TabIndex = 1;
             // 
-            // label1
+            // lblPackageDisplay
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(353, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Travel Packages";
+            this.lblPackageDisplay.AutoSize = true;
+            this.lblPackageDisplay.Location = new System.Drawing.Point(353, 9);
+            this.lblPackageDisplay.Name = "lblPackageDisplay";
+            this.lblPackageDisplay.Size = new System.Drawing.Size(89, 15);
+            this.lblPackageDisplay.TabIndex = 2;
+            this.lblPackageDisplay.Text = "Travel Packages";
             // 
-            // button2
+            // btnNewPackage
             // 
-            this.button2.Location = new System.Drawing.Point(217, 14);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Add new";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnNewPackage.Location = new System.Drawing.Point(217, 14);
+            this.btnNewPackage.Name = "btnNewPackage";
+            this.btnNewPackage.Size = new System.Drawing.Size(110, 23);
+            this.btnNewPackage.TabIndex = 3;
+            this.btnNewPackage.Text = "Add new";
+            this.btnNewPackage.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(127, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 23);
-            this.textBox1.TabIndex = 4;
+            this.txtName.Location = new System.Drawing.Point(127, 43);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(200, 23);
+            this.txtName.TabIndex = 4;
             // 
-            // dateTimePicker1
+            // dateStartDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(127, 139);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePicker1.TabIndex = 5;
+            this.dateStartDate.Location = new System.Drawing.Point(127, 139);
+            this.dateStartDate.Name = "dateStartDate";
+            this.dateStartDate.Size = new System.Drawing.Size(200, 23);
+            this.dateStartDate.TabIndex = 5;
             // 
-            // dateTimePicker2
+            // dateEndDate
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(127, 169);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePicker2.TabIndex = 6;
+            this.dateEndDate.Location = new System.Drawing.Point(127, 169);
+            this.dateEndDate.Name = "dateEndDate";
+            this.dateEndDate.Size = new System.Drawing.Size(200, 23);
+            this.dateEndDate.TabIndex = 6;
             // 
-            // label2
+            // lblStartDate
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 145);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 15);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Package start date:";
+            this.lblStartDate.AutoSize = true;
+            this.lblStartDate.Location = new System.Drawing.Point(15, 139);
+            this.lblStartDate.Name = "lblStartDate";
+            this.lblStartDate.Size = new System.Drawing.Size(106, 15);
+            this.lblStartDate.TabIndex = 7;
+            this.lblStartDate.Text = "Package start date:";
             // 
-            // label3
+            // lblEndDate
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 169);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 15);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Package end date:";
+            this.lblEndDate.AutoSize = true;
+            this.lblEndDate.Location = new System.Drawing.Point(18, 169);
+            this.lblEndDate.Name = "lblEndDate";
+            this.lblEndDate.Size = new System.Drawing.Size(103, 15);
+            this.lblEndDate.TabIndex = 8;
+            this.lblEndDate.Text = "Package end date:";
             // 
-            // label4
+            // lblName
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(31, 46);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 15);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Package name:";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(34, 43);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(87, 15);
+            this.lblName.TabIndex = 9;
+            this.lblName.Text = "Package name:";
             // 
-            // textBox2
+            // txtDescription
             // 
-            this.textBox2.Location = new System.Drawing.Point(127, 69);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 64);
-            this.textBox2.TabIndex = 10;
+            this.txtDescription.Location = new System.Drawing.Point(127, 69);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(200, 64);
+            this.txtDescription.TabIndex = 10;
             // 
-            // label5
+            // lblDescription
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 69);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 15);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Package description:";
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(5, 69);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(116, 15);
+            this.lblDescription.TabIndex = 11;
+            this.lblDescription.Text = "Package description:";
             // 
-            // comboBox1
+            // cboPackageID
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(127, 14);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(83, 23);
-            this.comboBox1.TabIndex = 12;
+            this.cboPackageID.FormattingEnabled = true;
+            this.cboPackageID.Location = new System.Drawing.Point(127, 14);
+            this.cboPackageID.Name = "cboPackageID";
+            this.cboPackageID.Size = new System.Drawing.Size(83, 23);
+            this.cboPackageID.TabIndex = 12;
             // 
-            // label6
+            // lblPackage
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 17);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 15);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Current package:";
+            this.lblPackage.AutoSize = true;
+            this.lblPackage.Location = new System.Drawing.Point(24, 14);
+            this.lblPackage.Name = "lblPackage";
+            this.lblPackage.Size = new System.Drawing.Size(97, 15);
+            this.lblPackage.TabIndex = 13;
+            this.lblPackage.Text = "Current package:";
             // 
-            // button3
+            // btnUpdate
             // 
-            this.button3.Location = new System.Drawing.Point(186, 287);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(141, 33);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Update package";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnUpdate.Location = new System.Drawing.Point(186, 287);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(141, 33);
+            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.Text = "Update package";
+            this.btnUpdate.UseVisualStyleBackColor = true;
             // 
             // frmAddPackage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(663, 332);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.lblPackage);
+            this.Controls.Add(this.cboPackageID);
+            this.Controls.Add(this.lblDescription);
+            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lblEndDate);
+            this.Controls.Add(this.lblStartDate);
+            this.Controls.Add(this.dateEndDate);
+            this.Controls.Add(this.dateStartDate);
+            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.btnNewPackage);
+            this.Controls.Add(this.lblPackageDisplay);
+            this.Controls.Add(this.dgvPackages);
+            this.Controls.Add(this.btnAddProduct);
             this.Name = "frmAddPackage";
             this.Text = "Package Manager";
             this.Load += new System.EventHandler(this.frmAddPackage_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,20 +205,20 @@ namespace Package_Manager
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnAddProduct;
+        private System.Windows.Forms.DataGridView dgvPackages;
+        private System.Windows.Forms.Label lblPackageDisplay;
+        private System.Windows.Forms.Button btnNewPackage;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.DateTimePicker dateStartDate;
+        private System.Windows.Forms.DateTimePicker dateEndDate;
+        private System.Windows.Forms.Label lblStartDate;
+        private System.Windows.Forms.Label lblEndDate;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.ComboBox cboPackageID;
+        private System.Windows.Forms.Label lblPackage;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }

@@ -33,9 +33,9 @@ namespace Package_Manager
             this.lblProducts = new System.Windows.Forms.Label();
             this.lblSupplier = new System.Windows.Forms.Label();
             this.cboSuppliers = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnNewProduct = new System.Windows.Forms.Button();
+            this.btnNewSupplier = new System.Windows.Forms.Button();
+            this.btnAddProductToPackage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cboProducts
@@ -73,41 +73,41 @@ namespace Package_Manager
             this.cboSuppliers.Size = new System.Drawing.Size(121, 23);
             this.cboSuppliers.TabIndex = 3;
             // 
-            // button1
+            // btnNewProduct
             // 
-            this.button1.Location = new System.Drawing.Point(19, 65);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Add new product";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNewProduct.Location = new System.Drawing.Point(19, 65);
+            this.btnNewProduct.Name = "btnNewProduct";
+            this.btnNewProduct.Size = new System.Drawing.Size(121, 23);
+            this.btnNewProduct.TabIndex = 4;
+            this.btnNewProduct.Text = "Add new product";
+            this.btnNewProduct.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnNewSupplier
             // 
-            this.button2.Location = new System.Drawing.Point(156, 65);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Add new supplier";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnNewSupplier.Location = new System.Drawing.Point(156, 65);
+            this.btnNewSupplier.Name = "btnNewSupplier";
+            this.btnNewSupplier.Size = new System.Drawing.Size(121, 23);
+            this.btnNewSupplier.TabIndex = 5;
+            this.btnNewSupplier.Text = "Add new supplier";
+            this.btnNewSupplier.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnAddProductToPackage
             // 
-            this.button3.Location = new System.Drawing.Point(85, 109);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 41);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Add to selected package";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAddProductToPackage.Location = new System.Drawing.Point(85, 109);
+            this.btnAddProductToPackage.Name = "btnAddProductToPackage";
+            this.btnAddProductToPackage.Size = new System.Drawing.Size(121, 41);
+            this.btnAddProductToPackage.TabIndex = 6;
+            this.btnAddProductToPackage.Text = "Add to selected package";
+            this.btnAddProductToPackage.UseVisualStyleBackColor = true;
             // 
             // frmAddProductSuppier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(298, 178);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAddProductToPackage);
+            this.Controls.Add(this.btnNewSupplier);
+            this.Controls.Add(this.btnNewProduct);
             this.Controls.Add(this.cboSuppliers);
             this.Controls.Add(this.lblSupplier);
             this.Controls.Add(this.lblProducts);
@@ -125,9 +125,9 @@ namespace Package_Manager
         private System.Windows.Forms.Label lblProducts;
         private System.Windows.Forms.Label lblSupplier;
         private System.Windows.Forms.ComboBox cboSuppliers;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnNewProduct;
+        private System.Windows.Forms.Button btnNewSupplier;
+        private System.Windows.Forms.Button btnAddProductToPackage;
     }
 }
 
