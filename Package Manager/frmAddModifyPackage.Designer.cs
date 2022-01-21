@@ -199,6 +199,7 @@ namespace Package_Manager
             this.btnModifyProduct.TabIndex = 16;
             this.btnModifyProduct.Text = "Update product(s)";
             this.btnModifyProduct.UseVisualStyleBackColor = true;
+            this.btnModifyProduct.Click += new System.EventHandler(this.btnModifyProduct_Click);
             // 
             // btnDeleteProduct
             // 
@@ -208,6 +209,7 @@ namespace Package_Manager
             this.btnDeleteProduct.TabIndex = 17;
             this.btnDeleteProduct.Text = "Delete product(s)";
             this.btnDeleteProduct.UseVisualStyleBackColor = true;
+            this.btnDeleteProduct.Click += new System.EventHandler(this.btnDeleteProduct_Click);
             // 
             // frmAddPackage
             // 

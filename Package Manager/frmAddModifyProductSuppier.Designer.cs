@@ -1,7 +1,7 @@
 ﻿
 namespace Package_Manager
 {
-    partial class frmAddProductSuppier
+    partial class frmAddModifyProductSuppier
     {
         /// <summary>
         ///  Required designer variable.
@@ -38,6 +38,7 @@ namespace Package_Manager
             this.btnAddProductToPackage = new System.Windows.Forms.Button();
             this.btnModifyProduct = new System.Windows.Forms.Button();
             this.btnSupplierModify = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cboProducts
@@ -83,6 +84,7 @@ namespace Package_Manager
             this.btnNewProduct.TabIndex = 4;
             this.btnNewProduct.Text = "Add new product";
             this.btnNewProduct.UseVisualStyleBackColor = true;
+            this.btnNewProduct.Click += new System.EventHandler(this.btnNewProduct_Click);
             // 
             // btnNewSupplier
             // 
@@ -92,15 +94,17 @@ namespace Package_Manager
             this.btnNewSupplier.TabIndex = 5;
             this.btnNewSupplier.Text = "Add new supplier";
             this.btnNewSupplier.UseVisualStyleBackColor = true;
+            this.btnNewSupplier.Click += new System.EventHandler(this.btnNewSupplier_Click);
             // 
             // btnAddProductToPackage
             // 
-            this.btnAddProductToPackage.Location = new System.Drawing.Point(85, 135);
+            this.btnAddProductToPackage.Location = new System.Drawing.Point(19, 145);
             this.btnAddProductToPackage.Name = "btnAddProductToPackage";
             this.btnAddProductToPackage.Size = new System.Drawing.Size(121, 41);
             this.btnAddProductToPackage.TabIndex = 6;
             this.btnAddProductToPackage.Text = "Add to selected package";
             this.btnAddProductToPackage.UseVisualStyleBackColor = true;
+            this.btnAddProductToPackage.Click += new System.EventHandler(this.btnAddProductToPackage_Click);
             // 
             // btnModifyProduct
             // 
@@ -120,11 +124,21 @@ namespace Package_Manager
             this.btnSupplierModify.Text = "Modify";
             this.btnSupplierModify.UseVisualStyleBackColor = true;
             // 
-            // frmAddProductSuppier
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(156, 145);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(121, 41);
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // frmAddModifyProductSuppier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 198);
+            this.ClientSize = new System.Drawing.Size(306, 207);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSupplierModify);
             this.Controls.Add(this.btnModifyProduct);
             this.Controls.Add(this.btnAddProductToPackage);
@@ -134,7 +148,7 @@ namespace Package_Manager
             this.Controls.Add(this.lblSupplier);
             this.Controls.Add(this.lblProducts);
             this.Controls.Add(this.cboProducts);
-            this.Name = "frmAddProductSuppier";
+            this.Name = "frmAddModifyProductSuppier";
             this.Text = "Add Product";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -152,6 +166,7 @@ namespace Package_Manager
         private System.Windows.Forms.Button btnAddProductToPackage;
         private System.Windows.Forms.Button btnModifyProduct;
         private System.Windows.Forms.Button btnSupplierModify;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 

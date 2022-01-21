@@ -52,7 +52,7 @@ namespace Package_Manager
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            // Opens secondForm
+            // Opens secondForm to add new product/supplier.
         }
 
         private void btnNewPackage_Click(object sender, EventArgs e)
@@ -65,6 +65,16 @@ namespace Package_Manager
             // Update selected package with form information
             DisplayProducts();
             DisplayPackages();
+        }
+
+        private void btnModifyProduct_Click(object sender, EventArgs e)
+        {
+            // Opens second form to change selected products/supplier supplier/product.
+        }
+
+        private void btnDeleteProduct_Click(object sender, EventArgs e)
+        {
+            // Delete selected product/supplier.
         }
     }
 }
