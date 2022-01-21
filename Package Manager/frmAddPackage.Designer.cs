@@ -57,6 +57,7 @@ namespace Package_Manager
             this.btnAddProduct.TabIndex = 0;
             this.btnAddProduct.Text = "Add product(s)";
             this.btnAddProduct.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // dgvPackages
             // 
@@ -157,6 +158,7 @@ namespace Package_Manager
             this.cboPackageID.Name = "cboPackageID";
             this.cboPackageID.Size = new System.Drawing.Size(83, 23);
             this.cboPackageID.TabIndex = 12;
+            this.cboPackageID.SelectedIndexChanged += new System.EventHandler(this.cboPackageID_SelectedIndexChanged);
             // 
             // lblPackage
             // 

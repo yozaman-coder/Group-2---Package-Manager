@@ -20,6 +20,39 @@ namespace Package_Manager
         private void frmAddPackage_Load(object sender, EventArgs e)
         {
 
+            GetPackages();
+            DisplayProducts();
+            DisplayPackages();
+        }
+
+        private void GetPackages()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DisplayPackages()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DisplayProducts()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void cboPackageID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectPackage();
+        }
+
+        private void SelectPackage()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            // Opens secondForm and passes selectedProduct
         }
     }
 }
