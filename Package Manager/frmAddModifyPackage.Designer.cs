@@ -195,9 +195,9 @@ namespace Package_Manager
             // 
             this.btnModifyProduct.Location = new System.Drawing.Point(270, 237);
             this.btnModifyProduct.Name = "btnModifyProduct";
-            this.btnModifyProduct.Size = new System.Drawing.Size(124, 33);
+            this.btnModifyProduct.Size = new System.Drawing.Size(119, 33);
             this.btnModifyProduct.TabIndex = 16;
-            this.btnModifyProduct.Text = "Update product(s)";
+            this.btnModifyProduct.Text = "Modify product(s)";
             this.btnModifyProduct.UseVisualStyleBackColor = true;
             this.btnModifyProduct.Click += new System.EventHandler(this.btnModifyProduct_Click);
             // 
@@ -215,7 +215,7 @@ namespace Package_Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 414);
+            this.ClientSize = new System.Drawing.Size(707, 416);
             this.Controls.Add(this.btnDeleteProduct);
             this.Controls.Add(this.btnModifyProduct);
             this.Controls.Add(this.dgvProducts);

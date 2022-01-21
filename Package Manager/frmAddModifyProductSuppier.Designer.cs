@@ -114,6 +114,7 @@ namespace Package_Manager
             this.btnModifyProduct.TabIndex = 7;
             this.btnModifyProduct.Text = "Modify";
             this.btnModifyProduct.UseVisualStyleBackColor = true;
+            this.btnModifyProduct.Click += new System.EventHandler(this.btnModifyProduct_Click);
             // 
             // btnSupplierModify
             // 

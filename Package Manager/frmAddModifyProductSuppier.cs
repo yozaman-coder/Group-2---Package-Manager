@@ -31,5 +31,10 @@ namespace Package_Manager
         {
             // Sends Product/Supplier information back to the main form
         }
+
+        private void btnModifyProduct_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
