@@ -10,13 +10,16 @@ using System.Windows.Forms;
 
 namespace Package_Manager
 {
-    public partial class frmAddProductSuppier : Form
+    public partial class frmAddPackage : Form
     {
-        public frmAddProductSuppier()
+        public frmAddPackage()
         {
             InitializeComponent();
         }
 
+        private void frmAddPackage_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
