@@ -36,9 +36,9 @@ namespace Package_Manager
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(161, 110);
+            this.btnCancel.Location = new System.Drawing.Point(208, 144);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(75, 36);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -46,9 +46,9 @@ namespace Package_Manager
             // lblSupplierName
             // 
             this.lblSupplierName.AutoSize = true;
-            this.lblSupplierName.Location = new System.Drawing.Point(9, 65);
+            this.lblSupplierName.Location = new System.Drawing.Point(12, 79);
             this.lblSupplierName.Name = "lblSupplierName";
-            this.lblSupplierName.Size = new System.Drawing.Size(88, 15);
+            this.lblSupplierName.Size = new System.Drawing.Size(133, 25);
             this.lblSupplierName.TabIndex = 10;
             this.lblSupplierName.Text = "Supplier Name:";
             // 
@@ -57,38 +57,38 @@ namespace Package_Manager
             this.lblSupplierID.AutoSize = true;
             this.lblSupplierID.Location = new System.Drawing.Point(33, 35);
             this.lblSupplierID.Name = "lblSupplierID";
-            this.lblSupplierID.Size = new System.Drawing.Size(67, 15);
+            this.lblSupplierID.Size = new System.Drawing.Size(104, 25);
             this.lblSupplierID.TabIndex = 9;
             this.lblSupplierID.Text = "Supplier ID:";
             // 
             // txtSupplierName
             // 
-            this.txtSupplierName.Location = new System.Drawing.Point(102, 62);
+            this.txtSupplierName.Location = new System.Drawing.Point(153, 79);
             this.txtSupplierName.Name = "txtSupplierName";
-            this.txtSupplierName.Size = new System.Drawing.Size(151, 23);
+            this.txtSupplierName.Size = new System.Drawing.Size(151, 31);
             this.txtSupplierName.TabIndex = 8;
             // 
             // btnAddModifySupplier
             // 
-            this.btnAddModifySupplier.Location = new System.Drawing.Point(52, 110);
+            this.btnAddModifySupplier.Location = new System.Drawing.Point(62, 144);
             this.btnAddModifySupplier.Name = "btnAddModifySupplier";
-            this.btnAddModifySupplier.Size = new System.Drawing.Size(75, 23);
+            this.btnAddModifySupplier.Size = new System.Drawing.Size(75, 36);
             this.btnAddModifySupplier.TabIndex = 7;
             this.btnAddModifySupplier.Text = "Add";
             this.btnAddModifySupplier.UseVisualStyleBackColor = true;
             // 
             // txtSupplierID
             // 
-            this.txtSupplierID.Location = new System.Drawing.Point(102, 32);
+            this.txtSupplierID.Location = new System.Drawing.Point(153, 29);
             this.txtSupplierID.Name = "txtSupplierID";
             this.txtSupplierID.ReadOnly = true;
-            this.txtSupplierID.Size = new System.Drawing.Size(100, 23);
+            this.txtSupplierID.Size = new System.Drawing.Size(100, 31);
             this.txtSupplierID.TabIndex = 6;
             // 
             // frmAddModifySupplier
             // 
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(269, 151);
+            this.ClientSize = new System.Drawing.Size(385, 269);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblSupplierName);
             this.Controls.Add(this.lblSupplierID);
