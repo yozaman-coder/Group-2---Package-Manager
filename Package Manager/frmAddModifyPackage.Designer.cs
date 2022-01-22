@@ -53,9 +53,10 @@ namespace Package_Manager
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(270, 198);
+            this.btnAddProduct.Location = new System.Drawing.Point(386, 330);
+            this.btnAddProduct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddProduct.Name = "btnAddProduct";
-            this.btnAddProduct.Size = new System.Drawing.Size(110, 33);
+            this.btnAddProduct.Size = new System.Drawing.Size(170, 55);
             this.btnAddProduct.TabIndex = 0;
             this.btnAddProduct.Text = "Add product(s)";
             this.btnAddProduct.UseVisualStyleBackColor = true;
@@ -64,26 +65,30 @@ namespace Package_Manager
             // dgvPackages
             // 
             this.dgvPackages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPackages.Location = new System.Drawing.Point(417, 27);
+            this.dgvPackages.Location = new System.Drawing.Point(596, 45);
+            this.dgvPackages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvPackages.Name = "dgvPackages";
+            this.dgvPackages.RowHeadersWidth = 62;
             this.dgvPackages.RowTemplate.Height = 25;
-            this.dgvPackages.Size = new System.Drawing.Size(284, 364);
+            this.dgvPackages.Size = new System.Drawing.Size(406, 607);
             this.dgvPackages.TabIndex = 1;
             // 
             // lblPackageDisplay
             // 
             this.lblPackageDisplay.AutoSize = true;
-            this.lblPackageDisplay.Location = new System.Drawing.Point(410, 9);
+            this.lblPackageDisplay.Location = new System.Drawing.Point(586, 15);
+            this.lblPackageDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPackageDisplay.Name = "lblPackageDisplay";
-            this.lblPackageDisplay.Size = new System.Drawing.Size(89, 15);
+            this.lblPackageDisplay.Size = new System.Drawing.Size(133, 25);
             this.lblPackageDisplay.TabIndex = 2;
             this.lblPackageDisplay.Text = "Travel Packages";
             // 
             // btnNewPackage
             // 
-            this.btnNewPackage.Location = new System.Drawing.Point(270, 14);
+            this.btnNewPackage.Location = new System.Drawing.Point(386, 23);
+            this.btnNewPackage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNewPackage.Name = "btnNewPackage";
-            this.btnNewPackage.Size = new System.Drawing.Size(110, 23);
+            this.btnNewPackage.Size = new System.Drawing.Size(157, 38);
             this.btnNewPackage.TabIndex = 3;
             this.btnNewPackage.Text = "Add new";
             this.btnNewPackage.UseVisualStyleBackColor = true;
@@ -91,92 +96,103 @@ namespace Package_Manager
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(127, 43);
+            this.txtName.Location = new System.Drawing.Point(181, 72);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(284, 23);
+            this.txtName.Size = new System.Drawing.Size(404, 31);
             this.txtName.TabIndex = 4;
             // 
             // dateStartDate
             // 
-            this.dateStartDate.Location = new System.Drawing.Point(127, 139);
+            this.dateStartDate.Location = new System.Drawing.Point(181, 232);
+            this.dateStartDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateStartDate.Name = "dateStartDate";
-            this.dateStartDate.Size = new System.Drawing.Size(284, 23);
+            this.dateStartDate.Size = new System.Drawing.Size(404, 31);
             this.dateStartDate.TabIndex = 5;
             // 
             // dateEndDate
             // 
-            this.dateEndDate.Location = new System.Drawing.Point(127, 169);
+            this.dateEndDate.Location = new System.Drawing.Point(181, 282);
+            this.dateEndDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateEndDate.Name = "dateEndDate";
-            this.dateEndDate.Size = new System.Drawing.Size(284, 23);
+            this.dateEndDate.Size = new System.Drawing.Size(404, 31);
             this.dateEndDate.TabIndex = 6;
             // 
             // lblStartDate
             // 
             this.lblStartDate.AutoSize = true;
-            this.lblStartDate.Location = new System.Drawing.Point(15, 139);
+            this.lblStartDate.Location = new System.Drawing.Point(21, 232);
+            this.lblStartDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStartDate.Name = "lblStartDate";
-            this.lblStartDate.Size = new System.Drawing.Size(106, 15);
+            this.lblStartDate.Size = new System.Drawing.Size(160, 25);
             this.lblStartDate.TabIndex = 7;
             this.lblStartDate.Text = "Package start date:";
             // 
             // lblEndDate
             // 
             this.lblEndDate.AutoSize = true;
-            this.lblEndDate.Location = new System.Drawing.Point(18, 169);
+            this.lblEndDate.Location = new System.Drawing.Point(26, 282);
+            this.lblEndDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEndDate.Name = "lblEndDate";
-            this.lblEndDate.Size = new System.Drawing.Size(103, 15);
+            this.lblEndDate.Size = new System.Drawing.Size(155, 25);
             this.lblEndDate.TabIndex = 8;
             this.lblEndDate.Text = "Package end date:";
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(34, 43);
+            this.lblName.Location = new System.Drawing.Point(49, 72);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(87, 15);
+            this.lblName.Size = new System.Drawing.Size(129, 25);
             this.lblName.TabIndex = 9;
             this.lblName.Text = "Package name:";
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(127, 69);
+            this.txtDescription.Location = new System.Drawing.Point(181, 115);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(284, 64);
+            this.txtDescription.Size = new System.Drawing.Size(404, 104);
             this.txtDescription.TabIndex = 10;
             // 
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(5, 69);
+            this.lblDescription.Location = new System.Drawing.Point(7, 115);
+            this.lblDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(116, 15);
+            this.lblDescription.Size = new System.Drawing.Size(173, 25);
             this.lblDescription.TabIndex = 11;
             this.lblDescription.Text = "Package description:";
             // 
             // cboPackageID
             // 
             this.cboPackageID.FormattingEnabled = true;
-            this.cboPackageID.Location = new System.Drawing.Point(127, 14);
+            this.cboPackageID.Location = new System.Drawing.Point(181, 23);
+            this.cboPackageID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboPackageID.Name = "cboPackageID";
-            this.cboPackageID.Size = new System.Drawing.Size(118, 23);
+            this.cboPackageID.Size = new System.Drawing.Size(167, 33);
             this.cboPackageID.TabIndex = 12;
             this.cboPackageID.SelectedIndexChanged += new System.EventHandler(this.cboPackageID_SelectedIndexChanged);
             // 
             // lblPackage
             // 
             this.lblPackage.AutoSize = true;
-            this.lblPackage.Location = new System.Drawing.Point(24, 14);
+            this.lblPackage.Location = new System.Drawing.Point(34, 23);
+            this.lblPackage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPackage.Name = "lblPackage";
-            this.lblPackage.Size = new System.Drawing.Size(97, 15);
+            this.lblPackage.Size = new System.Drawing.Size(145, 25);
             this.lblPackage.TabIndex = 13;
             this.lblPackage.Text = "Current package:";
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(5, 369);
+            this.btnUpdate.Location = new System.Drawing.Point(7, 615);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(141, 33);
+            this.btnUpdate.Size = new System.Drawing.Size(201, 55);
             this.btnUpdate.TabIndex = 14;
             this.btnUpdate.Text = "Update package";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -185,17 +201,20 @@ namespace Package_Manager
             // dgvProducts
             // 
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(5, 198);
+            this.dgvProducts.Location = new System.Drawing.Point(7, 330);
+            this.dgvProducts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.RowHeadersWidth = 62;
             this.dgvProducts.RowTemplate.Height = 25;
-            this.dgvProducts.Size = new System.Drawing.Size(259, 165);
+            this.dgvProducts.Size = new System.Drawing.Size(370, 275);
             this.dgvProducts.TabIndex = 15;
             // 
             // btnModifyProduct
             // 
-            this.btnModifyProduct.Location = new System.Drawing.Point(270, 237);
+            this.btnModifyProduct.Location = new System.Drawing.Point(386, 395);
+            this.btnModifyProduct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnModifyProduct.Name = "btnModifyProduct";
-            this.btnModifyProduct.Size = new System.Drawing.Size(119, 33);
+            this.btnModifyProduct.Size = new System.Drawing.Size(170, 55);
             this.btnModifyProduct.TabIndex = 16;
             this.btnModifyProduct.Text = "Modify product(s)";
             this.btnModifyProduct.UseVisualStyleBackColor = true;
@@ -203,9 +222,10 @@ namespace Package_Manager
             // 
             // btnDeleteProduct
             // 
-            this.btnDeleteProduct.Location = new System.Drawing.Point(270, 276);
+            this.btnDeleteProduct.Location = new System.Drawing.Point(386, 460);
+            this.btnDeleteProduct.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDeleteProduct.Name = "btnDeleteProduct";
-            this.btnDeleteProduct.Size = new System.Drawing.Size(110, 33);
+            this.btnDeleteProduct.Size = new System.Drawing.Size(170, 55);
             this.btnDeleteProduct.TabIndex = 17;
             this.btnDeleteProduct.Text = "Delete product(s)";
             this.btnDeleteProduct.UseVisualStyleBackColor = true;
@@ -213,9 +233,9 @@ namespace Package_Manager
             // 
             // frmAddPackage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(707, 416);
+            this.ClientSize = new System.Drawing.Size(1010, 693);
             this.Controls.Add(this.btnDeleteProduct);
             this.Controls.Add(this.btnModifyProduct);
             this.Controls.Add(this.dgvProducts);
@@ -234,6 +254,7 @@ namespace Package_Manager
             this.Controls.Add(this.lblPackageDisplay);
             this.Controls.Add(this.dgvPackages);
             this.Controls.Add(this.btnAddProduct);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmAddPackage";
             this.Text = "Package Manager";
             this.Load += new System.EventHandler(this.frmAddPackage_Load);
