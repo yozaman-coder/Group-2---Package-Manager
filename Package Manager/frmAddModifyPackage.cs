@@ -19,6 +19,7 @@ namespace Package_Manager
 
         private void frmAddPackage_Load(object sender, EventArgs e)
         {
+            // James Straka - Will try to get these done today
             GetPackages();
             DisplayProducts();
             DisplayPackages();
