@@ -86,7 +86,7 @@ namespace Package_Manager
             // lblPackageDisplay
             // 
             this.lblPackageDisplay.AutoSize = true;
-            this.lblPackageDisplay.Location = new System.Drawing.Point(410, 9);
+            this.lblPackageDisplay.Location = new System.Drawing.Point(417, 9);
             this.lblPackageDisplay.Name = "lblPackageDisplay";
             this.lblPackageDisplay.Size = new System.Drawing.Size(89, 15);
             this.lblPackageDisplay.TabIndex = 2;
