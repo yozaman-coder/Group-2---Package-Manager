@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductData;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,9 +20,18 @@ namespace Package_Manager
         private Button btnAddModifySupplier;
         private TextBox txtSupplierID;
 
+        public Supplier Suppliers;
+        public bool AddSupplier;
+        private TravelExpertsContext context = new TravelExpertsContext();
+
         public frmAddModifySupplier()
         {
             InitializeComponent();
+        }
+
+        private void frmAddModifySupplier_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void InitializeComponent()
@@ -48,7 +58,7 @@ namespace Package_Manager
             this.lblSupplierName.AutoSize = true;
             this.lblSupplierName.Location = new System.Drawing.Point(12, 79);
             this.lblSupplierName.Name = "lblSupplierName";
-            this.lblSupplierName.Size = new System.Drawing.Size(133, 25);
+            this.lblSupplierName.Size = new System.Drawing.Size(88, 15);
             this.lblSupplierName.TabIndex = 10;
             this.lblSupplierName.Text = "Supplier Name:";
             // 
@@ -57,7 +67,7 @@ namespace Package_Manager
             this.lblSupplierID.AutoSize = true;
             this.lblSupplierID.Location = new System.Drawing.Point(33, 35);
             this.lblSupplierID.Name = "lblSupplierID";
-            this.lblSupplierID.Size = new System.Drawing.Size(104, 25);
+            this.lblSupplierID.Size = new System.Drawing.Size(67, 15);
             this.lblSupplierID.TabIndex = 9;
             this.lblSupplierID.Text = "Supplier ID:";
             // 
@@ -65,7 +75,7 @@ namespace Package_Manager
             // 
             this.txtSupplierName.Location = new System.Drawing.Point(153, 79);
             this.txtSupplierName.Name = "txtSupplierName";
-            this.txtSupplierName.Size = new System.Drawing.Size(151, 31);
+            this.txtSupplierName.Size = new System.Drawing.Size(151, 23);
             this.txtSupplierName.TabIndex = 8;
             // 
             // btnAddModifySupplier
@@ -82,7 +92,7 @@ namespace Package_Manager
             this.txtSupplierID.Location = new System.Drawing.Point(153, 29);
             this.txtSupplierID.Name = "txtSupplierID";
             this.txtSupplierID.ReadOnly = true;
-            this.txtSupplierID.Size = new System.Drawing.Size(100, 31);
+            this.txtSupplierID.Size = new System.Drawing.Size(100, 23);
             this.txtSupplierID.TabIndex = 6;
             // 
             // frmAddModifySupplier
@@ -97,9 +107,12 @@ namespace Package_Manager
             this.Controls.Add(this.txtSupplierID);
             this.Name = "frmAddModifySupplier";
             this.Text = "Add Supplier";
+            this.Load += new System.EventHandler(this.frmAddModifySupplier_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+
+        
     }
 }
