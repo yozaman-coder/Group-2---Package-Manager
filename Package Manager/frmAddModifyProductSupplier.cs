@@ -13,14 +13,16 @@ using System.Windows.Forms;
 
 namespace Package_Manager
 {
-    public partial class frmAddModifyProductSuppier : Form
+    public partial class frmAddModifyProductSupplier : Form
     {
         private TravelExpertsContext context = new TravelExpertsContext();
         private Product selectedProduct;
         private Supplier selectedSupplier;
         public Product product;
         public Supplier supplier;
-        public frmAddModifyProductSuppier()
+        public ProductsSupplier productSupplier;
+        public bool isAdd;
+        public frmAddModifyProductSupplier()
         {
             InitializeComponent();
         }
@@ -29,6 +31,22 @@ namespace Package_Manager
         {
             DisplayProducts();
             DisplaySuppliers();
+            if(isAdd)
+            {
+                this.Text = "Add Product Supplier";
+            }
+            else
+            {
+                this.Text = "Modify Product Supplier";
+                if(productSupplier == null)
+                {
+                    MessageBox.Show("There is no product supplier selected!", "Modify Error");
+                    this.Close();
+                }
+                // Display current product supplier
+                cboProducts.SelectedItem = productSupplier.ProductId;
+                cboSuppliers.SelectedItem = productSupplier.SupplierId;
+            }
         }
 
         private void btnNewSupplier_Click(object sender, EventArgs e)

@@ -1,7 +1,7 @@
 ﻿
 namespace Package_Manager
 {
-    partial class frmAddModifyProductSuppier
+    partial class frmAddModifyProductSupplier
     {
         /// <summary>
         ///  Required designer variable.

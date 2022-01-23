@@ -1,4 +1,6 @@
-﻿using ProductData;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using ProductData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,7 @@ namespace Package_Manager
     public partial class frmAddPackage : Form
     {
         Package selectedPackage = null;
+        ProductsSupplier selectedProduct = null;
 
         public frmAddPackage()
         {
@@ -26,7 +29,7 @@ namespace Package_Manager
             // Select package 1 by default
             SelectPackage(1);
             DisplayPackages();
-            //DisplayProducts();
+            DisplayProducts();
         }
 
         private void DisplayPackages()
@@ -77,7 +80,44 @@ namespace Package_Manager
         // Will get this done tomorrow.
         private void DisplayProducts()
         {
-            throw new NotImplementedException();
+            using(TravelExpertsContext db = new TravelExpertsContext())
+            {
+                try
+                {
+                    var products = from p in db.PackagesProductsSuppliers
+                                   where p.PackageId == selectedPackage.PackageId
+                                   join prodsup in db.ProductsSuppliers
+                                   on p.ProductSupplierId equals prodsup.ProductSupplierId
+                                   join prod in db.Products
+                                   on prodsup.ProductId equals prod.ProductId
+                                   join supp in db.Suppliers
+                                   on prodsup.SupplierId equals supp.SupplierId
+                                   select new
+                                   {
+                                       ProductSupplierID = prodsup.ProductSupplierId,
+                                       ProductName = prod.ProdName,
+                                       SupplierName = supp.SupName
+                                   };
+                    var productsList = products.ToList();
+                    dgvProducts.DataSource = productsList;
+                    dgvProducts.ClearSelection();
+                }
+                catch (DbUpdateException ex)
+                {
+                    this.HandleDatabaseError(ex);
+                }
+                catch (Exception ex)
+                {
+                    this.HandleGeneralError(ex);
+                }
+            }
+            dgvProducts.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+
+            // Makes sure user cannot select multiple rows or select individual components
+            dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProducts.MultiSelect = false;
+            
+
         }
 
         private void cboPackageID_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,7 +126,7 @@ namespace Package_Manager
             int selectedPackageID = Convert.ToInt32(this.cboPackageID.GetItemText(this.cboPackageID.SelectedItem));
             // Select package with id and display information
             SelectPackage(selectedPackageID);
-            //DisplayProducts();
+            DisplayProducts();
         }
 
         private void SelectPackage(int selectedPackageID)
@@ -121,6 +161,49 @@ namespace Package_Manager
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             // Opens secondForm to add new product/supplier.
+            frmAddModifyProductSupplier secondForm = new frmAddModifyProductSupplier();
+            secondForm.isAdd = true; // Adding a product supplier
+            secondForm.productSupplier = null; // No product supplier selected
+
+            DialogResult result = secondForm.ShowDialog();
+
+            if(result == DialogResult.OK)
+            {
+                //selectedPackageProductSupplier = secondForm.productSupplier;
+                try
+                {
+                    using(TravelExpertsContext db = new TravelExpertsContext())
+                    {
+                        //db.ProductsSuppliers.Add(selectedPackageProductSupplier);
+                        db.SaveChanges();
+                    }
+                    //DisplayProducts();
+                }
+                catch (DbUpdateException ex)
+                {
+                    HandleDatabaseError(ex);
+                }
+                catch (Exception ex)
+                {
+                    HandleGeneralError(ex);
+                }
+            }
+        }
+
+        private void HandleGeneralError(Exception ex)
+        {
+            MessageBox.Show(ex.Message, ex.GetType().ToString());
+        }
+
+        private void HandleDatabaseError(DbUpdateException ex)
+        {
+            string errorMessage = "";
+            var sqlException = (SqlException)ex.InnerException;
+            foreach (SqlError error in sqlException.Errors)
+            {
+                errorMessage += "Error Code: " + error.Number + " " + error.Message + "\n";
+            }
+            MessageBox.Show(errorMessage);
         }
 
         private void btnNewPackage_Click(object sender, EventArgs e)
@@ -138,6 +221,39 @@ namespace Package_Manager
         private void btnModifyProduct_Click(object sender, EventArgs e)
         {
             // Opens second form to change selected products/supplier supplier/product.
+            if (selectedProduct != null)
+            {
+                frmAddModifyProductSupplier secondForm = new frmAddModifyProductSupplier();
+                secondForm.isAdd = false;
+                secondForm.productSupplier = selectedProduct;
+
+                DialogResult result = secondForm.ShowDialog();
+
+                if(result == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (TravelExpertsContext db = new TravelExpertsContext())
+                        {
+                            selectedProduct = db.ProductsSuppliers.Find(secondForm.productSupplier.ProductSupplierId);
+                            selectedProduct.ProductId = secondForm.productSupplier.ProductId;
+                            selectedProduct.SupplierId = secondForm.productSupplier.SupplierId;
+                        }
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        this.HandleDatabaseError(ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.HandleGeneralError(ex);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("You must select a product first!", "Product Selection Error");
+            }
         }
 
         private void btnDeleteProduct_Click(object sender, EventArgs e)
@@ -157,6 +273,30 @@ namespace Package_Manager
                 string selectedPackageID = selectedRow.Cells["PackageId"].Value.ToString();
                 // Select package with package id
                 SelectPackage(Convert.ToInt32(selectedPackageID));
+                DisplayProducts();
+            }
+        }
+
+        private void dgvProducts_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvProducts.SelectedRows.Count > 0) // A row has been selected
+            {
+                int selectedRowIndex = dgvProducts.SelectedCells[0].RowIndex;
+                // Get selected row using the index
+                DataGridViewRow selectedRow = dgvProducts.Rows[selectedRowIndex];
+                // Get Package id from selected row
+                string selectedProductSupplierID = selectedRow.Cells["ProductSupplierID"].Value.ToString();
+                // Select package with package id
+                SelectProduct(Convert.ToInt32(selectedProductSupplierID));
+            }
+        }
+
+        private void SelectProduct(int selectedProductSupplierID)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                // Load selected product using selected product ID
+                selectedProduct = db.ProductsSuppliers.Find(selectedProductSupplierID);
             }
         }
     }

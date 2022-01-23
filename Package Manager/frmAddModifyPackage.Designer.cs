@@ -208,6 +208,7 @@ namespace Package_Manager
             this.dgvProducts.RowTemplate.Height = 25;
             this.dgvProducts.Size = new System.Drawing.Size(259, 165);
             this.dgvProducts.TabIndex = 15;
+            this.dgvProducts.SelectionChanged += new System.EventHandler(this.dgvProducts_SelectionChanged);
             // 
             // btnModifyProduct
             // 
