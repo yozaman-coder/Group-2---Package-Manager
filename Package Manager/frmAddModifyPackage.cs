@@ -106,16 +106,14 @@ namespace Package_Manager
             // Agency commission can be null so we have to check before displaying 
             if (selectedPackage.PkgAgencyCommission != null) // Commission is not null
             {
-                // Display commission as percentage
                 txtComissionPrice.Text = selectedPackage.PkgAgencyCommission?.ToString("c");
+                // Display commission as percentage
                 txtCommissionPerc.Text = (selectedPackage.PkgAgencyCommission / selectedPackage.PkgBasePrice)?.ToString("p");
-                txtTotal.Text = (selectedPackage.PkgBasePrice + selectedPackage.PkgAgencyCommission)?.ToString("c");
             }
             else // There is no commission
             {
                 txtComissionPrice.Text = "";
                 txtCommissionPerc.Text = "0%";
-                txtTotal.Text = selectedPackage.PkgBasePrice.ToString("c");
             }
           
         }

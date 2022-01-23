@@ -53,15 +53,13 @@ namespace Package_Manager
             this.lblCommissionPerc = new System.Windows.Forms.Label();
             this.lblCommissionPrice = new System.Windows.Forms.Label();
             this.lblBasePrice = new System.Windows.Forms.Label();
-            this.txtTotal = new System.Windows.Forms.TextBox();
-            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(270, 292);
+            this.btnAddProduct.Location = new System.Drawing.Point(270, 257);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(119, 33);
             this.btnAddProduct.TabIndex = 0;
@@ -81,7 +79,7 @@ namespace Package_Manager
             this.dgvPackages.RowHeadersVisible = false;
             this.dgvPackages.RowHeadersWidth = 62;
             this.dgvPackages.RowTemplate.Height = 25;
-            this.dgvPackages.Size = new System.Drawing.Size(650, 469);
+            this.dgvPackages.Size = new System.Drawing.Size(650, 434);
             this.dgvPackages.TabIndex = 1;
             this.dgvPackages.SelectionChanged += new System.EventHandler(this.dgvPackages_SelectionChanged);
             // 
@@ -189,7 +187,7 @@ namespace Package_Manager
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(5, 463);
+            this.btnUpdate.Location = new System.Drawing.Point(5, 428);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(141, 33);
             this.btnUpdate.TabIndex = 14;
@@ -203,7 +201,7 @@ namespace Package_Manager
             this.dgvProducts.AllowUserToDeleteRows = false;
             this.dgvProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(5, 292);
+            this.dgvProducts.Location = new System.Drawing.Point(5, 257);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowHeadersVisible = false;
             this.dgvProducts.RowHeadersWidth = 62;
@@ -213,7 +211,7 @@ namespace Package_Manager
             // 
             // btnModifyProduct
             // 
-            this.btnModifyProduct.Location = new System.Drawing.Point(270, 331);
+            this.btnModifyProduct.Location = new System.Drawing.Point(270, 296);
             this.btnModifyProduct.Name = "btnModifyProduct";
             this.btnModifyProduct.Size = new System.Drawing.Size(119, 33);
             this.btnModifyProduct.TabIndex = 16;
@@ -223,7 +221,7 @@ namespace Package_Manager
             // 
             // btnDeleteProduct
             // 
-            this.btnDeleteProduct.Location = new System.Drawing.Point(270, 370);
+            this.btnDeleteProduct.Location = new System.Drawing.Point(270, 335);
             this.btnDeleteProduct.Name = "btnDeleteProduct";
             this.btnDeleteProduct.Size = new System.Drawing.Size(119, 33);
             this.btnDeleteProduct.TabIndex = 17;
@@ -242,7 +240,7 @@ namespace Package_Manager
             // 
             this.txtCommissionPerc.Location = new System.Drawing.Point(127, 227);
             this.txtCommissionPerc.Name = "txtCommissionPerc";
-            this.txtCommissionPerc.Size = new System.Drawing.Size(68, 23);
+            this.txtCommissionPerc.Size = new System.Drawing.Size(98, 23);
             this.txtCommissionPerc.TabIndex = 19;
             // 
             // txtComissionPrice
@@ -265,11 +263,11 @@ namespace Package_Manager
             // lblCommissionPrice
             // 
             this.lblCommissionPrice.AutoSize = true;
-            this.lblCommissionPrice.Location = new System.Drawing.Point(202, 230);
+            this.lblCommissionPrice.Location = new System.Drawing.Point(231, 230);
             this.lblCommissionPrice.Name = "lblCommissionPrice";
-            this.lblCommissionPrice.Size = new System.Drawing.Size(106, 15);
+            this.lblCommissionPrice.Size = new System.Drawing.Size(77, 15);
             this.lblCommissionPrice.TabIndex = 22;
-            this.lblCommissionPrice.Text = "Commission Price:";
+            this.lblCommissionPrice.Text = "Commission:";
             // 
             // lblBasePrice
             // 
@@ -280,30 +278,11 @@ namespace Package_Manager
             this.lblBasePrice.TabIndex = 23;
             this.lblBasePrice.Text = "Package Price:";
             // 
-            // txtTotal
-            // 
-            this.txtTotal.Location = new System.Drawing.Point(127, 256);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.ReadOnly = true;
-            this.txtTotal.Size = new System.Drawing.Size(284, 23);
-            this.txtTotal.TabIndex = 24;
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(57, 259);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(64, 15);
-            this.lblTotal.TabIndex = 25;
-            this.lblTotal.Text = "Total Price:";
-            // 
             // frmAddPackage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 501);
-            this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.txtTotal);
+            this.ClientSize = new System.Drawing.Size(1079, 471);
             this.Controls.Add(this.lblBasePrice);
             this.Controls.Add(this.lblCommissionPrice);
             this.Controls.Add(this.lblCommissionPerc);
@@ -364,7 +343,5 @@ namespace Package_Manager
         private System.Windows.Forms.Label lblCommissionPerc;
         private System.Windows.Forms.Label lblCommissionPrice;
         private System.Windows.Forms.Label lblBasePrice;
-        private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.Label lblTotal;
     }
 }
