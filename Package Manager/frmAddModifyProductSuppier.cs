@@ -43,7 +43,7 @@ namespace Package_Manager
                     selectedSupplier = addSupplierForm.Suppliers;
                     context.Suppliers.Add(selectedSupplier);
                     context.SaveChanges();
-                    this.DisplayProducts();
+                    this.DisplaySuppliers();
                 }
 
                 catch (DbUpdateException ex)
@@ -131,7 +131,7 @@ namespace Package_Manager
                 {
                     selectedSupplier = addModifySupplierForm.Suppliers;
                     context.SaveChanges();
-                    DisplayProducts();
+                    DisplaySuppliers();
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
