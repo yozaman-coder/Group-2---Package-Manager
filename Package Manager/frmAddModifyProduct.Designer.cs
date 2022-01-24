@@ -35,6 +35,8 @@ namespace Package_Manager
             this.label1 = new System.Windows.Forms.Label();
             this.lblProductName = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.dgvListProducts = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // txtProductID
@@ -95,13 +97,24 @@ namespace Package_Manager
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // dgvListProducts
+            // 
+            this.dgvListProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListProducts.Location = new System.Drawing.Point(571, 47);
+            this.dgvListProducts.Name = "dgvListProducts";
+            this.dgvListProducts.RowHeadersWidth = 62;
+            this.dgvListProducts.RowTemplate.Height = 33;
+            this.dgvListProducts.Size = new System.Drawing.Size(607, 437);
+            this.dgvListProducts.TabIndex = 6;
+            // 
             // frmAddModifyProduct
             // 
             this.AcceptButton = this.btnAddModifyProduct;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(610, 359);
+            this.ClientSize = new System.Drawing.Size(1210, 522);
+            this.Controls.Add(this.dgvListProducts);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblProductName);
             this.Controls.Add(this.label1);
@@ -113,6 +126,7 @@ namespace Package_Manager
             this.Name = "frmAddModifyProduct";
             this.Text = "frmAddProduct";
             this.Load += new System.EventHandler(this.frmAddModifyProduct_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,5 +140,6 @@ namespace Package_Manager
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.DataGridView dgvListProducts;
     }
 }
