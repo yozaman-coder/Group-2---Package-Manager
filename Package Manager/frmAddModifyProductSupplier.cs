@@ -51,23 +51,20 @@ namespace Package_Manager
 
         private void cboProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Get product name for selection from combo box
+            // Get product ID for selection from combo box
             int selectedProductID = Convert.ToInt32(this.cboProductID.GetItemText(this.cboProductID.SelectedItem));
-            // Select package with id and display information
+            // Select product with id and display information
             SelectProduct(selectedProductID);
         }
 
-        private void SelectProduct(int selectedProductID)
+        private void cboSupplierID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (TravelExpertsContext db = new TravelExpertsContext())
-            {
-                // Load selected product using selected product ID
-                selectedProduct = db.Products.Find(selectedProductID);
-            }
-            // Display product information
-            cboProductID.Text = selectedProduct.ProductId.ToString();
-            txtProductName.Text = selectedProduct.ProdName;
+            // Get supplier ID for selection from combo box
+            int selectedSupplierID = Convert.ToInt32(this.cboSupplierID.GetItemText(this.cboSupplierID.SelectedItem));
+            // Select supplier with id and display information
+            SelectSupplier(selectedSupplierID);
         }
+
 
         private void btnNewSupplier_Click(object sender, EventArgs e)
         {
@@ -196,8 +193,8 @@ namespace Package_Manager
 
         private void LoadSupplierData()
         {
-            supplier.SupName = cboSupplierID.SelectedIndex.ToString();
-            supplier.SupplierId = Convert.ToInt32(txtSupplierName.Text);
+            supplier.SupplierId = cboSupplierID.SelectedIndex;
+            supplier.SupName = txtSupplierName.Text;
         }
 
         private void LoadProductData()
@@ -205,7 +202,31 @@ namespace Package_Manager
             product.ProductId = cboProductID.SelectedIndex;
             product.ProdName = txtProductName.Text;
         }
-            
+
+
+        private void SelectProduct(int selectedProductID)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                // Load selected product using selected product ID
+                selectedProduct = db.Products.Find(selectedProductID);
+            }
+            // Display product information
+            cboProductID.Text = selectedProduct.ProductId.ToString();
+            txtProductName.Text = selectedProduct.ProdName;
+        }
+
+        private void SelectSupplier(int selectedSupplierID)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                // Load selected product using selected product ID
+                selectedSupplier = db.Suppliers.Find(selectedSupplierID);
+            }
+            // Display product information
+            cboSupplierID.Text = selectedSupplier.SupplierId.ToString();
+            txtSupplierName.Text = selectedSupplier.SupName;
+        }
 
         private void DisplayProducts()
         {
@@ -237,7 +258,7 @@ namespace Package_Manager
 
                 for (var i = 0; i < suppliers.Count; i++)
                 {
-                    cboSupplierID.Items.Add(suppliers[i].SupName);
+                    cboSupplierID.Items.Add(suppliers[i].SupplierId);
                 }
             }
         }
