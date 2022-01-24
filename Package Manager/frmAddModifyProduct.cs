@@ -35,7 +35,7 @@ namespace Package_Manager
             {
                 this.Text = "Add Product";
                 txtProductID.ReadOnly = true;
-                GenerateProductID();
+                
             }
             else
             {
@@ -45,11 +45,7 @@ namespace Package_Manager
             }
         }
 
-        private void GenerateProductID()
-        {
-            throw new NotImplementedException();
-        }
-
+       
         private void LoadProducts()
         {
             using (TravelExpertsContext db = new TravelExpertsContext()) // Establishes a connection with the database.
@@ -118,7 +114,7 @@ namespace Package_Manager
 
         private void FillProductData(Product Products)
         {
-            Products.ProductId = Convert.ToInt32(txtProductID.Text);
+            //Products.ProductId = Convert.ToInt32(txtProductID.Text);
             Products.ProdName = txtProductName.Text;            
         }
 
