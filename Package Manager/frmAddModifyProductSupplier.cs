@@ -44,9 +44,30 @@ namespace Package_Manager
                     this.Close();
                 }
                 // Display current product supplier
-                cboProducts.SelectedItem = productSupplier.ProductId;
-                cboSuppliers.SelectedItem = productSupplier.SupplierId;
+                cboProductID.SelectedItem = productSupplier.ProductId;
+                cboSupplierID.SelectedItem = productSupplier.SupplierId;
             }
+        }
+
+        private void cboProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get product name for selection from combo box
+            int selectedProductID = Convert.ToInt32(this.cboProductID.GetItemText(this.cboProductID.SelectedItem));
+            // Select package with id and display information
+            SelectProduct(selectedProductID);
+            DisplayProducts();
+        }
+
+        private void SelectProduct(int selectedProductID)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                // Load selected product using selected product ID
+                selectedProduct = db.Products.Find(selectedProductID);
+            }
+            // Display product information
+            cboProductID.Text = selectedProduct.ProductId.ToString();
+            txtProductName.Text = selectedProduct.ProdName;
         }
 
         private void btnNewSupplier_Click(object sender, EventArgs e)
@@ -175,15 +196,16 @@ namespace Package_Manager
 
         private void LoadSupplierData()
         {
-            supplier.SupName = cboSuppliers.SelectedIndex.ToString();
-            supplier.SupplierId = Convert.ToInt32(txtSupCode.Text);
+            supplier.SupName = cboSupplierID.SelectedIndex.ToString();
+            supplier.SupplierId = Convert.ToInt32(txtSupplierName.Text);
         }
 
         private void LoadProductData()
         {
-            product.ProdName = cboProducts.SelectedIndex.ToString();
-            product.ProductId = Convert.ToInt32(txtProdCode.Text);
+            product.ProductId = cboProductID.SelectedIndex;
+            product.ProdName = txtProductName.Text;
         }
+            
 
         private void DisplayProducts()
         {
@@ -197,11 +219,11 @@ namespace Package_Manager
 
                 for (var i = 0; i < products.Count; i++)
                 {
-                    cboProducts.Items.Add(products[i].ProdName);
-                    txtProdCode.Text = products[i].ProductId.ToString();
+                    cboProductID.Items.Add(products[i].ProductId);
                 }
             }
         }
+
 
         private void DisplaySuppliers()
         {
@@ -215,11 +237,11 @@ namespace Package_Manager
 
                 for (var i = 0; i < suppliers.Count; i++)
                 {
-                    cboSuppliers.Items.Add(suppliers[i].SupName);
-                    txtSupCode.Text = suppliers[i].SupplierId.ToString();
+                    cboSupplierID.Items.Add(suppliers[i].SupName);
                 }
             }
         }
+
 
         private void HandleGeneralError(Exception ex)
         {
@@ -253,6 +275,6 @@ namespace Package_Manager
             this.DisplayProducts();
         }
 
-
+        
     }
 }
