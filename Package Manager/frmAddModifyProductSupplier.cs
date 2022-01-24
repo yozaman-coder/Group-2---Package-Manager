@@ -55,7 +55,6 @@ namespace Package_Manager
             int selectedProductID = Convert.ToInt32(this.cboProductID.GetItemText(this.cboProductID.SelectedItem));
             // Select package with id and display information
             SelectProduct(selectedProductID);
-            DisplayProducts();
         }
 
         private void SelectProduct(int selectedProductID)
