@@ -34,11 +34,13 @@ namespace Package_Manager
             if(isAdd)
             {
                 this.Text = "Add Product Supplier";
+                btnAddProductToPackage.Text = "Add product to package";
             }
             else
             {
                 this.Text = "Modify Product Supplier";
-                if(productSupplier == null)
+                btnAddProductToPackage.Text = "Confirm changes";
+                if (productSupplier == null)
                 {
                     MessageBox.Show("There is no product supplier selected!", "Modify Error");
                     this.Close();
