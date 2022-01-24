@@ -34,7 +34,8 @@ namespace Package_Manager
             if (AddProduct)
             {
                 this.Text = "Add Product";
-                txtProductID.ReadOnly = false;
+                txtProductID.ReadOnly = true;
+                GenerateProductID();
             }
             else
             {
@@ -42,6 +43,11 @@ namespace Package_Manager
                 txtProductID.ReadOnly = true;
                 this.DisplayProduct();
             }
+        }
+
+        private void GenerateProductID()
+        {
+            throw new NotImplementedException();
         }
 
         private void LoadProducts()
@@ -81,14 +87,58 @@ namespace Package_Manager
 
         private void btnAddModifyProduct_Click(object sender, EventArgs e)
         {
-            frmAddModifyProduct formAddModify = new frmAddModifyProduct();
-            DialogResult result = formAddModify.ShowDialog();
-            context.SaveChanges();
-            if(result == DialogResult.OK)
+            //frmAddModifyProduct formAddModify = new frmAddModifyProduct();
+            //DialogResult result = formAddModify.ShowDialog();
+            //context.SaveChanges();
+            if (AddProduct)
+            {
+                Products = new Product(); // construct a new instance of the Product class, a publicly available field within this form's partial class
+                this.FillProductData(Products); // call the FillProductData method and pass in the Products object
+                try
+                {
+                    context.Products.Add(Products); // Using the Entity Framework's Add method to insert the passed in Products object when the SaveChanges method is called.
+                    context.SaveChanges(); // call the database context's SaveChanges method to save the new product in the database
+                    DisplayProduct(); // call the DisplayProduct method to re-populate data for the form
+                    this.DialogResult = DialogResult.OK;
+                }
+                catch (DbUpdateException ex)
+                {
+                    HandleDataBaseError(ex);
+                }
+                catch (Exception ex)
+                {
+                    HandleGeneralError(ex);
+                }
+            }
+            if(DialogResult == DialogResult.OK)
             {
                 MessageBox.Show("New record was added to the database.");
             }
         }
+
+        private void FillProductData(Product Products)
+        {
+            Products.ProductId = Convert.ToInt32(txtProductID.Text);
+            Products.ProdName = txtProductName.Text;            
+        }
+
+        private void HandleGeneralError(Exception ex)
+        {
+            MessageBox.Show(ex.Message, ex.GetType().ToString());
+        }
+
+        private void HandleDataBaseError(DbUpdateException ex)
+        {
+            string errorMessage = "";
+            var sqlException = (SqlException)ex.InnerException;
+            foreach (SqlError error in sqlException.Errors)
+            {
+                errorMessage += "ERROR CODE:  " + error.Number + " " +
+                                error.Message + "\n";
+            }
+            MessageBox.Show(errorMessage);
+        }
+
         private void dgvListProducts_SelectionChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvListProducts.SelectedRows.Count > 0)
