@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,7 +18,8 @@ namespace Package_Manager
     {
         Package selectedPackage = null;
         ProductsSupplier selectedProduct = null;
-
+        decimal? commissionPercentage = null;
+        bool calcUpdated = true;
         public frmAddPackage()
         {
             InitializeComponent();
@@ -144,11 +146,12 @@ namespace Package_Manager
             dateStartDate.Value = (DateTime)selectedPackage.PkgStartDate;
             dateEndDate.Value = (DateTime)selectedPackage.PkgEndDate;
             // Agency commission can be null so we have to check before displaying 
-            if (selectedPackage.PkgAgencyCommission != null) // Commission is not null
+            if (selectedPackage.PkgAgencyCommission > 0 && selectedPackage.PkgAgencyCommission != null) // Commission is not null
             {
                 txtComissionPrice.Text = selectedPackage.PkgAgencyCommission?.ToString("c");
                 // Display commission as percentage
-                txtCommissionPerc.Text = (selectedPackage.PkgAgencyCommission / selectedPackage.PkgBasePrice)?.ToString("p");
+                commissionPercentage = (selectedPackage.PkgAgencyCommission / selectedPackage.PkgBasePrice);
+                txtCommissionPerc.Text = Decimal.Round(commissionPercentage.Value*100, 2).ToString();
             }
             else // There is no commission
             {
@@ -174,10 +177,10 @@ namespace Package_Manager
                 {
                     using(TravelExpertsContext db = new TravelExpertsContext())
                     {
-                        //db.ProductsSuppliers.Add(selectedPackageProductSupplier);
+                        db.ProductsSuppliers.Add(selectedProduct);
                         db.SaveChanges();
                     }
-                    //DisplayProducts();
+                    DisplayProducts();
                 }
                 catch (DbUpdateException ex)
                 {
@@ -214,8 +217,17 @@ namespace Package_Manager
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             // Update selected package with form information
-            DisplayProducts();
-            DisplayPackages();
+            if(calcUpdated != true)
+            {
+                MessageBox.Show("Commission percentage has changed and must be recalculated! Press Calc Commission", "Commission Uncalculated");
+            }
+            //if(Success)
+            //{
+            //    // Update data and then redisplay
+            //    DisplayProducts();
+            //    DisplayPackages();
+            //}
+           
         }
 
         private void btnModifyProduct_Click(object sender, EventArgs e)
@@ -298,6 +310,35 @@ namespace Package_Manager
                 // Load selected product using selected product ID
                 selectedProduct = db.ProductsSuppliers.Find(selectedProductSupplierID);
             }
+        }
+
+        private void btnCalcCommission_Click(object sender, EventArgs e)
+        {
+            string strippedCommissionPerc = Regex.Replace(txtCommissionPerc.Text.ToString(), @"[^0-9a-zA-Z.-]+", "");
+
+            if (Convert.ToDecimal(strippedCommissionPerc) == 0 | strippedCommissionPerc == "")
+            {
+                selectedPackage.PkgAgencyCommission = null;
+                txtComissionPrice.Text = 0.ToString("c");
+                calcUpdated = true;
+            }
+            else if (Convert.ToDecimal(strippedCommissionPerc) < 1)
+            {
+                MessageBox.Show("Commission percent cannot be less than 1", "Error");
+            }
+            else
+            {
+                string strippedBase = Regex.Replace(txtBasePrice.Text.ToString(), @"[^0-9a-zA-Z.]+", "");
+                decimal commissionTotal = (Decimal.Parse(strippedCommissionPerc) / 100) * Decimal.Parse(strippedBase);
+                selectedPackage.PkgAgencyCommission = commissionTotal;
+                txtComissionPrice.Text = Decimal.Round(selectedPackage.PkgAgencyCommission.Value, 2).ToString("c");
+                calcUpdated = true;
+            }
+        }
+
+        private void txtCommissionPerc_TextChanged(object sender, EventArgs e)
+        {
+            calcUpdated = false;
         }
     }
 }

@@ -53,13 +53,14 @@ namespace Package_Manager
             this.lblCommissionPerc = new System.Windows.Forms.Label();
             this.lblCommissionPrice = new System.Windows.Forms.Label();
             this.lblBasePrice = new System.Windows.Forms.Label();
+            this.btnCalcCommission = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(270, 257);
+            this.btnAddProduct.Location = new System.Drawing.Point(270, 293);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(119, 33);
             this.btnAddProduct.TabIndex = 0;
@@ -79,7 +80,7 @@ namespace Package_Manager
             this.dgvPackages.RowHeadersVisible = false;
             this.dgvPackages.RowHeadersWidth = 62;
             this.dgvPackages.RowTemplate.Height = 25;
-            this.dgvPackages.Size = new System.Drawing.Size(650, 434);
+            this.dgvPackages.Size = new System.Drawing.Size(650, 468);
             this.dgvPackages.TabIndex = 1;
             this.dgvPackages.SelectionChanged += new System.EventHandler(this.dgvPackages_SelectionChanged);
             // 
@@ -187,7 +188,7 @@ namespace Package_Manager
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(5, 428);
+            this.btnUpdate.Location = new System.Drawing.Point(5, 464);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(141, 33);
             this.btnUpdate.TabIndex = 14;
@@ -201,7 +202,7 @@ namespace Package_Manager
             this.dgvProducts.AllowUserToDeleteRows = false;
             this.dgvProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(5, 257);
+            this.dgvProducts.Location = new System.Drawing.Point(5, 293);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowHeadersVisible = false;
             this.dgvProducts.RowHeadersWidth = 62;
@@ -212,7 +213,7 @@ namespace Package_Manager
             // 
             // btnModifyProduct
             // 
-            this.btnModifyProduct.Location = new System.Drawing.Point(270, 296);
+            this.btnModifyProduct.Location = new System.Drawing.Point(270, 332);
             this.btnModifyProduct.Name = "btnModifyProduct";
             this.btnModifyProduct.Size = new System.Drawing.Size(119, 33);
             this.btnModifyProduct.TabIndex = 16;
@@ -222,7 +223,7 @@ namespace Package_Manager
             // 
             // btnDeleteProduct
             // 
-            this.btnDeleteProduct.Location = new System.Drawing.Point(270, 335);
+            this.btnDeleteProduct.Location = new System.Drawing.Point(270, 371);
             this.btnDeleteProduct.Name = "btnDeleteProduct";
             this.btnDeleteProduct.Size = new System.Drawing.Size(119, 33);
             this.btnDeleteProduct.TabIndex = 17;
@@ -243,6 +244,7 @@ namespace Package_Manager
             this.txtCommissionPerc.Name = "txtCommissionPerc";
             this.txtCommissionPerc.Size = new System.Drawing.Size(98, 23);
             this.txtCommissionPerc.TabIndex = 19;
+            this.txtCommissionPerc.TextChanged += new System.EventHandler(this.txtCommissionPerc_TextChanged);
             // 
             // txtComissionPrice
             // 
@@ -279,11 +281,22 @@ namespace Package_Manager
             this.lblBasePrice.TabIndex = 23;
             this.lblBasePrice.Text = "Package Price:";
             // 
+            // btnCalcCommission
+            // 
+            this.btnCalcCommission.Location = new System.Drawing.Point(294, 256);
+            this.btnCalcCommission.Name = "btnCalcCommission";
+            this.btnCalcCommission.Size = new System.Drawing.Size(117, 23);
+            this.btnCalcCommission.TabIndex = 24;
+            this.btnCalcCommission.Text = "Calc Commission";
+            this.btnCalcCommission.UseVisualStyleBackColor = true;
+            this.btnCalcCommission.Click += new System.EventHandler(this.btnCalcCommission_Click);
+            // 
             // frmAddPackage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 471);
+            this.ClientSize = new System.Drawing.Size(1079, 507);
+            this.Controls.Add(this.btnCalcCommission);
             this.Controls.Add(this.lblBasePrice);
             this.Controls.Add(this.lblCommissionPrice);
             this.Controls.Add(this.lblCommissionPerc);
@@ -344,5 +357,6 @@ namespace Package_Manager
         private System.Windows.Forms.Label lblCommissionPerc;
         private System.Windows.Forms.Label lblCommissionPrice;
         private System.Windows.Forms.Label lblBasePrice;
+        private System.Windows.Forms.Button btnCalcCommission;
     }
 }
