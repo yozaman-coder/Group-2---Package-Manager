@@ -30,12 +30,13 @@ namespace Package_Manager
         private void InitializeComponent()
         {
             this.txtProductID = new System.Windows.Forms.TextBox();
-            this.btnAddModifyProduct = new System.Windows.Forms.Button();
+            this.btnAddProduct = new System.Windows.Forms.Button();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblProductName = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.dgvListProducts = new System.Windows.Forms.DataGridView();
+            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,16 +49,17 @@ namespace Package_Manager
             this.txtProductID.Size = new System.Drawing.Size(168, 37);
             this.txtProductID.TabIndex = 0;
             // 
-            // btnAddModifyProduct
+            // btnAddProduct
             // 
-            this.btnAddModifyProduct.Location = new System.Drawing.Point(102, 230);
-            this.btnAddModifyProduct.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.btnAddModifyProduct.Name = "btnAddModifyProduct";
-            this.btnAddModifyProduct.Size = new System.Drawing.Size(128, 46);
-            this.btnAddModifyProduct.TabIndex = 1;
-            this.btnAddModifyProduct.Text = "&Save";
-            this.btnAddModifyProduct.UseVisualStyleBackColor = true;
-            this.btnAddModifyProduct.Click += new System.EventHandler(this.btnAddModifyProduct_Click);
+            this.btnAddProduct.Location = new System.Drawing.Point(192, 216);
+            this.btnAddProduct.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.btnAddProduct.Name = "btnAddProduct";
+            this.btnAddProduct.Size = new System.Drawing.Size(128, 46);
+            this.btnAddProduct.TabIndex = 1;
+            this.btnAddProduct.Text = "&Add";
+            this.btnAddProduct.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Visible = false;
+            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // txtProductName
             // 
@@ -89,7 +91,7 @@ namespace Package_Manager
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(354, 230);
+            this.btnCancel.Location = new System.Drawing.Point(192, 394);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(128, 46);
@@ -107,19 +109,32 @@ namespace Package_Manager
             this.dgvListProducts.Size = new System.Drawing.Size(607, 437);
             this.dgvListProducts.TabIndex = 6;
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(192, 299);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(128, 46);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "&Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Visible = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // frmAddModifyProduct
             // 
-            this.AcceptButton = this.btnAddModifyProduct;
+            this.AcceptButton = this.btnAddProduct;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1210, 522);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dgvListProducts);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblProductName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtProductName);
-            this.Controls.Add(this.btnAddModifyProduct);
+            this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.txtProductID);
             this.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
@@ -135,11 +150,12 @@ namespace Package_Manager
         #endregion
 
         private System.Windows.Forms.TextBox txtProductID;
-        private System.Windows.Forms.Button btnAddModifyProduct;
+        private System.Windows.Forms.Button btnAddProduct;
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblProductName;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.DataGridView dgvListProducts;
+        private System.Windows.Forms.Button btnSave;
     }
 }

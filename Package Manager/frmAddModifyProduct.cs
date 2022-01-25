@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Package_Manager
 {
-    
+
     public partial class frmAddModifyProduct : Form
     {
         // class-level variable to access the ProductData.Product class 
@@ -20,8 +20,12 @@ namespace Package_Manager
         // class-level boolean variable to allow for modal form functionality (switching between Add and Modify product)
         public bool AddProduct;
         // class-level varialbe to access the DB Context
-        private TravelExpertsContext context = new TravelExpertsContext();
-        Product selectedProduct = null;
+        //private TravelExpertsContext context = new TravelExpertsContext();
+        public string getselectedProdID
+        {
+            set { txtProductID.Text = value; }
+        }
+        
 
         public frmAddModifyProduct()
         {
@@ -41,7 +45,7 @@ namespace Package_Manager
             {
                 this.Text = "Modify Product";
                 txtProductID.ReadOnly = true;
-                this.DisplayProduct();
+                
             }
         }
 
@@ -74,36 +78,41 @@ namespace Package_Manager
             }
         }
 
-        private void DisplayProduct()
-        {
-            txtProductID.Text = Products.ProductId.ToString();
-            txtProductName.Text = Products.ProdName;
+        //private int GetModProduct()
+        //{
+        //    txtProductID.Text = 
+        //    txtProductName.Text = 
+        //    //txtProductID.Text = Products.ProductId.ToString();
+        //    //txtProductName.Text = Products.ProdName;
 
-        }
+        //}
 
-        private void btnAddModifyProduct_Click(object sender, EventArgs e)
+        private void btnAddProduct_Click(object sender, EventArgs e)
         {
             //frmAddModifyProduct formAddModify = new frmAddModifyProduct();
             //DialogResult result = formAddModify.ShowDialog();
             //context.SaveChanges();
-            if (AddProduct)
+            using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                Products = new Product(); // construct a new instance of the Product class, a publicly available field within this form's partial class
-                this.FillProductData(Products); // call the FillProductData method and pass in the Products object
-                try
+                if (AddProduct)
                 {
-                    context.Products.Add(Products); // Using the Entity Framework's Add method to insert the passed in Products object when the SaveChanges method is called.
-                    context.SaveChanges(); // call the database context's SaveChanges method to save the new product in the database
-                    DisplayProduct(); // call the DisplayProduct method to re-populate data for the form
-                    this.DialogResult = DialogResult.OK;
-                }
-                catch (DbUpdateException ex)
-                {
-                    HandleDataBaseError(ex);
-                }
-                catch (Exception ex)
-                {
-                    HandleGeneralError(ex);
+                    Products = new Product(); // construct a new instance of the Product class, a publicly available field within this form's partial class
+                    this.FillProductData(Products); // call the FillProductData method and pass in the Products object
+                    try
+                    {
+                        db.Products.Add(Products.ProdName); // Using the Entity Framework's Add method to insert the passed in Products object when the SaveChanges method is called.
+                        db.SaveChanges(); // call the database context's SaveChanges method to save the new product in the database
+                                          //DisplayProduct(); // call the DisplayProduct method to re-populate data for the form
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        HandleDataBaseError(ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        HandleGeneralError(ex);
+                    }
                 }
             }
             if(DialogResult == DialogResult.OK)
@@ -135,28 +144,33 @@ namespace Package_Manager
             MessageBox.Show(errorMessage);
         }
 
-        private void dgvListProducts_SelectionChanged(object sender, DataGridViewCellEventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            if (dgvListProducts.SelectedRows.Count > 0)
-            {
-                // Get the selected product code based on the row index of the cell that is clicked on, store in local variable
-                int selectedRowIndex = dgvListProducts.SelectedCells[0].RowIndex;
-                // Get selected row using the index
-                DataGridViewRow selectedRow = dgvListProducts.Rows[selectedRowIndex];
-                // Get Package id from selected row
-                string selectedProductID = selectedRow.Cells["ProductID"].Value.ToString();
-                // Select package with package id
-                SelectProduct(Convert.ToInt32(selectedProductID));
-                /* search for this product code in the database context, assign the result in variable named selectedProduct.*/
-            }
+            // to be implemented tonight
         }
-        private void SelectProduct(int selectedProductID)
-        {
-            using (TravelExpertsContext db = new TravelExpertsContext())
-            {
-                // Load selected product using selected product ID
-                selectedProduct = db.Products.Find(selectedProductID);
-            }
-        }
+
+        //private void dgvListProducts_SelectionChanged(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (dgvListProducts.SelectedRows.Count > 0)
+        //    {
+        //        // Get the selected product code based on the row index of the cell that is clicked on, store in local variable
+        //        int selectedRowIndex = dgvListProducts.SelectedCells[0].RowIndex;
+        //        // Get selected row using the index
+        //        DataGridViewRow selectedRow = dgvListProducts.Rows[selectedRowIndex];
+        //        // Get Package id from selected row
+        //        string selectedProductID = selectedRow.Cells["ProductID"].Value.ToString();
+        //        // Select package with package id
+        //        SelectProduct(Convert.ToInt32(selectedProductID));
+        //        /* search for this product code in the database context, assign the result in variable named selectedProduct.*/
+        //    }
+        //}
+        //private void SelectProduct(int selectedProductID)
+        //{
+        //    using (TravelExpertsContext db = new TravelExpertsContext())
+        //    {
+        //        // Load selected product using selected product ID
+        //        selectedProduct = db.Products.Find(selectedProductID);
+        //    }
+        //}
     }
 }

@@ -16,12 +16,16 @@ namespace Package_Manager
     public partial class frmAddModifyProductSupplier : Form
     {
         private TravelExpertsContext context = new TravelExpertsContext();
-        private Product selectedProduct;
+        public Product selectedProduct;
         private Supplier selectedSupplier;
         public Product product;
         public Supplier supplier;
         public ProductsSupplier productSupplier;
         public bool isAdd;
+        public string selectedProdID
+        {
+            get { return cboProductID.Text; }
+        }
         public frmAddModifyProductSupplier()
         {
             InitializeComponent();
@@ -123,36 +127,39 @@ namespace Package_Manager
 
         private void btnModifyProduct_Click(object sender, EventArgs e)
         {
-            var addModifyProductForm = new frmAddModifyProduct()
-            {
-                AddProduct = false,
-                Products = selectedProduct
-            };
+            frmAddModifyProduct modForm = new frmAddModifyProduct();
+            modForm.getselectedProdID = selectedProdID;
+            modForm.Show();
             
-            DialogResult result = addModifyProductForm.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    try
-                    {
-                        selectedProduct = addModifyProductForm.Products; // Brett - I think this needs to work the other way around. The selectedProduct needs to come from this form, then it can be modified via frmAddModifyProduct. Do you agree?
-                        context.SaveChanges();
-                        DisplayProducts();
-                    }
-                    catch (DbUpdateConcurrencyException ex)
-                    {
-                        HandleConcurrencyError(ex);
-                    }
-                    catch (DbUpdateException ex)
-                    {
-                        HandleDatabaseError(ex);
-                    }
-                    catch (Exception ex)
-                    {
-                        HandleGeneralError(ex);
-                    }
-                }
                 
+                //AddProduct = false,
+                //Products = selectedProduct
         }
+            
+            //DialogResult result = addModifyProductForm.ShowDialog();
+            //    if (result == DialogResult.OK)
+            //    {
+            //        try
+            //        {
+            //            selectedProduct = addModifyProductForm.Products; // Brett - I think this needs to work the other way around. The selectedProduct needs to come from this form, then it can be modified via frmAddModifyProduct. Do you agree?
+            //            context.SaveChanges();
+            //            DisplayProducts();
+            //        }
+            //        catch (DbUpdateConcurrencyException ex)
+            //        {
+            //            HandleConcurrencyError(ex);
+            //        }
+            //        catch (DbUpdateException ex)
+            //        {
+            //            HandleDatabaseError(ex);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            HandleGeneralError(ex);
+            //        }
+            //    }
+                
+        
 
         private void btnSupplierModify_Click(object sender, EventArgs e)
         {
