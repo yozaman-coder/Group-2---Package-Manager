@@ -152,11 +152,13 @@ namespace Package_Manager
                 // Display commission as percentage
                 commissionPercentage = (selectedPackage.PkgAgencyCommission / selectedPackage.PkgBasePrice);
                 txtCommissionPerc.Text = Decimal.Round(commissionPercentage.Value*100, 2).ToString();
+                calcUpdated = true;
             }
             else // There is no commission
             {
-                txtComissionPrice.Text = "";
-                txtCommissionPerc.Text = "0%";
+                txtComissionPrice.Text = 0.ToString("c");
+                txtCommissionPerc.Text = 0.ToString();
+                calcUpdated = true;
             }
           
         }
