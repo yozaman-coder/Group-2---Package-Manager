@@ -22,9 +22,10 @@ namespace Package_Manager
         public Supplier supplier;
         public ProductsSupplier productSupplier;
         public bool isAdd;
-        public string selectedProdID
+        public string SelectedProdID
         {
-            get { return cboProductID.Text; }
+            get{ return cboProductID.Text; }
+            set { SelectedProdID = cboProductID.Text; }
         }
         public frmAddModifyProductSupplier()
         {
@@ -102,33 +103,35 @@ namespace Package_Manager
         {
             frmAddModifyProduct addProductForm = new frmAddModifyProduct();
             addProductForm.AddProduct = true;
-            DialogResult result = addProductForm.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                try
-                {
-                    selectedProduct = addProductForm.Products;
-                    context.Products.Add(selectedProduct);
-                    context.SaveChanges();
-                    this.DisplayProducts();
-                }
-
-                catch (DbUpdateException ex)
-                {
-                    HandleDatabaseError(ex);
-                }
-                catch (Exception ex)
-                {
-                    HandleGeneralError(ex);
-                }
-            }
+            addProductForm.Show();
         }
+        //DialogResult result = addProductForm.ShowDialog();
+        //if (result == DialogResult.OK)
+        //{
+        //    try
+        //    {
+        //        selectedProduct = addProductForm.Products;
+        //        context.Products.Add(selectedProduct);
+        //        context.SaveChanges();
+        //        this.DisplayProducts();
+        //    }
+
+        //    catch (DbUpdateException ex)
+        //    {
+        //        HandleDatabaseError(ex);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HandleGeneralError(ex);
+        //    }
+
+
 
 
         private void btnModifyProduct_Click(object sender, EventArgs e)
         {
             frmAddModifyProduct modForm = new frmAddModifyProduct();
-            modForm.getselectedProdID = selectedProdID;
+            modForm.getselectedProdID = SelectedProdID;
             modForm.Show();
             
                 

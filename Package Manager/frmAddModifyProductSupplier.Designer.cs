@@ -51,7 +51,7 @@ namespace Package_Manager
             this.cboProductID.Location = new System.Drawing.Point(24, 50);
             this.cboProductID.Margin = new System.Windows.Forms.Padding(4);
             this.cboProductID.Name = "cboProductID";
-            this.cboProductID.Size = new System.Drawing.Size(71, 29);
+            this.cboProductID.Size = new System.Drawing.Size(71, 40);
             this.cboProductID.TabIndex = 0;
             this.cboProductID.SelectedIndexChanged += new System.EventHandler(this.cboProducts_SelectedIndexChanged);
             // 
@@ -61,7 +61,7 @@ namespace Package_Manager
             this.lblProducts.Location = new System.Drawing.Point(24, 25);
             this.lblProducts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProducts.Name = "lblProducts";
-            this.lblProducts.Size = new System.Drawing.Size(71, 21);
+            this.lblProducts.Size = new System.Drawing.Size(106, 32);
             this.lblProducts.TabIndex = 1;
             this.lblProducts.Text = "Products";
             // 
@@ -71,7 +71,7 @@ namespace Package_Manager
             this.lblSupplier.Location = new System.Drawing.Point(428, 25);
             this.lblSupplier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSupplier.Name = "lblSupplier";
-            this.lblSupplier.Size = new System.Drawing.Size(68, 21);
+            this.lblSupplier.Size = new System.Drawing.Size(102, 32);
             this.lblSupplier.TabIndex = 2;
             this.lblSupplier.Text = "Supplier";
             // 
@@ -81,7 +81,7 @@ namespace Package_Manager
             this.cboSupplierID.Location = new System.Drawing.Point(428, 50);
             this.cboSupplierID.Margin = new System.Windows.Forms.Padding(4);
             this.cboSupplierID.Name = "cboSupplierID";
-            this.cboSupplierID.Size = new System.Drawing.Size(68, 29);
+            this.cboSupplierID.Size = new System.Drawing.Size(68, 40);
             this.cboSupplierID.TabIndex = 3;
             this.cboSupplierID.SelectedIndexChanged += new System.EventHandler(this.cboSupplierID_SelectedIndexChanged);
             // 
@@ -156,7 +156,7 @@ namespace Package_Manager
             this.txtProductName.Margin = new System.Windows.Forms.Padding(4);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.ReadOnly = true;
-            this.txtProductName.Size = new System.Drawing.Size(276, 29);
+            this.txtProductName.Size = new System.Drawing.Size(276, 39);
             this.txtProductName.TabIndex = 10;
             // 
             // txtSupplierName
@@ -165,7 +165,7 @@ namespace Package_Manager
             this.txtSupplierName.Margin = new System.Windows.Forms.Padding(4);
             this.txtSupplierName.Name = "txtSupplierName";
             this.txtSupplierName.ReadOnly = true;
-            this.txtSupplierName.Size = new System.Drawing.Size(276, 29);
+            this.txtSupplierName.Size = new System.Drawing.Size(276, 39);
             this.txtSupplierName.TabIndex = 11;
             // 
             // label1
@@ -173,7 +173,7 @@ namespace Package_Manager
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(312, 138);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 21);
+            this.label1.Size = new System.Drawing.Size(207, 32);
             this.label1.TabIndex = 12;
             this.label1.Text = "ProductSupplierID";
             // 
@@ -188,8 +188,9 @@ namespace Package_Manager
             // 
             // frmAddModifyProductSupplier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(717, 419);
             this.Controls.Add(this.lblProdSupID);
             this.Controls.Add(this.label1);

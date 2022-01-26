@@ -23,6 +23,7 @@ namespace Package_Manager
         //private TravelExpertsContext context = new TravelExpertsContext();
         public string getselectedProdID
         {
+            get { return txtProductID.Text; }
             set { txtProductID.Text = value; }
         }
         
@@ -39,12 +40,13 @@ namespace Package_Manager
             {
                 this.Text = "Add Product";
                 txtProductID.ReadOnly = true;
-                
+                btnAddProduct.Visible = true;
             }
             else
             {
                 this.Text = "Modify Product";
                 txtProductID.ReadOnly = true;
+                btnSave.Visible = true;
                 
             }
         }
@@ -93,37 +95,18 @@ namespace Package_Manager
             //DialogResult result = formAddModify.ShowDialog();
             //context.SaveChanges();
             using (TravelExpertsContext db = new TravelExpertsContext())
-            {
-                if (AddProduct)
                 {
-                    Products = new Product(); // construct a new instance of the Product class, a publicly available field within this form's partial class
-                    this.FillProductData(Products); // call the FillProductData method and pass in the Products object
-                    try
-                    {
-                        //db.Products.Add(Products.ProdName); // Using the Entity Framework's Add method to insert the passed in Products object when the SaveChanges method is called.
-                        db.SaveChanges(); // call the database context's SaveChanges method to save the new product in the database
-                                          //DisplayProduct(); // call the DisplayProduct method to re-populate data for the form
-                        this.DialogResult = DialogResult.OK;
-                    }
-                    catch (DbUpdateException ex)
-                    {
-                        HandleDataBaseError(ex);
-                    }
-                    catch (Exception ex)
-                    {
-                        HandleGeneralError(ex);
-                    }
-                }
-            }
-            if(DialogResult == DialogResult.OK)
-            {
+                var newProd = new Product();
+                this.FillProductData(newProd);
+                db.Products.Add(newProd);
+                db.SaveChanges();
+                LoadProducts();
                 MessageBox.Show("New record was added to the database.");
-            }
+                }
         }
 
         private void FillProductData(Product Products)
         {
-            //Products.ProductId = Convert.ToInt32(txtProductID.Text);
             Products.ProdName = txtProductName.Text;            
         }
 
@@ -146,7 +129,14 @@ namespace Package_Manager
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // to be implemented tonight
+            using (var db = new TravelExpertsContext())
+            {
+                var modProduct = db.Products.Find(Convert.ToInt32(getselectedProdID));
+                modProduct.ProdName = txtProductName.Text;
+                db.SaveChanges();
+                LoadProducts();
+                MessageBox.Show("Change made successfully.");
+            }
         }
 
         //private void dgvListProducts_SelectionChanged(object sender, DataGridViewCellEventArgs e)
