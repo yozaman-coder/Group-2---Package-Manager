@@ -3,13 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using ProductData;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Package_Manager
@@ -20,6 +17,8 @@ namespace Package_Manager
         ProductsSupplier selectedProduct = null;
         decimal? commissionPercentage = null;
         bool calcUpdated = true;
+        bool succesfullAddition = true;
+        bool dontCallSelectionEvent = false;
         public frmAddPackage()
         {
             InitializeComponent();
@@ -51,17 +50,18 @@ namespace Package_Manager
                     p.PkgAgencyCommission
                 }).ToList();
 
-
-                // Get current package
-
                 // Populate combo box with ids
+                cboPackageID.Items.Clear();
                 for (var i = 0; i < packages.Count; i++)
                 {
                     cboPackageID.Items.Add(packages[i].PackageId);
                 }
 
                 // Populate data grid view
+                dontCallSelectionEvent = true;
                 dgvPackages.DataSource = packages;
+                
+
             }
             // Format headers
             dgvPackages.Columns[0].HeaderText = "ID";
@@ -76,6 +76,7 @@ namespace Package_Manager
             // Makes sure user cannot select multiple rows or select individual components
             dgvPackages.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPackages.MultiSelect = false;
+            dontCallSelectionEvent = false;
 
         }
 
@@ -122,15 +123,6 @@ namespace Package_Manager
 
         }
 
-        private void cboPackageID_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Get package id for selection from combo box
-            int selectedPackageID = Convert.ToInt32(this.cboPackageID.GetItemText(this.cboPackageID.SelectedItem));
-            // Select package with id and display information
-            SelectPackage(selectedPackageID);
-            DisplayProducts();
-        }
-
         private void SelectPackage(int selectedPackageID)
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
@@ -139,6 +131,7 @@ namespace Package_Manager
                 selectedPackage = db.Packages.Find(selectedPackageID);
             }
             // Display package information
+            cboPackageID.SelectedItem = selectedPackage.PackageId;
             cboPackageID.Text = selectedPackage.PackageId.ToString();
             txtName.Text = selectedPackage.PkgName;
             txtBasePrice.Text = selectedPackage.PkgBasePrice.ToString("c");
@@ -213,7 +206,33 @@ namespace Package_Manager
 
         private void btnNewPackage_Click(object sender, EventArgs e)
         {
+            succesfullAddition = false;
+            cboPackageID.Enabled = false;
+            dgvPackages.Enabled = false;
+            btnCancelPackage.Visible = true;
+            txtStop.Visible = true;
             // Adds new empty package
+            btnUpdate.Visible = false;
+            btnFinish.Visible = true;
+            selectedPackage.PkgName = "DEFAULT";
+            selectedPackage.PkgStartDate = DateTime.Now;
+            selectedPackage.PkgEndDate = DateTime.Now;
+            selectedPackage.PkgDesc = "DEFAULT";
+            selectedPackage.PkgBasePrice = 0m;
+            selectedPackage.PkgAgencyCommission = null;
+            int mostRecentID = 0;
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                db.Packages.Add( new Package() { PkgName = selectedPackage.PkgName, PkgStartDate = selectedPackage.PkgStartDate
+                , PkgEndDate = selectedPackage.PkgEndDate, PkgDesc = selectedPackage.PkgDesc, PkgBasePrice = selectedPackage.PkgBasePrice, 
+                PkgAgencyCommission = selectedPackage.PkgAgencyCommission});
+                db.SaveChanges();
+                mostRecentID = db.Packages.OrderBy(x => x.PackageId).LastOrDefault().PackageId;
+            }
+            DisplayPackages();
+            SelectPackage(mostRecentID);
+            DisplayProducts();
+            selectedProduct = null;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -223,13 +242,11 @@ namespace Package_Manager
             {
                 MessageBox.Show("Commission percentage has changed and must be recalculated! Press Calc Commission", "Commission Uncalculated");
             }
-            //if(Success)
-            //{
-            //    // Update data and then redisplay
-            //    DisplayProducts();
-            //    DisplayPackages();
-            //}
-           
+            else
+            { 
+            UpdatePackage(selectedPackage.PackageId);
+            }
+
         }
 
         private void btnModifyProduct_Click(object sender, EventArgs e)
@@ -278,31 +295,38 @@ namespace Package_Manager
         // User selects package through data grid view
         private void dgvPackages_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvPackages.SelectedRows.Count > 0) // A row has been selected
+            if (dontCallSelectionEvent == false)
             {
-                int selectedRowIndex = dgvPackages.SelectedCells[0].RowIndex;
-                // Get selected row using the index
-                DataGridViewRow selectedRow = dgvPackages.Rows[selectedRowIndex];
-                // Get Package id from selected row
-                string selectedPackageID = selectedRow.Cells["PackageId"].Value.ToString();
-                // Select package with package id
-                SelectPackage(Convert.ToInt32(selectedPackageID));
-                DisplayProducts();
+                if (dgvPackages.SelectedRows.Count > 0) // A row has been selected
+                {
+                    int selectedRowIndex = dgvPackages.SelectedCells[0].RowIndex;
+                    // Get selected row using the index
+                    DataGridViewRow selectedRow = dgvPackages.Rows[selectedRowIndex];
+                    // Get Package id from selected row
+                    string selectedPackageID = selectedRow.Cells["PackageId"].Value.ToString();
+                    // Select package with package id
+                    SelectPackage(Convert.ToInt32(selectedPackageID));
+                    DisplayProducts();
+                }
             }
         }
 
         private void dgvProducts_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvProducts.SelectedRows.Count > 0) // A row has been selected
+            if(dontCallSelectionEvent == false)
             {
-                int selectedRowIndex = dgvProducts.SelectedCells[0].RowIndex;
-                // Get selected row using the index
-                DataGridViewRow selectedRow = dgvProducts.Rows[selectedRowIndex];
-                // Get Package id from selected row
-                string selectedProductSupplierID = selectedRow.Cells["ProductSupplierID"].Value.ToString();
-                // Select package with package id
-                SelectProduct(Convert.ToInt32(selectedProductSupplierID));
+                if (dgvProducts.SelectedRows.Count > 0) // A row has been selected
+                {
+                    int selectedRowIndex = dgvProducts.SelectedCells[0].RowIndex;
+                    // Get selected row using the index
+                    DataGridViewRow selectedRow = dgvProducts.Rows[selectedRowIndex];
+                    // Get Package id from selected row
+                    string selectedProductSupplierID = selectedRow.Cells["ProductSupplierID"].Value.ToString();
+                    // Select package with package id
+                    SelectProduct(Convert.ToInt32(selectedProductSupplierID));
+                }
             }
+            
         }
 
         private void SelectProduct(int selectedProductSupplierID)
@@ -341,6 +365,94 @@ namespace Package_Manager
         private void txtCommissionPerc_TextChanged(object sender, EventArgs e)
         {
             calcUpdated = false;
+        }
+
+        private void btnFinish_Click(object sender, EventArgs e)
+        {
+            if (calcUpdated != true)
+            {
+                MessageBox.Show("Commission percentage has changed and must be recalculated! Press Calc Commission", "Commission Uncalculated");
+            }
+            else
+            {
+                UpdatePackage(selectedPackage.PackageId);
+                if (succesfullAddition == true)
+                {
+                    btnUpdate.Visible = true;
+                    btnCancelPackage.Visible = false;
+                    btnFinish.Visible = false;
+                    cboPackageID.Enabled = true;
+                    dgvPackages.Enabled = true;
+                    txtStop.Visible = false;
+                }
+            }
+        }
+
+        private void UpdatePackage(int selectedPackageId)
+        {
+            bool validation = true;
+            if (validation)
+            {
+                int packageIDForRedisplay = 0;
+                selectedPackage.PkgName = txtName.Text;
+                selectedPackage.PkgStartDate = dateStartDate.Value;
+                selectedPackage.PkgEndDate = dateEndDate.Value;
+                selectedPackage.PkgDesc = txtDescription.Text;
+                string strippedBase = Regex.Replace(txtBasePrice.Text.ToString(), @"[^0-9a-zA-Z.]+", "");
+                selectedPackage.PkgBasePrice = Decimal.Parse(strippedBase);
+                string strippedCommission = Regex.Replace(txtComissionPrice.Text.ToString(), @"[^0-9a-zA-Z.-]+", "");
+                selectedPackage.PkgAgencyCommission = Decimal.Parse(strippedCommission);
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    Package result = (from p in db.Packages
+                                      where p.PackageId == selectedPackageId
+                                      select p).SingleOrDefault();
+                    result.PkgName = selectedPackage.PkgName;
+                    result.PkgStartDate = selectedPackage.PkgStartDate;
+                    result.PkgEndDate = selectedPackage.PkgEndDate;
+                    result.PkgDesc = selectedPackage.PkgDesc;
+                    result.PkgBasePrice = selectedPackage.PkgBasePrice;
+                    result.PkgAgencyCommission = selectedPackage.PkgAgencyCommission;
+                    packageIDForRedisplay = result.PackageId;
+
+                    db.SaveChanges();
+                }
+                DisplayPackages();
+                SelectPackage(packageIDForRedisplay);
+                succesfullAddition = true;
+            }
+        }
+
+        private void cboPackageID_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Get package id for selection from combo box
+            int selectedPackageID = Convert.ToInt32(this.cboPackageID.GetItemText(this.cboPackageID.SelectedItem));
+            // Select package with id and display information
+            SelectPackage(selectedPackageID);
+            DisplayProducts();
+        }
+
+        private void btnCancelPackage_Click(object sender, EventArgs e)
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                Package result = (from p in db.Packages
+                                  where p.PackageId == selectedPackage.PackageId
+                                  select p).SingleOrDefault();
+                db.Remove(result);
+                db.SaveChanges();
+            }
+            succesfullAddition = true;
+            btnUpdate.Visible = true;
+            btnCancelPackage.Visible = false;
+            btnFinish.Visible = false;
+            cboPackageID.Enabled = true;
+            dgvPackages.Enabled = true;
+            txtStop.Visible = false;
+            SelectPackage(1);
+            DisplayPackages();
+            DisplayProducts();
+           
         }
     }
 }

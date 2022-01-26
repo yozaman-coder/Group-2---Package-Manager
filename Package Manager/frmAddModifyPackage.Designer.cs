@@ -54,13 +54,16 @@ namespace Package_Manager
             this.lblCommissionPrice = new System.Windows.Forms.Label();
             this.lblBasePrice = new System.Windows.Forms.Label();
             this.btnCalcCommission = new System.Windows.Forms.Button();
+            this.btnFinish = new System.Windows.Forms.Button();
+            this.txtStop = new System.Windows.Forms.TextBox();
+            this.btnCancelPackage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(270, 293);
+            this.btnAddProduct.Location = new System.Drawing.Point(270, 330);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(119, 33);
             this.btnAddProduct.TabIndex = 0;
@@ -175,7 +178,7 @@ namespace Package_Manager
             this.cboPackageID.Name = "cboPackageID";
             this.cboPackageID.Size = new System.Drawing.Size(118, 23);
             this.cboPackageID.TabIndex = 12;
-            this.cboPackageID.SelectedIndexChanged += new System.EventHandler(this.cboPackageID_SelectedIndexChanged);
+            this.cboPackageID.SelectionChangeCommitted += new System.EventHandler(this.cboPackageID_SelectionChangeCommitted);
             // 
             // lblPackage
             // 
@@ -188,7 +191,7 @@ namespace Package_Manager
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(5, 464);
+            this.btnUpdate.Location = new System.Drawing.Point(5, 256);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(141, 33);
             this.btnUpdate.TabIndex = 14;
@@ -202,7 +205,7 @@ namespace Package_Manager
             this.dgvProducts.AllowUserToDeleteRows = false;
             this.dgvProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProducts.Location = new System.Drawing.Point(5, 293);
+            this.dgvProducts.Location = new System.Drawing.Point(5, 330);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowHeadersVisible = false;
             this.dgvProducts.RowHeadersWidth = 62;
@@ -213,7 +216,7 @@ namespace Package_Manager
             // 
             // btnModifyProduct
             // 
-            this.btnModifyProduct.Location = new System.Drawing.Point(270, 332);
+            this.btnModifyProduct.Location = new System.Drawing.Point(270, 369);
             this.btnModifyProduct.Name = "btnModifyProduct";
             this.btnModifyProduct.Size = new System.Drawing.Size(119, 33);
             this.btnModifyProduct.TabIndex = 16;
@@ -223,7 +226,7 @@ namespace Package_Manager
             // 
             // btnDeleteProduct
             // 
-            this.btnDeleteProduct.Location = new System.Drawing.Point(270, 371);
+            this.btnDeleteProduct.Location = new System.Drawing.Point(270, 408);
             this.btnDeleteProduct.Name = "btnDeleteProduct";
             this.btnDeleteProduct.Size = new System.Drawing.Size(119, 33);
             this.btnDeleteProduct.TabIndex = 17;
@@ -291,11 +294,49 @@ namespace Package_Manager
             this.btnCalcCommission.UseVisualStyleBackColor = true;
             this.btnCalcCommission.Click += new System.EventHandler(this.btnCalcCommission_Click);
             // 
+            // btnFinish
+            // 
+            this.btnFinish.Location = new System.Drawing.Point(5, 291);
+            this.btnFinish.Name = "btnFinish";
+            this.btnFinish.Size = new System.Drawing.Size(141, 33);
+            this.btnFinish.TabIndex = 25;
+            this.btnFinish.Text = "Finish package";
+            this.btnFinish.UseVisualStyleBackColor = true;
+            this.btnFinish.Visible = false;
+            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
+            // 
+            // txtStop
+            // 
+            this.txtStop.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtStop.Location = new System.Drawing.Point(500, 69);
+            this.txtStop.Multiline = true;
+            this.txtStop.Name = "txtStop";
+            this.txtStop.ReadOnly = true;
+            this.txtStop.Size = new System.Drawing.Size(484, 372);
+            this.txtStop.TabIndex = 26;
+            this.txtStop.Text = "\r\n\r\n\r\n\r\n\r\n\r\nPlease finish adding a package";
+            this.txtStop.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtStop.Visible = false;
+            // 
+            // btnCancelPackage
+            // 
+            this.btnCancelPackage.Location = new System.Drawing.Point(152, 291);
+            this.btnCancelPackage.Name = "btnCancelPackage";
+            this.btnCancelPackage.Size = new System.Drawing.Size(141, 33);
+            this.btnCancelPackage.TabIndex = 27;
+            this.btnCancelPackage.Text = "Cancel";
+            this.btnCancelPackage.UseVisualStyleBackColor = true;
+            this.btnCancelPackage.Visible = false;
+            this.btnCancelPackage.Click += new System.EventHandler(this.btnCancelPackage_Click);
+            // 
             // frmAddPackage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 507);
+            this.Controls.Add(this.btnCancelPackage);
+            this.Controls.Add(this.txtStop);
+            this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.btnCalcCommission);
             this.Controls.Add(this.lblBasePrice);
             this.Controls.Add(this.lblCommissionPrice);
@@ -358,5 +399,8 @@ namespace Package_Manager
         private System.Windows.Forms.Label lblCommissionPrice;
         private System.Windows.Forms.Label lblBasePrice;
         private System.Windows.Forms.Button btnCalcCommission;
+        private System.Windows.Forms.Button btnFinish;
+        private System.Windows.Forms.TextBox txtStop;
+        private System.Windows.Forms.Button btnCancelPackage;
     }
 }

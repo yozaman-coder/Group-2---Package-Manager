@@ -100,7 +100,7 @@ namespace Package_Manager
                     this.FillProductData(Products); // call the FillProductData method and pass in the Products object
                     try
                     {
-                        db.Products.Add(Products.ProdName); // Using the Entity Framework's Add method to insert the passed in Products object when the SaveChanges method is called.
+                        //db.Products.Add(Products.ProdName); // Using the Entity Framework's Add method to insert the passed in Products object when the SaveChanges method is called.
                         db.SaveChanges(); // call the database context's SaveChanges method to save the new product in the database
                                           //DisplayProduct(); // call the DisplayProduct method to re-populate data for the form
                         this.DialogResult = DialogResult.OK;
