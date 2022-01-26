@@ -11,6 +11,14 @@ using System.Windows.Forms;
 
 namespace Package_Manager
 {
+    //WORK ON PRODUCT MANAGEMENT
+    //MAYBE MAKE ADDING A PACKAGE NOT UPLOAD EMPTY PACKAGE TO DATABASE LOL
+    //WORK ON DELETION OF PACKAGE
+    //ADD ERROR CATCHING FOR DATABASE ACCESS POINTS
+    //ADD VALIDATION FOR UPDATEPACKAGE()
+    //ADD COMMENTING EVERYWHERE LOL
+
+
     public partial class frmAddPackage : Form
     {
         Package selectedPackage = null;
@@ -46,12 +54,12 @@ namespace Package_Manager
                     p.PkgEndDate,
                     p.PkgDesc,
                     p.PkgBasePrice,
-                    // Usually between 8 - 11 %
                     p.PkgAgencyCommission
                 }).ToList();
 
-                // Populate combo box with ids
+                // Clear old combo box
                 cboPackageID.Items.Clear();
+                // Populate combo box with ids
                 for (var i = 0; i < packages.Count; i++)
                 {
                     cboPackageID.Items.Add(packages[i].PackageId);
@@ -340,25 +348,32 @@ namespace Package_Manager
 
         private void btnCalcCommission_Click(object sender, EventArgs e)
         {
-            string strippedCommissionPerc = Regex.Replace(txtCommissionPerc.Text.ToString(), @"[^0-9a-zA-Z.-]+", "");
+            string strippedCommissionPerc = Regex.Replace(txtCommissionPerc.Text.ToString(), @"[^0-9.-]+", "");
+            string strippedBase = Regex.Replace(txtBasePrice.Text.ToString(), @"[^0-9.]+", "");
 
-            if (Convert.ToDecimal(strippedCommissionPerc) == 0 | strippedCommissionPerc == "")
+            if (Convert.ToDecimal(strippedBase) <= 0)
             {
-                selectedPackage.PkgAgencyCommission = null;
-                txtComissionPrice.Text = 0.ToString("c");
-                calcUpdated = true;
-            }
-            else if (Convert.ToDecimal(strippedCommissionPerc) < 1)
-            {
-                MessageBox.Show("Commission percent cannot be less than 1", "Error");
+                MessageBox.Show("Package price cannot be less than 0 when calculating commission", "Error");
             }
             else
             {
-                string strippedBase = Regex.Replace(txtBasePrice.Text.ToString(), @"[^0-9a-zA-Z.]+", "");
-                decimal commissionTotal = (Decimal.Parse(strippedCommissionPerc) / 100) * Decimal.Parse(strippedBase);
-                selectedPackage.PkgAgencyCommission = commissionTotal;
-                txtComissionPrice.Text = Decimal.Round(selectedPackage.PkgAgencyCommission.Value, 2).ToString("c");
-                calcUpdated = true;
+                if (Convert.ToDecimal(strippedCommissionPerc) == 0 | strippedCommissionPerc == "")
+                {
+                    selectedPackage.PkgAgencyCommission = null;
+                    txtComissionPrice.Text = 0.ToString("c");
+                    calcUpdated = true;
+                }
+                else if (Convert.ToDecimal(strippedCommissionPerc) < 1)
+                {
+                    MessageBox.Show("Commission percent cannot be less than 1", "Error");
+                }
+                else
+                {
+                    decimal commissionTotal = (Decimal.Parse(strippedCommissionPerc) / 100) * Decimal.Parse(strippedBase);
+                    selectedPackage.PkgAgencyCommission = commissionTotal;
+                    txtComissionPrice.Text = Decimal.Round(selectedPackage.PkgAgencyCommission.Value, 2).ToString("c");
+                    calcUpdated = true;
+                }
             }
         }
 
@@ -398,9 +413,9 @@ namespace Package_Manager
                 selectedPackage.PkgStartDate = dateStartDate.Value;
                 selectedPackage.PkgEndDate = dateEndDate.Value;
                 selectedPackage.PkgDesc = txtDescription.Text;
-                string strippedBase = Regex.Replace(txtBasePrice.Text.ToString(), @"[^0-9a-zA-Z.]+", "");
+                string strippedBase = Regex.Replace(txtBasePrice.Text.ToString(), @"[^0-9.]+", "");
                 selectedPackage.PkgBasePrice = Decimal.Parse(strippedBase);
-                string strippedCommission = Regex.Replace(txtComissionPrice.Text.ToString(), @"[^0-9a-zA-Z.-]+", "");
+                string strippedCommission = Regex.Replace(txtComissionPrice.Text.ToString(), @"[^0-9.-]+", "");
                 selectedPackage.PkgAgencyCommission = Decimal.Parse(strippedCommission);
                 using (TravelExpertsContext db = new TravelExpertsContext())
                 {
@@ -453,6 +468,11 @@ namespace Package_Manager
             DisplayPackages();
             DisplayProducts();
            
+        }
+
+        private void btnDeletePackage_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

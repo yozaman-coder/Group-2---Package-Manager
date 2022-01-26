@@ -57,6 +57,7 @@ namespace Package_Manager
             this.btnFinish = new System.Windows.Forms.Button();
             this.txtStop = new System.Windows.Forms.TextBox();
             this.btnCancelPackage = new System.Windows.Forms.Button();
+            this.btnDeletePackage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -329,11 +330,22 @@ namespace Package_Manager
             this.btnCancelPackage.Visible = false;
             this.btnCancelPackage.Click += new System.EventHandler(this.btnCancelPackage_Click);
             // 
+            // btnDeletePackage
+            // 
+            this.btnDeletePackage.Location = new System.Drawing.Point(152, 256);
+            this.btnDeletePackage.Name = "btnDeletePackage";
+            this.btnDeletePackage.Size = new System.Drawing.Size(141, 33);
+            this.btnDeletePackage.TabIndex = 28;
+            this.btnDeletePackage.Text = "Delete package";
+            this.btnDeletePackage.UseVisualStyleBackColor = true;
+            this.btnDeletePackage.Click += new System.EventHandler(this.btnDeletePackage_Click);
+            // 
             // frmAddPackage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 507);
+            this.Controls.Add(this.btnDeletePackage);
             this.Controls.Add(this.btnCancelPackage);
             this.Controls.Add(this.txtStop);
             this.Controls.Add(this.btnFinish);
@@ -402,5 +414,6 @@ namespace Package_Manager
         private System.Windows.Forms.Button btnFinish;
         private System.Windows.Forms.TextBox txtStop;
         private System.Windows.Forms.Button btnCancelPackage;
+        private System.Windows.Forms.Button btnDeletePackage;
     }
 }
