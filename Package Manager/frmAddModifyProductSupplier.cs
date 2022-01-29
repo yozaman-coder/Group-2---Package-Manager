@@ -143,6 +143,7 @@ namespace Package_Manager
 
         private void btnModifyProduct_Click(object sender, EventArgs e)
         {
+            // Brett - changed this to have the modify product function moved to the AddModifyProduct form
             frmAddModifyProduct modForm = new frmAddModifyProduct();
             modForm.getselectedProdID = SelectedProdID;
             modForm.Show();
@@ -179,35 +180,42 @@ namespace Package_Manager
 
         private void btnSupplierModify_Click(object sender, EventArgs e)
         {
-            var addModifySupplierForm = new frmAddModifySupplier()
-            {
-                AddSupplier = false,
-                Suppliers = selectedSupplier
-            };
+            // Brett - changed this to have the modify product function moved to the AddModifySupplier form
 
-            DialogResult result = addModifySupplierForm.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                try
-                {
-                    selectedSupplier = addModifySupplierForm.Suppliers;
-                    context.SaveChanges();
-                    DisplaySuppliers();
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    HandleConcurrencyError(ex);
-                }
-                catch (DbUpdateException ex)
-                {
-                    HandleDatabaseError(ex);
-                }
-                catch (Exception ex)
-                {
-                    HandleGeneralError(ex);
-                }
-            }
+            frmAddModifySupplier modForm = new frmAddModifySupplier();
+            modForm.getselectedSupplierID = SelectedSupplierID;
+            modForm.Show();
         }
+
+        //var addModifySupplierForm = new frmAddModifySupplier()
+        //{
+        //    AddSupplier = false,
+        //    Suppliers = selectedSupplier
+        //};
+
+        //DialogResult result = addModifySupplierForm.ShowDialog();
+        //if (result == DialogResult.OK)
+        //{
+        //    try
+        //    {
+        //        selectedSupplier = addModifySupplierForm.Suppliers;
+        //        context.SaveChanges();
+        //        DisplaySuppliers();
+        //    }
+        //    catch (DbUpdateConcurrencyException ex)
+        //    {
+        //        HandleConcurrencyError(ex);
+        //    }
+        //    catch (DbUpdateException ex)
+        //    {
+        //        HandleDatabaseError(ex);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HandleGeneralError(ex);
+        //    }
+        //}
+
 
         private void btnAddProductToPackage_Click(object sender, EventArgs e)
         {
