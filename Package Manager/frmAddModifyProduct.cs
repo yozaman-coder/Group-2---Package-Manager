@@ -98,8 +98,19 @@ namespace Package_Manager
                 {
                 var newProd = new Product();
                 this.FillProductData(newProd);
-                db.Products.Add(newProd);
-                db.SaveChanges();
+                try
+                {
+                    db.Products.Add(newProd);
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    this.HandleDataBaseError(ex);
+                }
+                catch (Exception ex)
+                {
+                    this.HandleGeneralError(ex);
+                }
                 LoadProducts();
                 MessageBox.Show("New record was added to the database.");
                 }
@@ -137,6 +148,11 @@ namespace Package_Manager
                 LoadProducts();
                 MessageBox.Show("Change made successfully.");
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         //private void dgvListProducts_SelectionChanged(object sender, DataGridViewCellEventArgs e)

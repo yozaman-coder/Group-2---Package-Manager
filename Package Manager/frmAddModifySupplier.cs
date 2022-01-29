@@ -1,5 +1,4 @@
-﻿/* Brett - this form opens in response to on-click events from btnNewSupplier and btnSupplierModify on the frmAddModifyProducer
- * form.
+﻿/* Brett - this form opens in response to on-click events from btnNewSupplier and btnSupplierModify on the frmAddModifyProductSupplier form.
  */
 using ProductData;
 using System;
@@ -75,7 +74,7 @@ namespace Package_Manager
 
                 // format the first column
                 dgvListSuppliers.Columns[0].HeaderText = "Supplier ID";
-                dgvListSuppliers.Columns[0].Width = 100;
+                dgvListSuppliers.Columns[0].Width = 150;
                 // format the second column
                 dgvListSuppliers.Columns[1].HeaderText = "Supplier Name";
                 dgvListSuppliers.Columns[dgvListSuppliers.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -89,8 +88,19 @@ namespace Package_Manager
             {
                 var newSupplier = new Supplier();
                 this.FillSupplierData(newSupplier);
-                db.Suppliers.Add(newSupplier);
-                db.SaveChanges();
+                try 
+                { 
+                    db.Suppliers.Add(newSupplier);
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    this.HandleDataBaseError(ex);
+                }
+                catch (Exception ex)
+                {
+                    this.HandleGeneralError(ex);
+                }
                 LoadSuppliers();
                 MessageBox.Show("New record was added to the database.");
             }
@@ -113,7 +123,22 @@ namespace Package_Manager
             }
         }
 
+        private void HandleGeneralError(Exception ex)
+        {
+            MessageBox.Show(ex.Message, ex.GetType().ToString());
+        }
 
+        private void HandleDataBaseError(DbUpdateException ex)
+        {
+            string errorMessage = "";
+            var sqlException = (SqlException)ex.InnerException;
+            foreach (SqlError error in sqlException.Errors)
+            {
+                errorMessage += "ERROR CODE:  " + error.Number + " " +
+                                error.Message + "\n";
+            }
+            MessageBox.Show(errorMessage);
+        }
         /* Brett - should all of the Form Designer code be visible within the InitializeComponent method 
          * here? I haven't seen that before. It's usually stored in a different module.*/
         private void InitializeComponent()
@@ -137,6 +162,7 @@ namespace Package_Manager
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lblSupplierName
             // 
@@ -160,7 +186,7 @@ namespace Package_Manager
             // 
             this.txtSupplierName.Location = new System.Drawing.Point(153, 79);
             this.txtSupplierName.Name = "txtSupplierName";
-            this.txtSupplierName.Size = new System.Drawing.Size(151, 31);
+            this.txtSupplierName.Size = new System.Drawing.Size(173, 31);
             this.txtSupplierName.TabIndex = 8;
             // 
             // btnAddSupplier
@@ -189,7 +215,7 @@ namespace Package_Manager
             this.dgvListSuppliers.Name = "dgvListSuppliers";
             this.dgvListSuppliers.RowHeadersWidth = 62;
             this.dgvListSuppliers.RowTemplate.Height = 33;
-            this.dgvListSuppliers.Size = new System.Drawing.Size(482, 352);
+            this.dgvListSuppliers.Size = new System.Drawing.Size(676, 352);
             this.dgvListSuppliers.TabIndex = 12;
             // 
             // btnSave
@@ -206,7 +232,7 @@ namespace Package_Manager
             // frmAddModifySupplier
             // 
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(893, 440);
+            this.ClientSize = new System.Drawing.Size(1090, 440);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dgvListSuppliers);
             this.Controls.Add(this.btnCancel);
@@ -216,6 +242,7 @@ namespace Package_Manager
             this.Controls.Add(this.btnAddSupplier);
             this.Controls.Add(this.txtSupplierID);
             this.Name = "frmAddModifySupplier";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Supplier";
             this.Load += new System.EventHandler(this.frmAddModifySupplier_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListSuppliers)).EndInit();
@@ -224,6 +251,9 @@ namespace Package_Manager
 
         }
 
-       
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
