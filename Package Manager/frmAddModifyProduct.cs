@@ -1,5 +1,5 @@
 ﻿/* Brett - this form opens in response to on-click events from the btnNewProduct and btnModifyProduct 
- * buttons on the frmAddModifyProducerSupplier form. 
+ * buttons on the frmAddModifyProductSupplier form. 
 */
 using System;
 using System.Windows.Forms;

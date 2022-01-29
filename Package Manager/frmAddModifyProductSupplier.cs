@@ -22,10 +22,19 @@ namespace Package_Manager
         public Supplier supplier;
         public ProductsSupplier productSupplier;
         public bool isAdd;
+        
+        // Brett - added public property to get selected product ID for use in frmAddModifyProduct
         public string SelectedProdID
         {
-            get{ return cboProductID.Text; }
+            get { return cboProductID.Text; }
             set { SelectedProdID = cboProductID.Text; }
+        }
+
+        // Brett - added public property to get selected supplier ID for use in frmAddModifySupplier
+        public string SelectedSupplierID
+        {
+            get { return cboSupplierID.Text; }
+            set { SelectedSupplierID = cboSupplierID.Text; }
         }
         public frmAddModifyProductSupplier()
         {
@@ -75,28 +84,32 @@ namespace Package_Manager
 
         private void btnNewSupplier_Click(object sender, EventArgs e)
         {
+            // Brett - modified to redirect to frmAddModifySupplier for addition of new supplier
             frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
             addSupplierForm.AddSupplier = true;
-            DialogResult result = addSupplierForm.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                try
-                {
-                    selectedSupplier = addSupplierForm.Suppliers;
-                    context.Suppliers.Add(selectedSupplier);
-                    context.SaveChanges();
-                    this.DisplaySuppliers();
-                }
+            addSupplierForm.Show();
+            //frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
+            //addSupplierForm.AddSupplier = true;
+            //DialogResult result = addSupplierForm.ShowDialog();
+            //if (result == DialogResult.OK)
+            //{
+            //    try
+            //    {
+            //        selectedSupplier = addSupplierForm.Suppliers;
+            //        context.Suppliers.Add(selectedSupplier);
+            //        context.SaveChanges();
+            //        this.DisplaySuppliers();
+            //    }
 
-                catch (DbUpdateException ex)
-                {
-                    HandleDatabaseError(ex);
-                }
-                catch (Exception ex)
-                {
-                    HandleGeneralError(ex);
-                }
-            }
+            //    catch (DbUpdateException ex)
+            //    {
+            //        HandleDatabaseError(ex);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        HandleGeneralError(ex);
+            //    }
+            //}
         }
 
         private void btnNewProduct_Click(object sender, EventArgs e)
