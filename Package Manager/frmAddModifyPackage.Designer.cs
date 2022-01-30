@@ -113,20 +113,27 @@ namespace Package_Manager
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(284, 23);
             this.txtName.TabIndex = 4;
+            this.txtName.Tag = "Name";
             // 
             // dateStartDate
             // 
             this.dateStartDate.Location = new System.Drawing.Point(127, 139);
+            this.dateStartDate.MaxDate = new System.DateTime(2122, 12, 31, 0, 0, 0, 0);
+            this.dateStartDate.MinDate = new System.DateTime(1900, 1, 30, 0, 0, 0, 0);
             this.dateStartDate.Name = "dateStartDate";
             this.dateStartDate.Size = new System.Drawing.Size(284, 23);
             this.dateStartDate.TabIndex = 5;
+            this.dateStartDate.Tag = "Start Date";
             // 
             // dateEndDate
             // 
             this.dateEndDate.Location = new System.Drawing.Point(127, 169);
+            this.dateEndDate.MaxDate = new System.DateTime(2122, 12, 31, 0, 0, 0, 0);
+            this.dateEndDate.MinDate = new System.DateTime(1900, 1, 30, 0, 0, 0, 0);
             this.dateEndDate.Name = "dateEndDate";
             this.dateEndDate.Size = new System.Drawing.Size(284, 23);
             this.dateEndDate.TabIndex = 6;
+            this.dateEndDate.Tag = "End Date";
             // 
             // lblStartDate
             // 
@@ -162,6 +169,7 @@ namespace Package_Manager
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(284, 64);
             this.txtDescription.TabIndex = 10;
+            this.txtDescription.Tag = "Description";
             // 
             // lblDescription
             // 
@@ -179,6 +187,7 @@ namespace Package_Manager
             this.cboPackageID.Name = "cboPackageID";
             this.cboPackageID.Size = new System.Drawing.Size(118, 23);
             this.cboPackageID.TabIndex = 12;
+            this.cboPackageID.Tag = "Package ID";
             this.cboPackageID.SelectionChangeCommitted += new System.EventHandler(this.cboPackageID_SelectionChangeCommitted);
             // 
             // lblPackage
@@ -241,6 +250,8 @@ namespace Package_Manager
             this.txtBasePrice.Name = "txtBasePrice";
             this.txtBasePrice.Size = new System.Drawing.Size(284, 23);
             this.txtBasePrice.TabIndex = 18;
+            this.txtBasePrice.Tag = "Base Price";
+            this.txtBasePrice.TextChanged += new System.EventHandler(this.txtBasePrice_TextChanged);
             // 
             // txtCommissionPerc
             // 
@@ -248,6 +259,7 @@ namespace Package_Manager
             this.txtCommissionPerc.Name = "txtCommissionPerc";
             this.txtCommissionPerc.Size = new System.Drawing.Size(98, 23);
             this.txtCommissionPerc.TabIndex = 19;
+            this.txtCommissionPerc.Tag = "Commission Percentage";
             this.txtCommissionPerc.TextChanged += new System.EventHandler(this.txtCommissionPerc_TextChanged);
             // 
             // txtComissionPrice
@@ -257,6 +269,7 @@ namespace Package_Manager
             this.txtComissionPrice.ReadOnly = true;
             this.txtComissionPrice.Size = new System.Drawing.Size(97, 23);
             this.txtComissionPrice.TabIndex = 20;
+            this.txtComissionPrice.Tag = "Commission Price";
             // 
             // lblCommissionPerc
             // 

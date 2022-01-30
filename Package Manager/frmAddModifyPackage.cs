@@ -12,7 +12,6 @@ using System.Windows.Forms;
 namespace Package_Manager
 {
     //ADD ERROR CATCHING FOR DATABASE ACCESS POINTS
-    //WORK ON PRODUCT MANAGEMENT AND MAKE IT WORK WHEN ADDING PACKAGE SOMEHOW
     //ADD VALIDATION FOR UPDATEPACKAGE()/CREATEPACKAGE()
     //ADD COMMENTING EVERYWHERE LOL
 
@@ -423,6 +422,10 @@ namespace Package_Manager
         {
             string strippedCommissionPerc = Regex.Replace(txtCommissionPerc.Text.ToString(), @"[^0-9.-]+", "");
             string strippedBase = Regex.Replace(txtBasePrice.Text.ToString(), @"[^0-9.]+", "");
+            decimal tmpValue;
+            decimal? decCommissionPerc = 0;
+            if (Decimal.TryParse(strippedCommissionPerc, out tmpValue))
+                decCommissionPerc = tmpValue;
 
             if (Convert.ToDecimal(strippedBase) <= 0)
             {
@@ -430,15 +433,15 @@ namespace Package_Manager
             }
             else
             {
-                if (Convert.ToDecimal(strippedCommissionPerc) == 0 | strippedCommissionPerc == "")
+                if (decCommissionPerc == 0 | strippedCommissionPerc == "")
                 {
                     selectedPackage.PkgAgencyCommission = null;
                     txtComissionPrice.Text = 0.ToString("c");
                     calcUpdated = true;
                 }
-                else if (Convert.ToDecimal(strippedCommissionPerc) < 1)
+                else if (decCommissionPerc < 1 | decCommissionPerc > 50)
                 {
-                    MessageBox.Show("Commission percent cannot be less than 1", "Error");
+                    MessageBox.Show("Commission percent cannot be less than 1 or greater than 50", "Error");
                 }
                 else
                 {
@@ -479,8 +482,12 @@ namespace Package_Manager
 
         private void CreatePackage()
         {
-            bool validation = true;
-            if (validation)
+
+            if (Validator.StringIsWithinRange(txtName, 1, 50) &&
+                Validator.StringIsWithinRange(txtDescription, 1, 50) &&
+                Validator.DecimalIsWithinRange(txtBasePrice, 10, 1000000000) &&
+                Validator.DateTimeIsWithinRange(dateStartDate, dateStartDate.MinDate, dateEndDate.Value) &&
+                Validator.DateTimeIsWithinRange(dateEndDate, dateStartDate.Value, dateEndDate.MaxDate))
             {
                 int packageIDForRedisplay = 0;
                 selectedPackage.PkgName = txtName.Text;
@@ -490,7 +497,15 @@ namespace Package_Manager
                 string strippedBase = Regex.Replace(txtBasePrice.Text.ToString(), @"[^0-9.]+", "");
                 selectedPackage.PkgBasePrice = Decimal.Parse(strippedBase);
                 string strippedCommission = Regex.Replace(txtComissionPrice.Text.ToString(), @"[^0-9.-]+", "");
-                selectedPackage.PkgAgencyCommission = Decimal.Parse(strippedCommission);
+                decimal commissionDecimal = Decimal.Parse(strippedCommission);
+                if (commissionDecimal == 0m)
+                {
+                    selectedPackage.PkgAgencyCommission = null;
+                }
+                else
+                {
+                    selectedPackage.PkgAgencyCommission = commissionDecimal;
+                }
                 using (TravelExpertsContext db = new TravelExpertsContext())
                 {
                     db.Packages.Add( new Package() { PkgName = selectedPackage.PkgName, PkgStartDate = selectedPackage.PkgStartDate
@@ -502,14 +517,19 @@ namespace Package_Manager
                 }
                 DisplayPackages();
                 SelectPackage(packageIDForRedisplay);
+                DisplayProducts();
                 succesfullAddition = true;
+                selectedProduct = null;
             }
         }
 
         private void UpdatePackage(int selectedPackageId)
         {
-            bool validation = true;
-            if (validation)
+            if (Validator.StringIsWithinRange(txtName, 1, 50) &&
+                Validator.StringIsWithinRange(txtDescription, 1, 50) &&
+                Validator.DecimalIsWithinRange(txtBasePrice, 10, 1000000000) &&
+                Validator.DateTimeIsWithinRange(dateStartDate, dateStartDate.MinDate, dateEndDate.Value) &&
+                Validator.DateTimeIsWithinRange(dateEndDate, dateStartDate.Value, dateEndDate.MaxDate))
             {
                 int packageIDForRedisplay = 0;
                 selectedPackage.PkgName = txtName.Text;
@@ -519,7 +539,15 @@ namespace Package_Manager
                 string strippedBase = Regex.Replace(txtBasePrice.Text.ToString(), @"[^0-9.]+", "");
                 selectedPackage.PkgBasePrice = Decimal.Parse(strippedBase);
                 string strippedCommission = Regex.Replace(txtComissionPrice.Text.ToString(), @"[^0-9.-]+", "");
-                selectedPackage.PkgAgencyCommission = Decimal.Parse(strippedCommission);
+                decimal commissionDecimal = Decimal.Parse(strippedCommission);
+                if(commissionDecimal == 0m)
+                {
+                    selectedPackage.PkgAgencyCommission = null;
+                }
+                else
+                {
+                    selectedPackage.PkgAgencyCommission = commissionDecimal;
+                }
                 using (TravelExpertsContext db = new TravelExpertsContext())
                 {
                     Package result = (from p in db.Packages
@@ -537,7 +565,9 @@ namespace Package_Manager
                 }
                 DisplayPackages();
                 SelectPackage(packageIDForRedisplay);
+                DisplayProducts();
                 succesfullAddition = true;
+                selectedProduct = null;
             }
         }
 
@@ -603,6 +633,14 @@ namespace Package_Manager
             //    DisplayPackages();
             //    DisplayProducts();
             //}
+        }
+
+        private void txtBasePrice_TextChanged(object sender, EventArgs e)
+        {
+            if(txtComissionPrice.Text != "$0.00")
+            {
+                calcUpdated = false;
+            }
         }
     }
 }

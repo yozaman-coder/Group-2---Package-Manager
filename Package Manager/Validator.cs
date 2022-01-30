@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -152,12 +153,33 @@ namespace Package_Manager
         /// <returns>True if the user has entered a value within the specified range.</returns>
         public static bool DecimalIsWithinRange(TextBox textBox, decimal min, decimal max)
         {
-            decimal number = Convert.ToDecimal(textBox.Text);
+            string strippedBase = Regex.Replace(textBox.Text.ToString(), @"[^0-9.]+", "");
+            decimal number = Convert.ToDecimal(strippedBase);
             if (number < min || number > max)
             {
                 MessageBox.Show(textBox.Tag + " must be between " + min
                     + " and " + max + ".", Title);
                 textBox.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Checks whether the user entered a value within a specified range into a date time picker.
+        /// </summary>
+        /// <param name="dateTimePicker">The date time picker control to be validated.</param>
+        /// <param name="min">The minimum value for the range.</param>
+        /// <param name="max">The maximum value for the range.</param>
+        /// <returns>True if the user has entered a value within the specified range.</returns>
+        public static bool DateTimeIsWithinRange(DateTimePicker dateTimePicker, DateTime min, DateTime max)
+        {
+           DateTime date = Convert.ToDateTime(dateTimePicker.Value);
+            if (date < min || date > max)
+            {
+                MessageBox.Show(dateTimePicker.Tag + " must be between " + min
+                    + " and " + max + ".", Title);
+                dateTimePicker.Focus();
                 return false;
             }
             return true;
