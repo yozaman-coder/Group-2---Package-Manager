@@ -9,6 +9,7 @@ using System.Linq;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Package_Manager
 {
     public partial class frmAddModifySupplier : Form
@@ -42,7 +43,7 @@ namespace Package_Manager
             if (AddSupplier)
             {
                 this.Text = "Add Supplier";
-                txtSupplierID.ReadOnly = true;
+                txtSupplierID.ReadOnly = false;
                 btnAddSupplier.Visible = true;
             }
             else
@@ -65,7 +66,7 @@ namespace Package_Manager
                 {
                     s.SupplierId,
                     s.SupName
-                }).ToList();
+                }).OrderBy(si => si.SupplierId).ToList();
 
                 dgvListSuppliers.DataSource = products; /* gets the entries stored in the products local variable and sets 
                                                         * them as the DataGridView's datasource. */
@@ -102,13 +103,35 @@ namespace Package_Manager
                     this.HandleGeneralError(ex);
                 }
                 LoadSuppliers();
-                MessageBox.Show("New record was added to the database.");
+                
             }
         }
 
         private void FillSupplierData(Supplier Suppliers)
         {
-            Suppliers.SupName = txtSupplierName.Text;
+            if (Validator.IsInt32(txtSupplierID))
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    if
+                        (db.Suppliers.Any(s => s.SupplierId == Convert.ToInt32(txtSupplierID.Text)))
+                    {
+                        MessageBox.Show("SupplierID exists, enter another number.");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("New record was added to the database.");
+                    }
+
+                }
+                Suppliers.SupplierId = Convert.ToInt32(txtSupplierID.Text);
+                Suppliers.SupName = txtSupplierName.Text;
+            }
+            else
+            {
+                MessageBox.Show("Must correct error before proceeding with record entry.");
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -207,6 +230,7 @@ namespace Package_Manager
             this.txtSupplierID.ReadOnly = true;
             this.txtSupplierID.Size = new System.Drawing.Size(100, 31);
             this.txtSupplierID.TabIndex = 6;
+            this.txtSupplierID.Tag = "Supplier ID";
             // 
             // dgvListSuppliers
             // 
