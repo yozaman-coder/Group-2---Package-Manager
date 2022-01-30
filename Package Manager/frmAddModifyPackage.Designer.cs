@@ -338,6 +338,7 @@ namespace Package_Manager
             this.btnDeletePackage.TabIndex = 28;
             this.btnDeletePackage.Text = "Delete package";
             this.btnDeletePackage.UseVisualStyleBackColor = true;
+            this.btnDeletePackage.Visible = false;
             this.btnDeletePackage.Click += new System.EventHandler(this.btnDeletePackage_Click);
             // 
             // frmAddPackage
