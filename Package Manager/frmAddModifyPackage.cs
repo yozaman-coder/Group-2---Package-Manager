@@ -170,34 +170,42 @@ namespace Package_Manager
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            // Opens secondForm to add new product/supplier.
-            frmAddModifyProductSupplier secondForm = new frmAddModifyProductSupplier();
-            secondForm.isAdd = true; // Adding a product supplier
-            secondForm.productSupplier = null; // No product supplier selected
-
-            DialogResult result = secondForm.ShowDialog();
-
-            if(result == DialogResult.OK)
+            if(succesfullAddition == false) // User is adding new package
             {
-                //selectedPackageProductSupplier = secondForm.productSupplier;
-                try
+                MessageBox.Show("Please finish adding the new package details to add products!", "Finish adding package details!");
+            }
+            else
+            {
+                // Opens secondForm to add new product/supplier.
+                frmAddModifyProductSupplier secondForm = new frmAddModifyProductSupplier();
+                secondForm.isAdd = true; // Adding a product supplier
+                secondForm.productSupplier = null; // No product supplier selected
+
+                DialogResult result = secondForm.ShowDialog();
+
+                if (result == DialogResult.OK)
                 {
-                    using(TravelExpertsContext db = new TravelExpertsContext())
+                    //selectedPackageProductSupplier = secondForm.productSupplier;
+                    try
                     {
-                        db.ProductsSuppliers.Add(selectedProduct);
-                        db.SaveChanges();
+                        using (TravelExpertsContext db = new TravelExpertsContext())
+                        {
+                            db.ProductsSuppliers.Add(selectedProduct);
+                            db.SaveChanges();
+                        }
+                        DisplayProducts();
                     }
-                    DisplayProducts();
-                }
-                catch (DbUpdateException ex)
-                {
-                    HandleDatabaseError(ex);
-                }
-                catch (Exception ex)
-                {
-                    HandleGeneralError(ex);
+                    catch (DbUpdateException ex)
+                    {
+                        HandleDatabaseError(ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        HandleGeneralError(ex);
+                    }
                 }
             }
+            
         }
 
         private void HandleGeneralError(Exception ex)
@@ -273,45 +281,96 @@ namespace Package_Manager
 
         private void btnModifyProduct_Click(object sender, EventArgs e)
         {
-            // Opens second form to change selected products/supplier supplier/product.
-            if (selectedProduct != null)
+            
+            if (succesfullAddition == false) // User is adding new package
             {
-                frmAddModifyProductSupplier secondForm = new frmAddModifyProductSupplier();
-                secondForm.isAdd = false;
-                secondForm.productSupplier = selectedProduct;
-
-                DialogResult result = secondForm.ShowDialog();
-
-                if(result == DialogResult.OK)
-                {
-                    try
-                    {
-                        using (TravelExpertsContext db = new TravelExpertsContext())
-                        {
-                            selectedProduct = db.ProductsSuppliers.Find(secondForm.productSupplier.ProductSupplierId);
-                            selectedProduct.ProductId = secondForm.productSupplier.ProductId;
-                            selectedProduct.SupplierId = secondForm.productSupplier.SupplierId;
-                        }
-                    }
-                    catch (DbUpdateException ex)
-                    {
-                        this.HandleDatabaseError(ex);
-                    }
-                    catch (Exception ex)
-                    {
-                        this.HandleGeneralError(ex);
-                    }
-                }
+                MessageBox.Show("Please finish adding the new package details to modify products!", "Finish adding package details!");
             }
             else
             {
-                MessageBox.Show("You must select a product first!", "Product Selection Error");
+                // Opens second form to change selected products/supplier supplier/product.
+                if (selectedProduct != null)
+                {
+                    frmAddModifyProductSupplier secondForm = new frmAddModifyProductSupplier();
+                    secondForm.isAdd = false;
+                    secondForm.productSupplier = selectedProduct;
+
+                    DialogResult result = secondForm.ShowDialog();
+
+                    if (result == DialogResult.OK)
+                    {
+                        try
+                        {
+                            using (TravelExpertsContext db = new TravelExpertsContext())
+                            {
+                                selectedProduct = db.ProductsSuppliers.Find(secondForm.productSupplier.ProductSupplierId);
+                                selectedProduct.ProductId = secondForm.productSupplier.ProductId;
+                                selectedProduct.SupplierId = secondForm.productSupplier.SupplierId;
+                            }
+                        }
+                        catch (DbUpdateException ex)
+                        {
+                            this.HandleDatabaseError(ex);
+                        }
+                        catch (Exception ex)
+                        {
+                            this.HandleGeneralError(ex);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You must select a product first!", "Product Selection Error");
+                }
             }
+           
+           
         }
 
         private void btnDeleteProduct_Click(object sender, EventArgs e)
         {
             // Delete selected product/supplier.
+            if (succesfullAddition == false) // User is adding new package
+            {
+                MessageBox.Show("Please finish adding the new package details to delete products!", "Finish adding package details!");
+            }
+            else
+            {
+                if (selectedProduct != null)
+                {
+                    DialogResult ans = MessageBox.Show($"Are you sure you want to delete this product from package with ProductSupplierID: {selectedProduct.ProductSupplierId}? THIS CANNOT BE UNDONE!!!!",
+                            "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    if (ans == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            using (TravelExpertsContext db = new TravelExpertsContext())
+                            {
+                                var result = (from p in db.PackagesProductsSuppliers
+                                              where p.PackageId == selectedPackage.PackageId
+                                              where p.ProductSupplierId == selectedProduct.ProductSupplierId
+                                              select p).SingleOrDefault();
+
+                                db.Remove(result);
+                                db.SaveChanges();
+                            }
+                            DisplayProducts();
+                        }
+                        catch (DbUpdateException ex)
+                        {
+                            this.HandleDatabaseError(ex);
+                        }
+                        catch (Exception ex)
+                        {
+                            this.HandleGeneralError(ex);
+                        }
+                    }            
+                }
+                else
+                {
+                    MessageBox.Show("You must select a product first!", "Product Selection Error");
+                }
+            }
         }
 
         // User selects package through data grid view
