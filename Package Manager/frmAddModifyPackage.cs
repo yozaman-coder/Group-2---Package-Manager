@@ -188,7 +188,10 @@ namespace Package_Manager
                     {
                         using (TravelExpertsContext db = new TravelExpertsContext())
                         {
-                            db.ProductsSuppliers.Add(selectedProduct);
+                            PackagesProductsSupplier newProd = new PackagesProductsSupplier();
+                            newProd.PackageId = selectedPackage.PackageId;
+                            newProd.ProductSupplierId = selectedProduct.ProductSupplierId;
+                            db.PackagesProductsSuppliers.Add(newProd);
                             db.SaveChanges();
                         }
                         DisplayProducts();
