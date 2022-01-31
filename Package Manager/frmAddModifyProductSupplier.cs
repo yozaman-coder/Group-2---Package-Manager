@@ -27,21 +27,19 @@ namespace Package_Manager
         public string SelectedProdID
         {
             get { return cboProductID.Text; }
-            set { SelectedProdID = cboProductID.Text; }
         }
 
         // Brett - added public property to get selected supplier ID for use in frmAddModifySupplier
         public string SelectedSupplierID
         {
             get { return cboSupplierID.Text; }
-            set { SelectedSupplierID = cboSupplierID.Text; }
         }
         public frmAddModifyProductSupplier()
         {
             InitializeComponent();
         }
 
-        private void frmAddModifyProductSuppier_Load(object sender, EventArgs e)
+        private void frmAddModifyProductSupplier_Load(object sender, EventArgs e)
         {
             DisplayProducts();
             DisplaySuppliers();
@@ -114,6 +112,7 @@ namespace Package_Manager
 
         private void btnNewProduct_Click(object sender, EventArgs e)
         {
+            // Brett - changed this to have the new product function moved to the AddModifyProduct form
             frmAddModifyProduct addProductForm = new frmAddModifyProduct();
             addProductForm.AddProduct = true;
             addProductForm.Show();
@@ -180,7 +179,7 @@ namespace Package_Manager
 
         private void btnSupplierModify_Click(object sender, EventArgs e)
         {
-            // Brett - changed this to have the modify product function moved to the AddModifySupplier form
+            // Brett - changed this to have the modify supplier function moved to the AddModifySupplier form
 
             frmAddModifySupplier modForm = new frmAddModifySupplier();
             modForm.getselectedSupplierID = SelectedSupplierID;

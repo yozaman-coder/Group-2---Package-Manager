@@ -210,7 +210,7 @@ namespace Package_Manager
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmAddModifyProductSupplier";
             this.Text = "Add Product";
-            this.Load += new System.EventHandler(this.frmAddModifyProductSuppier_Load);
+            this.Load += new System.EventHandler(this.frmAddModifyProductSupplier_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
