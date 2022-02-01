@@ -16,18 +16,30 @@ namespace Package_Manager
     public partial class frmAddModifyProductSupplier : Form
     {
         private TravelExpertsContext context = new TravelExpertsContext();
-        private Product selectedProduct;
+        public Product selectedProduct;
         private Supplier selectedSupplier;
         public Product product;
         public Supplier supplier;
         public ProductsSupplier productSupplier;
         public bool isAdd;
+        
+        // Brett - added public property to get selected product ID for use in frmAddModifyProduct
+        public string SelectedProdID
+        {
+            get { return cboProductID.Text; }
+        }
+
+        // Brett - added public property to get selected supplier ID for use in frmAddModifySupplier
+        public string SelectedSupplierID
+        {
+            get { return cboSupplierID.Text; }
+        }
         public frmAddModifyProductSupplier()
         {
             InitializeComponent();
         }
 
-        private void frmAddModifyProductSuppier_Load(object sender, EventArgs e)
+        private void frmAddModifyProductSupplier_Load(object sender, EventArgs e)
         {
             DisplayProducts();
             DisplaySuppliers();
@@ -70,128 +82,149 @@ namespace Package_Manager
 
         private void btnNewSupplier_Click(object sender, EventArgs e)
         {
+            // Brett - modified to redirect to frmAddModifySupplier for addition of new supplier
             frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
             addSupplierForm.AddSupplier = true;
-            DialogResult result = addSupplierForm.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                try
-                {
-                    selectedSupplier = addSupplierForm.Suppliers;
-                    context.Suppliers.Add(selectedSupplier);
-                    context.SaveChanges();
-                    this.DisplaySuppliers();
-                }
+            addSupplierForm.Show();
+            //frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
+            //addSupplierForm.AddSupplier = true;
+            //DialogResult result = addSupplierForm.ShowDialog();
+            //if (result == DialogResult.OK)
+            //{
+            //    try
+            //    {
+            //        selectedSupplier = addSupplierForm.Suppliers;
+            //        context.Suppliers.Add(selectedSupplier);
+            //        context.SaveChanges();
+            //        this.DisplaySuppliers();
+            //    }
 
-                catch (DbUpdateException ex)
-                {
-                    HandleDatabaseError(ex);
-                }
-                catch (Exception ex)
-                {
-                    HandleGeneralError(ex);
-                }
-            }
+            //    catch (DbUpdateException ex)
+            //    {
+            //        HandleDatabaseError(ex);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        HandleGeneralError(ex);
+            //    }
+            //}
         }
 
         private void btnNewProduct_Click(object sender, EventArgs e)
         {
+            // Brett - changed this to have the new product function moved to the AddModifyProduct form
             frmAddModifyProduct addProductForm = new frmAddModifyProduct();
             addProductForm.AddProduct = true;
-            DialogResult result = addProductForm.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                try
-                {
-                    selectedProduct = addProductForm.Products;
-                    context.Products.Add(selectedProduct);
-                    context.SaveChanges();
-                    this.DisplayProducts();
-                }
-
-                catch (DbUpdateException ex)
-                {
-                    HandleDatabaseError(ex);
-                }
-                catch (Exception ex)
-                {
-                    HandleGeneralError(ex);
-                }
-            }
+            addProductForm.Show();
         }
+        //DialogResult result = addProductForm.ShowDialog();
+        //if (result == DialogResult.OK)
+        //{
+        //    try
+        //    {
+        //        selectedProduct = addProductForm.Products;
+        //        context.Products.Add(selectedProduct);
+        //        context.SaveChanges();
+        //        this.DisplayProducts();
+        //    }
+
+        //    catch (DbUpdateException ex)
+        //    {
+        //        HandleDatabaseError(ex);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HandleGeneralError(ex);
+        //    }
+
+
 
 
         private void btnModifyProduct_Click(object sender, EventArgs e)
         {
-            var addModifyProductForm = new frmAddModifyProduct()
-            {
-                AddProduct = false,
-                Products = selectedProduct
-            };
+            // Brett - changed this to have the modify product function moved to the AddModifyProduct form
+            frmAddModifyProduct modForm = new frmAddModifyProduct();
+            modForm.getselectedProdID = SelectedProdID;
+            modForm.Show();
             
-            DialogResult result = addModifyProductForm.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    try
-                    {
-                        selectedProduct = addModifyProductForm.Products; // Brett - I think this needs to work the other way around. The selectedProduct needs to come from this form, then it can be modified via frmAddModifyProduct. Do you agree?
-                        context.SaveChanges();
-                        DisplayProducts();
-                    }
-                    catch (DbUpdateConcurrencyException ex)
-                    {
-                        HandleConcurrencyError(ex);
-                    }
-                    catch (DbUpdateException ex)
-                    {
-                        HandleDatabaseError(ex);
-                    }
-                    catch (Exception ex)
-                    {
-                        HandleGeneralError(ex);
-                    }
-                }
                 
+                //AddProduct = false,
+                //Products = selectedProduct
         }
+            
+            //DialogResult result = addModifyProductForm.ShowDialog();
+            //    if (result == DialogResult.OK)
+            //    {
+            //        try
+            //        {
+            //            selectedProduct = addModifyProductForm.Products; // Brett - I think this needs to work the other way around. The selectedProduct needs to come from this form, then it can be modified via frmAddModifyProduct. Do you agree?
+            //            context.SaveChanges();
+            //            DisplayProducts();
+            //        }
+            //        catch (DbUpdateConcurrencyException ex)
+            //        {
+            //            HandleConcurrencyError(ex);
+            //        }
+            //        catch (DbUpdateException ex)
+            //        {
+            //            HandleDatabaseError(ex);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            HandleGeneralError(ex);
+            //        }
+            //    }
+                
+        
 
         private void btnSupplierModify_Click(object sender, EventArgs e)
         {
-            var addModifySupplierForm = new frmAddModifySupplier()
-            {
-                AddSupplier = false,
-                Suppliers = selectedSupplier
-            };
+            // Brett - changed this to have the modify supplier function moved to the AddModifySupplier form
 
-            DialogResult result = addModifySupplierForm.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                try
-                {
-                    selectedSupplier = addModifySupplierForm.Suppliers;
-                    context.SaveChanges();
-                    DisplaySuppliers();
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    HandleConcurrencyError(ex);
-                }
-                catch (DbUpdateException ex)
-                {
-                    HandleDatabaseError(ex);
-                }
-                catch (Exception ex)
-                {
-                    HandleGeneralError(ex);
-                }
-            }
+            frmAddModifySupplier modForm = new frmAddModifySupplier();
+            modForm.getselectedSupplierID = SelectedSupplierID;
+            modForm.Show();
         }
+
+        //var addModifySupplierForm = new frmAddModifySupplier()
+        //{
+        //    AddSupplier = false,
+        //    Suppliers = selectedSupplier
+        //};
+
+        //DialogResult result = addModifySupplierForm.ShowDialog();
+        //if (result == DialogResult.OK)
+        //{
+        //    try
+        //    {
+        //        selectedSupplier = addModifySupplierForm.Suppliers;
+        //        context.SaveChanges();
+        //        DisplaySuppliers();
+        //    }
+        //    catch (DbUpdateConcurrencyException ex)
+        //    {
+        //        HandleConcurrencyError(ex);
+        //    }
+        //    catch (DbUpdateException ex)
+        //    {
+        //        HandleDatabaseError(ex);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HandleGeneralError(ex);
+        //    }
+        //}
+
 
         private void btnAddProductToPackage_Click(object sender, EventArgs e)
         {
             this.LoadProductData();
-            this.LoadSupplierData();
-            this.DialogResult = DialogResult.OK;
+            //this.LoadSupplierData();
+            //this.DialogResult = DialogResult.OK;
+            frmAddPackage addToPackage = new frmAddPackage();
+            // Brett - Need destination within frmAddPackage to insert new ProductSupplierID 
         }
+                
 
         private void LoadSupplierData()
         {
@@ -317,6 +350,13 @@ namespace Package_Manager
             this.DisplayProducts();
         }
 
-        
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            DisplayProducts();
+            DisplaySuppliers();
+
+        }
+
+       
     }
 }
