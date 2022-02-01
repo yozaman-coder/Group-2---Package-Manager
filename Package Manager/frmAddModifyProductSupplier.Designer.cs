@@ -220,6 +220,7 @@ namespace Package_Manager
             this.Controls.Add(this.lblProducts);
             this.Controls.Add(this.cboProductID);
             this.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmAddModifyProductSupplier";
             this.Text = "Add Product";

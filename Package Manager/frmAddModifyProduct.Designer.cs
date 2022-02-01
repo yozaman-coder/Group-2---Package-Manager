@@ -148,6 +148,7 @@ namespace Package_Manager
             this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.txtProductID);
             this.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmAddModifyProduct";
             this.Text = "frmAddProduct";

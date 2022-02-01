@@ -421,6 +421,7 @@ namespace Package_Manager
             this.Controls.Add(this.dgvPackages);
             this.Controls.Add(this.btnAddProduct);
             this.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAddPackage";
             this.Text = "Package Manager";
             this.Load += new System.EventHandler(this.frmAddPackage_Load);

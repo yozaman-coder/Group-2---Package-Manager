@@ -276,6 +276,7 @@ namespace Package_Manager
             this.Controls.Add(this.btnAddSupplier);
             this.Controls.Add(this.txtSupplierID);
             this.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAddModifySupplier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Supplier";
