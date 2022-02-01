@@ -211,6 +211,7 @@ namespace Package_Manager
             // txtSupplierName
             // 
             this.txtSupplierName.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtSupplierName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSupplierName.Location = new System.Drawing.Point(122, 82);
             this.txtSupplierName.Name = "txtSupplierName";
             this.txtSupplierName.Size = new System.Drawing.Size(254, 25);
@@ -230,6 +231,7 @@ namespace Package_Manager
             // txtSupplierID
             // 
             this.txtSupplierID.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtSupplierID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSupplierID.Location = new System.Drawing.Point(122, 33);
             this.txtSupplierID.Name = "txtSupplierID";
             this.txtSupplierID.ReadOnly = true;

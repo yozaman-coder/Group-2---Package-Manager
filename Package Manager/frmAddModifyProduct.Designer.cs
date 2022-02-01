@@ -44,6 +44,7 @@ namespace Package_Manager
             // txtProductID
             // 
             this.txtProductID.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtProductID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProductID.Location = new System.Drawing.Point(120, 33);
             this.txtProductID.Margin = new System.Windows.Forms.Padding(5);
             this.txtProductID.Name = "txtProductID";
@@ -66,6 +67,7 @@ namespace Package_Manager
             // txtProductName
             // 
             this.txtProductName.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtProductName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProductName.Location = new System.Drawing.Point(120, 82);
             this.txtProductName.Margin = new System.Windows.Forms.Padding(5);
             this.txtProductName.Name = "txtProductName";

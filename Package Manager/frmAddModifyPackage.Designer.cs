@@ -94,9 +94,10 @@ namespace Package_Manager
             // 
             this.lblPackageDisplay.AutoSize = true;
             this.lblPackageDisplay.BackColor = System.Drawing.Color.Transparent;
+            this.lblPackageDisplay.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblPackageDisplay.Location = new System.Drawing.Point(417, 9);
             this.lblPackageDisplay.Name = "lblPackageDisplay";
-            this.lblPackageDisplay.Size = new System.Drawing.Size(112, 15);
+            this.lblPackageDisplay.Size = new System.Drawing.Size(128, 18);
             this.lblPackageDisplay.TabIndex = 2;
             this.lblPackageDisplay.Text = "Travel Packages";
             // 
@@ -114,6 +115,7 @@ namespace Package_Manager
             // txtName
             // 
             this.txtName.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.Location = new System.Drawing.Point(146, 43);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(265, 23);
@@ -175,6 +177,7 @@ namespace Package_Manager
             // txtDescription
             // 
             this.txtDescription.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Location = new System.Drawing.Point(146, 69);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -262,6 +265,7 @@ namespace Package_Manager
             // txtBasePrice
             // 
             this.txtBasePrice.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtBasePrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBasePrice.Location = new System.Drawing.Point(146, 198);
             this.txtBasePrice.Name = "txtBasePrice";
             this.txtBasePrice.Size = new System.Drawing.Size(265, 23);
@@ -272,6 +276,7 @@ namespace Package_Manager
             // txtCommissionPerc
             // 
             this.txtCommissionPerc.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtCommissionPerc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCommissionPerc.Location = new System.Drawing.Point(117, 227);
             this.txtCommissionPerc.Name = "txtCommissionPerc";
             this.txtCommissionPerc.Size = new System.Drawing.Size(98, 23);
@@ -282,6 +287,7 @@ namespace Package_Manager
             // txtComissionPrice
             // 
             this.txtComissionPrice.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtComissionPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtComissionPrice.Location = new System.Drawing.Point(314, 227);
             this.txtComissionPrice.Name = "txtComissionPrice";
             this.txtComissionPrice.ReadOnly = true;
@@ -343,7 +349,8 @@ namespace Package_Manager
             // txtStop
             // 
             this.txtStop.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtStop.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtStop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtStop.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.txtStop.Location = new System.Drawing.Point(500, 69);
             this.txtStop.Multiline = true;
             this.txtStop.Name = "txtStop";
