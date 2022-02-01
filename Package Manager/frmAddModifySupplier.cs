@@ -26,6 +26,7 @@ namespace Package_Manager
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddModifySupplier));
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblSupplierName = new System.Windows.Forms.Label();
             this.lblSupplierID = new System.Windows.Forms.Label();
@@ -36,9 +37,10 @@ namespace Package_Manager
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(208, 144);
+            this.btnCancel.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.Location = new System.Drawing.Point(258, 204);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 36);
+            this.btnCancel.Size = new System.Drawing.Size(128, 46);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -46,57 +48,67 @@ namespace Package_Manager
             // lblSupplierName
             // 
             this.lblSupplierName.AutoSize = true;
-            this.lblSupplierName.Location = new System.Drawing.Point(12, 79);
+            this.lblSupplierName.BackColor = System.Drawing.Color.Transparent;
+            this.lblSupplierName.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblSupplierName.Location = new System.Drawing.Point(14, 129);
             this.lblSupplierName.Name = "lblSupplierName";
-            this.lblSupplierName.Size = new System.Drawing.Size(133, 25);
+            this.lblSupplierName.Size = new System.Drawing.Size(120, 18);
             this.lblSupplierName.TabIndex = 10;
             this.lblSupplierName.Text = "Supplier Name:";
             // 
             // lblSupplierID
             // 
             this.lblSupplierID.AutoSize = true;
-            this.lblSupplierID.Location = new System.Drawing.Point(33, 35);
+            this.lblSupplierID.BackColor = System.Drawing.Color.Transparent;
+            this.lblSupplierID.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblSupplierID.Location = new System.Drawing.Point(30, 66);
             this.lblSupplierID.Name = "lblSupplierID";
-            this.lblSupplierID.Size = new System.Drawing.Size(104, 25);
+            this.lblSupplierID.Size = new System.Drawing.Size(104, 18);
             this.lblSupplierID.TabIndex = 9;
             this.lblSupplierID.Text = "Supplier ID:";
             // 
             // txtSupplierName
             // 
-            this.txtSupplierName.Location = new System.Drawing.Point(153, 79);
+            this.txtSupplierName.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.txtSupplierName.Location = new System.Drawing.Point(136, 122);
             this.txtSupplierName.Name = "txtSupplierName";
-            this.txtSupplierName.Size = new System.Drawing.Size(151, 31);
+            this.txtSupplierName.Size = new System.Drawing.Size(256, 25);
             this.txtSupplierName.TabIndex = 8;
             // 
             // btnAddModifySupplier
             // 
-            this.btnAddModifySupplier.Location = new System.Drawing.Point(62, 144);
+            this.btnAddModifySupplier.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAddModifySupplier.Location = new System.Drawing.Point(45, 204);
             this.btnAddModifySupplier.Name = "btnAddModifySupplier";
-            this.btnAddModifySupplier.Size = new System.Drawing.Size(75, 36);
+            this.btnAddModifySupplier.Size = new System.Drawing.Size(128, 46);
             this.btnAddModifySupplier.TabIndex = 7;
-            this.btnAddModifySupplier.Text = "Add";
+            this.btnAddModifySupplier.Text = "&Save";
             this.btnAddModifySupplier.UseVisualStyleBackColor = true;
             // 
             // txtSupplierID
             // 
-            this.txtSupplierID.Location = new System.Drawing.Point(153, 29);
+            this.txtSupplierID.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.txtSupplierID.Location = new System.Drawing.Point(136, 61);
             this.txtSupplierID.Name = "txtSupplierID";
             this.txtSupplierID.ReadOnly = true;
-            this.txtSupplierID.Size = new System.Drawing.Size(100, 31);
+            this.txtSupplierID.Size = new System.Drawing.Size(256, 25);
             this.txtSupplierID.TabIndex = 6;
             // 
             // frmAddModifySupplier
             // 
+            this.AcceptButton = this.btnAddModifySupplier;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(385, 269);
+            this.ClientSize = new System.Drawing.Size(441, 274);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblSupplierName);
             this.Controls.Add(this.lblSupplierID);
             this.Controls.Add(this.txtSupplierName);
             this.Controls.Add(this.btnAddModifySupplier);
             this.Controls.Add(this.txtSupplierID);
+            this.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Name = "frmAddModifySupplier";
-            this.Text = "Add Supplier";
+            this.Text = "Add/Modify Supplier";
             this.ResumeLayout(false);
             this.PerformLayout();
 
