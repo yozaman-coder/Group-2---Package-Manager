@@ -219,9 +219,12 @@ namespace Package_Manager
         private void btnAddProductToPackage_Click(object sender, EventArgs e)
         {
             this.LoadProductData();
-            this.LoadSupplierData();
-            this.DialogResult = DialogResult.OK;
+            //this.LoadSupplierData();
+            //this.DialogResult = DialogResult.OK;
+            frmAddPackage addToPackage = new frmAddPackage();
+            // Brett - Need destination within frmAddPackage to insert new ProductSupplierID 
         }
+                
 
         private void LoadSupplierData()
         {
@@ -328,6 +331,13 @@ namespace Package_Manager
             this.DisplayProducts();
         }
 
-        
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            DisplayProducts();
+            DisplaySuppliers();
+
+        }
+
+       
     }
 }

@@ -44,6 +44,7 @@ namespace Package_Manager
             this.txtSupplierName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblProdSupID = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cboProductID
@@ -53,7 +54,7 @@ namespace Package_Manager
             this.cboProductID.Location = new System.Drawing.Point(21, 43);
             this.cboProductID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cboProductID.Name = "cboProductID";
-            this.cboProductID.Size = new System.Drawing.Size(117, 26);
+            this.cboProductID.Size = new System.Drawing.Size(117, 35);
             this.cboProductID.TabIndex = 0;
             this.cboProductID.SelectedIndexChanged += new System.EventHandler(this.cboProducts_SelectedIndexChanged);
             // 
@@ -64,7 +65,7 @@ namespace Package_Manager
             this.lblProducts.Location = new System.Drawing.Point(21, 21);
             this.lblProducts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProducts.Name = "lblProducts";
-            this.lblProducts.Size = new System.Drawing.Size(72, 18);
+            this.lblProducts.Size = new System.Drawing.Size(116, 27);
             this.lblProducts.TabIndex = 1;
             this.lblProducts.Text = "Products";
             // 
@@ -75,7 +76,7 @@ namespace Package_Manager
             this.lblSupplier.Location = new System.Drawing.Point(380, 21);
             this.lblSupplier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSupplier.Name = "lblSupplier";
-            this.lblSupplier.Size = new System.Drawing.Size(72, 18);
+            this.lblSupplier.Size = new System.Drawing.Size(116, 27);
             this.lblSupplier.TabIndex = 2;
             this.lblSupplier.Text = "Supplier";
             // 
@@ -86,7 +87,7 @@ namespace Package_Manager
             this.cboSupplierID.Location = new System.Drawing.Point(380, 46);
             this.cboSupplierID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cboSupplierID.Name = "cboSupplierID";
-            this.cboSupplierID.Size = new System.Drawing.Size(117, 26);
+            this.cboSupplierID.Size = new System.Drawing.Size(117, 35);
             this.cboSupplierID.TabIndex = 3;
             this.cboSupplierID.SelectedIndexChanged += new System.EventHandler(this.cboSupplierID_SelectedIndexChanged);
             // 
@@ -114,12 +115,12 @@ namespace Package_Manager
             // 
             // btnAddProductToPackage
             // 
-            this.btnAddProductToPackage.Location = new System.Drawing.Point(253, 212);
+            this.btnAddProductToPackage.Location = new System.Drawing.Point(211, 205);
             this.btnAddProductToPackage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddProductToPackage.Name = "btnAddProductToPackage";
-            this.btnAddProductToPackage.Size = new System.Drawing.Size(144, 49);
+            this.btnAddProductToPackage.Size = new System.Drawing.Size(233, 66);
             this.btnAddProductToPackage.TabIndex = 6;
-            this.btnAddProductToPackage.Text = "Add to selected package";
+            this.btnAddProductToPackage.Text = "Add ProductSupplier";
             this.btnAddProductToPackage.UseVisualStyleBackColor = true;
             this.btnAddProductToPackage.Click += new System.EventHandler(this.btnAddProductToPackage_Click);
             // 
@@ -163,7 +164,7 @@ namespace Package_Manager
             this.txtProductName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.ReadOnly = true;
-            this.txtProductName.Size = new System.Drawing.Size(246, 25);
+            this.txtProductName.Size = new System.Drawing.Size(246, 34);
             this.txtProductName.TabIndex = 10;
             // 
             // txtSupplierName
@@ -174,7 +175,7 @@ namespace Package_Manager
             this.txtSupplierName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSupplierName.Name = "txtSupplierName";
             this.txtSupplierName.ReadOnly = true;
-            this.txtSupplierName.Size = new System.Drawing.Size(246, 25);
+            this.txtSupplierName.Size = new System.Drawing.Size(246, 34);
             this.txtSupplierName.TabIndex = 11;
             // 
             // label1
@@ -183,7 +184,7 @@ namespace Package_Manager
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(253, 126);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 18);
+            this.label1.Size = new System.Drawing.Size(233, 27);
             this.label1.TabIndex = 12;
             this.label1.Text = "ProductSupplierID";
             // 
@@ -197,14 +198,26 @@ namespace Package_Manager
             this.lblProdSupID.TabIndex = 13;
             this.lblProdSupID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(33, 253);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(144, 68);
+            this.btnRefresh.TabIndex = 14;
+            this.btnRefresh.Text = "Refresh Lists";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // frmAddModifyProductSupplier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(637, 333);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.lblProdSupID);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSupplierName);
@@ -246,6 +259,7 @@ namespace Package_Manager
         private System.Windows.Forms.TextBox txtSupplierName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblProdSupID;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
 
