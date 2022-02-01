@@ -43,6 +43,7 @@ namespace Package_Manager
             this.txtSupplierName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblProdSupID = new System.Windows.Forms.Label();
+            this.btnNewProdSupply = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cboProductID
@@ -109,10 +110,10 @@ namespace Package_Manager
             // 
             // btnAddProductToPackage
             // 
-            this.btnAddProductToPackage.Location = new System.Drawing.Point(285, 258);
+            this.btnAddProductToPackage.Location = new System.Drawing.Point(281, 321);
             this.btnAddProductToPackage.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddProductToPackage.Name = "btnAddProductToPackage";
-            this.btnAddProductToPackage.Size = new System.Drawing.Size(181, 57);
+            this.btnAddProductToPackage.Size = new System.Drawing.Size(181, 52);
             this.btnAddProductToPackage.TabIndex = 6;
             this.btnAddProductToPackage.Text = "Add to selected package";
             this.btnAddProductToPackage.UseVisualStyleBackColor = true;
@@ -142,10 +143,10 @@ namespace Package_Manager
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(285, 338);
+            this.btnCancel.Location = new System.Drawing.Point(534, 368);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(181, 57);
+            this.btnCancel.Size = new System.Drawing.Size(170, 38);
             this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -186,11 +187,23 @@ namespace Package_Manager
             this.lblProdSupID.TabIndex = 13;
             this.lblProdSupID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnNewProdSupply
+            // 
+            this.btnNewProdSupply.Location = new System.Drawing.Point(281, 246);
+            this.btnNewProdSupply.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNewProdSupply.Name = "btnNewProdSupply";
+            this.btnNewProdSupply.Size = new System.Drawing.Size(181, 52);
+            this.btnNewProdSupply.TabIndex = 14;
+            this.btnNewProdSupply.Text = "Create new Product-Supplier";
+            this.btnNewProdSupply.UseVisualStyleBackColor = true;
+            this.btnNewProdSupply.Click += new System.EventHandler(this.btnNewProdSupply_Click);
+            // 
             // frmAddModifyProductSupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 419);
+            this.Controls.Add(this.btnNewProdSupply);
             this.Controls.Add(this.lblProdSupID);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSupplierName);
@@ -231,6 +244,7 @@ namespace Package_Manager
         private System.Windows.Forms.TextBox txtSupplierName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblProdSupID;
+        private System.Windows.Forms.Button btnNewProdSupply;
     }
 }
 

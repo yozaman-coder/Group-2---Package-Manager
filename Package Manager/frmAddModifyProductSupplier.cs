@@ -265,6 +265,25 @@ namespace Package_Manager
             }
         }
 
+        private void DisplayProductSupplier()
+        {
+            // cboSupplierID.SelectedIndex
+            // cboProductID.SelectedIndex
+            // select * from Products_Suppliers
+            // join products, suppliers and product-suppliers
+            // if selected SupplierID + selected ProductID are present with a ProdSupID, display ID in lbl
+            // else display "NEW"
+            // enable create new product-supplier button
+
+
+            return;
+        }
+
+        private void btnNewProdSupply_Click(object sender, EventArgs e)
+        {
+            return;
+        }
+
 
         private void HandleGeneralError(Exception ex)
         {
