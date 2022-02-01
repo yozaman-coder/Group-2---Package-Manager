@@ -166,6 +166,7 @@ namespace Package_Manager
          * here? I haven't seen that before. It's usually stored in a different module.*/
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddModifySupplier));
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblSupplierName = new System.Windows.Forms.Label();
             this.lblSupplierID = new System.Windows.Forms.Label();
@@ -179,9 +180,9 @@ namespace Package_Manager
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(119, 350);
+            this.btnCancel.Location = new System.Drawing.Point(139, 217);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 36);
+            this.btnCancel.Size = new System.Drawing.Size(128, 41);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -190,73 +191,80 @@ namespace Package_Manager
             // lblSupplierName
             // 
             this.lblSupplierName.AutoSize = true;
-            this.lblSupplierName.Location = new System.Drawing.Point(12, 79);
+            this.lblSupplierName.BackColor = System.Drawing.Color.Transparent;
+            this.lblSupplierName.Location = new System.Drawing.Point(2, 85);
             this.lblSupplierName.Name = "lblSupplierName";
-            this.lblSupplierName.Size = new System.Drawing.Size(133, 25);
+            this.lblSupplierName.Size = new System.Drawing.Size(120, 18);
             this.lblSupplierName.TabIndex = 10;
             this.lblSupplierName.Text = "Supplier Name:";
             // 
             // lblSupplierID
             // 
             this.lblSupplierID.AutoSize = true;
-            this.lblSupplierID.Location = new System.Drawing.Point(33, 35);
+            this.lblSupplierID.BackColor = System.Drawing.Color.Transparent;
+            this.lblSupplierID.Location = new System.Drawing.Point(18, 36);
             this.lblSupplierID.Name = "lblSupplierID";
-            this.lblSupplierID.Size = new System.Drawing.Size(104, 25);
+            this.lblSupplierID.Size = new System.Drawing.Size(104, 18);
             this.lblSupplierID.TabIndex = 9;
             this.lblSupplierID.Text = "Supplier ID:";
             // 
             // txtSupplierName
             // 
-            this.txtSupplierName.Location = new System.Drawing.Point(153, 79);
+            this.txtSupplierName.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtSupplierName.Location = new System.Drawing.Point(122, 82);
             this.txtSupplierName.Name = "txtSupplierName";
-            this.txtSupplierName.Size = new System.Drawing.Size(173, 31);
+            this.txtSupplierName.Size = new System.Drawing.Size(254, 25);
             this.txtSupplierName.TabIndex = 8;
             // 
             // btnAddSupplier
             // 
-            this.btnAddSupplier.Location = new System.Drawing.Point(119, 156);
+            this.btnAddSupplier.Location = new System.Drawing.Point(24, 134);
             this.btnAddSupplier.Name = "btnAddSupplier";
-            this.btnAddSupplier.Size = new System.Drawing.Size(75, 36);
+            this.btnAddSupplier.Size = new System.Drawing.Size(128, 41);
             this.btnAddSupplier.TabIndex = 7;
-            this.btnAddSupplier.Text = "Add";
+            this.btnAddSupplier.Text = "&Add";
             this.btnAddSupplier.UseVisualStyleBackColor = true;
             this.btnAddSupplier.Visible = false;
             this.btnAddSupplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
             // 
             // txtSupplierID
             // 
-            this.txtSupplierID.Location = new System.Drawing.Point(153, 29);
+            this.txtSupplierID.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtSupplierID.Location = new System.Drawing.Point(122, 33);
             this.txtSupplierID.Name = "txtSupplierID";
             this.txtSupplierID.ReadOnly = true;
-            this.txtSupplierID.Size = new System.Drawing.Size(100, 31);
+            this.txtSupplierID.Size = new System.Drawing.Size(254, 25);
             this.txtSupplierID.TabIndex = 6;
             this.txtSupplierID.Tag = "Supplier ID";
             // 
             // dgvListSuppliers
             // 
+            this.dgvListSuppliers.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvListSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListSuppliers.Location = new System.Drawing.Point(383, 35);
+            this.dgvListSuppliers.Location = new System.Drawing.Point(384, 12);
             this.dgvListSuppliers.Name = "dgvListSuppliers";
             this.dgvListSuppliers.RowHeadersWidth = 62;
             this.dgvListSuppliers.RowTemplate.Height = 33;
-            this.dgvListSuppliers.Size = new System.Drawing.Size(676, 352);
+            this.dgvListSuppliers.Size = new System.Drawing.Size(419, 258);
             this.dgvListSuppliers.TabIndex = 12;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(119, 253);
+            this.btnSave.Location = new System.Drawing.Point(248, 134);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 36);
+            this.btnSave.Size = new System.Drawing.Size(128, 41);
             this.btnSave.TabIndex = 13;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Visible = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmAddModifySupplier
             // 
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1090, 440);
+            this.ClientSize = new System.Drawing.Size(816, 281);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dgvListSuppliers);
             this.Controls.Add(this.btnCancel);
@@ -265,6 +273,7 @@ namespace Package_Manager
             this.Controls.Add(this.txtSupplierName);
             this.Controls.Add(this.btnAddSupplier);
             this.Controls.Add(this.txtSupplierID);
+            this.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Name = "frmAddModifySupplier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Supplier";
