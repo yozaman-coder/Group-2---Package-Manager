@@ -44,7 +44,7 @@ namespace Package_Manager
             this.txtSupplierName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblProdSupID = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnCheckProdSup = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cboProductID
@@ -54,7 +54,7 @@ namespace Package_Manager
             this.cboProductID.Location = new System.Drawing.Point(21, 43);
             this.cboProductID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cboProductID.Name = "cboProductID";
-            this.cboProductID.Size = new System.Drawing.Size(117, 35);
+            this.cboProductID.Size = new System.Drawing.Size(117, 26);
             this.cboProductID.TabIndex = 0;
             this.cboProductID.SelectedIndexChanged += new System.EventHandler(this.cboProducts_SelectedIndexChanged);
             // 
@@ -65,7 +65,7 @@ namespace Package_Manager
             this.lblProducts.Location = new System.Drawing.Point(21, 21);
             this.lblProducts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProducts.Name = "lblProducts";
-            this.lblProducts.Size = new System.Drawing.Size(116, 27);
+            this.lblProducts.Size = new System.Drawing.Size(72, 18);
             this.lblProducts.TabIndex = 1;
             this.lblProducts.Text = "Products";
             // 
@@ -76,7 +76,7 @@ namespace Package_Manager
             this.lblSupplier.Location = new System.Drawing.Point(380, 21);
             this.lblSupplier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSupplier.Name = "lblSupplier";
-            this.lblSupplier.Size = new System.Drawing.Size(116, 27);
+            this.lblSupplier.Size = new System.Drawing.Size(72, 18);
             this.lblSupplier.TabIndex = 2;
             this.lblSupplier.Text = "Supplier";
             // 
@@ -87,7 +87,7 @@ namespace Package_Manager
             this.cboSupplierID.Location = new System.Drawing.Point(380, 46);
             this.cboSupplierID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cboSupplierID.Name = "cboSupplierID";
-            this.cboSupplierID.Size = new System.Drawing.Size(117, 35);
+            this.cboSupplierID.Size = new System.Drawing.Size(117, 26);
             this.cboSupplierID.TabIndex = 3;
             this.cboSupplierID.SelectedIndexChanged += new System.EventHandler(this.cboSupplierID_SelectedIndexChanged);
             // 
@@ -164,7 +164,7 @@ namespace Package_Manager
             this.txtProductName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.ReadOnly = true;
-            this.txtProductName.Size = new System.Drawing.Size(246, 34);
+            this.txtProductName.Size = new System.Drawing.Size(246, 25);
             this.txtProductName.TabIndex = 10;
             // 
             // txtSupplierName
@@ -175,7 +175,7 @@ namespace Package_Manager
             this.txtSupplierName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSupplierName.Name = "txtSupplierName";
             this.txtSupplierName.ReadOnly = true;
-            this.txtSupplierName.Size = new System.Drawing.Size(246, 34);
+            this.txtSupplierName.Size = new System.Drawing.Size(246, 25);
             this.txtSupplierName.TabIndex = 11;
             // 
             // label1
@@ -184,7 +184,7 @@ namespace Package_Manager
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(253, 126);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(233, 27);
+            this.label1.Size = new System.Drawing.Size(144, 18);
             this.label1.TabIndex = 12;
             this.label1.Text = "ProductSupplierID";
             // 
@@ -192,17 +192,28 @@ namespace Package_Manager
             // 
             this.lblProdSupID.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.lblProdSupID.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblProdSupID.Location = new System.Drawing.Point(287, 153);
+            this.lblProdSupID.Location = new System.Drawing.Point(253, 153);
             this.lblProdSupID.Name = "lblProdSupID";
-            this.lblProdSupID.Size = new System.Drawing.Size(71, 35);
+            this.lblProdSupID.Size = new System.Drawing.Size(151, 35);
             this.lblProdSupID.TabIndex = 13;
             this.lblProdSupID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnCheckProdSup
+            // 
+            this.btnCheckProdSup.Location = new System.Drawing.Point(232, 191);
+            this.btnCheckProdSup.Name = "btnCheckProdSup";
+            this.btnCheckProdSup.Size = new System.Drawing.Size(198, 42);
+            this.btnCheckProdSup.TabIndex = 14;
+            this.btnCheckProdSup.Text = "CheckProductSupplierID";
+            this.btnCheckProdSup.UseVisualStyleBackColor = true;
+            this.btnCheckProdSup.Click += new System.EventHandler(this.btnCheckProdSup_Click);
+            // 
             // frmAddModifyProductSupplier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 419);
+            this.Controls.Add(this.btnCheckProdSup);
             this.Controls.Add(this.lblProdSupID);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSupplierName);
@@ -244,6 +255,7 @@ namespace Package_Manager
         private System.Windows.Forms.TextBox txtSupplierName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblProdSupID;
+        private System.Windows.Forms.Button btnCheckProdSup;
     }
 }
 

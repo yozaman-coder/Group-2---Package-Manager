@@ -22,6 +22,9 @@ namespace Package_Manager
         public Supplier supplier;
         public ProductsSupplier productSupplier;
         public bool isAdd;
+        public int supplierID = 0;
+        public int productID = 0;
+
         
         // Brett - added public property to get selected product ID for use in frmAddModifyProduct
         public string SelectedProdID
@@ -201,22 +204,22 @@ namespace Package_Manager
         //        context.SaveChanges();
         //        DisplaySuppliers();
         //    }
-        //    catch (DbUpdateConcurrencyException ex)
-        //    {
-        //        HandleConcurrencyError(ex);
-        //    }
-        //    catch (DbUpdateException ex)
-        //    {
-        //        HandleDatabaseError(ex);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        HandleGeneralError(ex);
-        //    }
-        //}
+//            catch (DbUpdateConcurrencyException ex)
+//            {
+//                HandleConcurrencyError(ex);
+//    }
+//            catch (DbUpdateException ex)
+//            {
+//                HandleDatabaseError(ex);
+//}
+//            catch (Exception ex)
+//{
+//    HandleGeneralError(ex);
+//}
+//}
 
 
-        private void btnAddProductToPackage_Click(object sender, EventArgs e)
+private void btnAddProductToPackage_Click(object sender, EventArgs e)
         {
             this.LoadProductData();
             //this.LoadSupplierData();
@@ -300,16 +303,60 @@ namespace Package_Manager
 
         private void DisplayProductSupplier()
         {
-            // cboSupplierID.SelectedIndex
-            // cboProductID.SelectedIndex
-            // select * from Products_Suppliers
-            // join products, suppliers and product-suppliers
-            // if selected SupplierID + selected ProductID are present with a ProdSupID, display ID in lbl
-            // else display "NEW"
-            // enable create new product-supplier button
+            supplierID = Convert.ToInt32(cboSupplierID.Text);
+            productID = Convert.ToInt32(cboProductID.Text);
 
 
-            return;
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                try
+                {
+                    var ProdSup = from ps in db.ProductsSuppliers
+                                  where ps.ProductId == productID
+                                  where ps.SupplierId == supplierID
+                                  select ps.ProductSupplierId;
+
+                    if (ProdSup == null)
+                    {
+                        try
+                        {
+                            ProductsSupplier newProdSup = new ProductsSupplier();
+                            newProdSup.ProductId = productID;
+                            newProdSup.SupplierId = supplierID;
+                            db.ProductsSuppliers.Add(newProdSup);
+                            db.SaveChanges();
+
+                        }
+                        catch (DbUpdateConcurrencyException ex)
+                        {
+                            HandleConcurrencyError(ex);
+                        }
+                        catch (DbUpdateException ex)
+                        {
+                            HandleDatabaseError(ex);
+                        }
+                        catch (Exception ex)
+                        {
+                            HandleGeneralError(ex);
+                        }
+                    }
+
+                    else
+                        lblProdSupID.Text = Convert.ToString(ProdSup);
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    HandleConcurrencyError(ex);
+                }
+                catch (DbUpdateException ex)
+                {
+                    HandleDatabaseError(ex);
+                }
+                catch (Exception ex)
+                {
+                    HandleGeneralError(ex);
+                }
+            }
         }
 
         private void btnNewProdSupply_Click(object sender, EventArgs e)
@@ -357,6 +404,9 @@ namespace Package_Manager
 
         }
 
-       
+        private void btnCheckProdSup_Click(object sender, EventArgs e)
+        {
+            DisplayProductSupplier();
+        }
     }
 }
