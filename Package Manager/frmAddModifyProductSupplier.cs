@@ -15,7 +15,7 @@ namespace Package_Manager
 {
     public partial class frmAddModifyProductSupplier : Form
     {
-        private TravelExpertsContext context = new TravelExpertsContext();
+        //private TravelExpertsContext context = new TravelExpertsContext();
         public Product selectedProduct;
         private Supplier selectedSupplier;
         public Product product;
@@ -311,12 +311,12 @@ private void btnAddProductToPackage_Click(object sender, EventArgs e)
             {
                 try
                 {
-                    var ProdSup = from ps in db.ProductsSuppliers
+                    var ProdSup = (from ps in db.ProductsSuppliers
                                   where ps.ProductId == productID
                                   where ps.SupplierId == supplierID
-                                  select ps.ProductSupplierId;
+                                  select ps.ProductSupplierId);
 
-                    if (ProdSup == null)
+                    if (ProdSup.FirstOrDefault() == 0)
                     {
                         try
                         {
@@ -329,7 +329,7 @@ private void btnAddProductToPackage_Click(object sender, EventArgs e)
                         }
                         catch (DbUpdateConcurrencyException ex)
                         {
-                            HandleConcurrencyError(ex);
+                            //HandleConcurrencyError(ex);
                         }
                         catch (DbUpdateException ex)
                         {
@@ -342,11 +342,11 @@ private void btnAddProductToPackage_Click(object sender, EventArgs e)
                     }
 
                     else
-                        lblProdSupID.Text = Convert.ToString(ProdSup);
+                        lblProdSupID.Text = ProdSup.FirstOrDefault().ToString();
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
-                    HandleConcurrencyError(ex);
+                    //HandleConcurrencyError(ex);
                 }
                 catch (DbUpdateException ex)
                 {
@@ -381,21 +381,21 @@ private void btnAddProductToPackage_Click(object sender, EventArgs e)
             MessageBox.Show(errorMessage);
         }
 
-        private void HandleConcurrencyError(DbUpdateConcurrencyException ex)
-        {
-            ex.Entries.Single().Reload();
-            var state = context.Entry(selectedProduct).State;
-            if (state == EntityState.Detached)
-            {
-                MessageBox.Show("Another user has deleted selected product", "Concurrency Error");
-            }
-            else
-            {
-                string message = "Another user has updated selected product.\n" + "The current database values will be displayed.";
-                MessageBox.Show(message, "Concurrency Error");
-            }
-            this.DisplayProducts();
-        }
+        //private void HandleConcurrencyError(DbUpdateConcurrencyException ex)
+        //{
+        //    ex.Entries.Single().Reload();
+        //    var state = context.Entry(selectedProduct).State;
+        //    if (state == EntityState.Detached)
+        //    {
+        //        MessageBox.Show("Another user has deleted selected product", "Concurrency Error");
+        //    }
+        //    else
+        //    {
+        //        string message = "Another user has updated selected product.\n" + "The current database values will be displayed.";
+        //        MessageBox.Show(message, "Concurrency Error");
+        //    }
+        //    this.DisplayProducts();
+        //}
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
