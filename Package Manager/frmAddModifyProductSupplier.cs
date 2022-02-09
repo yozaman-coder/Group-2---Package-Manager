@@ -311,12 +311,12 @@ private void btnAddProductToPackage_Click(object sender, EventArgs e)
             {
                 try
                 {
-                    var ProdSup = from ps in db.ProductsSuppliers
+                    var ProdSup = (from ps in db.ProductsSuppliers
                                   where ps.ProductId == productID
                                   where ps.SupplierId == supplierID
-                                  select ps.ProductSupplierId;
-
-                    if (ProdSup == null)
+                                  select ps.ProductSupplierId);
+                    
+                    if (ProdSup.FirstOrDefault() == 0)
                     {
                         try
                         {
@@ -387,12 +387,12 @@ private void btnAddProductToPackage_Click(object sender, EventArgs e)
             var state = context.Entry(selectedProduct).State;
             if (state == EntityState.Detached)
             {
-                MessageBox.Show("Another user has deleted selected product", "Concurrency Error");
+                MessageBox.Show("another user has deleted selected product", "concurrency error");
             }
             else
             {
-                string message = "Another user has updated selected product.\n" + "The current database values will be displayed.";
-                MessageBox.Show(message, "Concurrency Error");
+                string message = "another user has updated selected product.\n" + "the current database values will be displayed.";
+                MessageBox.Show(message, "concurrency error");
             }
             this.DisplayProducts();
         }
