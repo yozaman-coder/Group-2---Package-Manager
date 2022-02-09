@@ -342,7 +342,7 @@ private void btnAddProductToPackage_Click(object sender, EventArgs e)
                     }
 
                     else
-                        lblProdSupID.Text = Convert.ToString(ProdSup);
+                        lblProdSupID.Text = ProdSup.FirstOrDefault().ToString();
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
