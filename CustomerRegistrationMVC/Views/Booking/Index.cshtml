@@ -31,7 +31,7 @@
                 @Html.DisplayNameFor(model => model.TripTypeId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PackageId)
+                @Html.DisplayNameFor(model => model.PackageId)@* WE WILL HAVE THIS LATER BUT FOR CURRENT CUSTOMERS ITS NULL*@
             </th>
             <th></th>
         </tr>
@@ -58,12 +58,12 @@
                 @Html.DisplayFor(modelItem => item.TripTypeId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PackageId)
+                @Html.DisplayFor(modelItem => item.PackageId)@* WE WILL HAVE THIS LATER BUT FOR CURRENT CUSTOMERS ITS NULL*@
             </td>
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
-                @Html.ActionLink("Details", "Details", new { id = item.BookingId })
-                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+            @Html.ActionLink("Details", "Details", "BookingDetails", new { id = item.BookingId })
+            @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
 }
