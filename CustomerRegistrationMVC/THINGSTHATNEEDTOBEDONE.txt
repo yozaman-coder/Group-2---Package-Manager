@@ -11,3 +11,5 @@ the PackagesSorting view component.
 
 4. CSS and styling
 
+5. Fix TRAVELEXPERTSDB!!README!! so that it is just one sql. Should be really easy just need to use the old travel experts
+sql and modify it a bit.
