@@ -41,12 +41,9 @@ namespace ProductData
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.
-                    UseSqlServer(ConfigurationManager.ConnectionStrings["TravelExpertsConnection"].ConnectionString).
-                    UseLazyLoadingProxies(); // To enable lazy loading of related records
-            }
+            optionsBuilder.UseSqlServer(@"Server=localhost\sqlexpress;
+                                          Database=TravelExperts;
+                                          Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
