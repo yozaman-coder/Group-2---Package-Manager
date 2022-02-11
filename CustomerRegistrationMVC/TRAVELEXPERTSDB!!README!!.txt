@@ -1,4 +1,5 @@
-USE THIS SQL TO UPDATE DATABASE
+USE THIS SQL TO UPDATE DATABASE. We should probably make one sql file that does the entire database and drops the old database
+so that Jolanta does not have to copy and past our stuff and drop and remake the database.
 ///////
 ALTER TABLE Customers
 ADD Password nvarchar(50);
