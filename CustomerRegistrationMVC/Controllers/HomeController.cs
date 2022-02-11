@@ -1,4 +1,5 @@
-﻿using CustomerRegistrationMVC.Models;
+﻿using ProductData;
+using CustomerRegistrationMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

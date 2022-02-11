@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +23,10 @@ namespace CustomerRegistrationMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme) // Cookies
+                .AddCookie(opt => opt.LoginPath = "/Customer/Login");// Where the login page is
+                                                                     // Account controller login method
+            services.AddSession();
             services.AddControllersWithViews();
         }
 
@@ -35,13 +40,18 @@ namespace CustomerRegistrationMVC
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+
+                app.UseHsts();
             }
+            app.UseHttpsRedirection();
+            app.UseStatusCodePages();
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

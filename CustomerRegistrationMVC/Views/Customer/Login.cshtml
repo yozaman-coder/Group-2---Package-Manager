@@ -1,0 +1,21 @@
+﻿@model ProductData.Customer
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<form asp-action="Login">
+    <h3>Login</h3>
+    <table class="table">
+        <tr>
+            <td>Email: </td>
+            <td><input type="text" asp-for="CustEmail" /></td>
+        </tr>
+        <tr>
+            <td>Password: </td>
+            <td><input type="text" asp-for="CustPassword" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Authenticate" class="btn btn-primary"></td>
+        </tr>
+    </table>
+</form>
