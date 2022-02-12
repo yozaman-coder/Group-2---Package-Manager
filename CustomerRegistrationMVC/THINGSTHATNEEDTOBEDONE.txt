@@ -9,7 +9,7 @@ the PackagesSorting view component.
 
 3. Allow user to book one of the packages and create a new booking for them.
 
-4. CSS and styling
+4. (brendan) CSS and styling
 
 5. Fix TRAVELEXPERTSDB!!README!! so that it is just one sql. Should be really easy just need to use the old travel experts
 sql and modify it a bit.
