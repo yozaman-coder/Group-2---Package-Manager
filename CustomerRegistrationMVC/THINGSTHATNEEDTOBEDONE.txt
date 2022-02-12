@@ -3,7 +3,7 @@ YOU CAN ALWAYS ADD TO THIS AS WELL IF I FORGET SOME STUFF
 
 1. Validate user registration data
 
-2. Have a page that lists all packages with an ability to choose the sorting method and then sort packages by that method.
+2. (Brett - I can take a shot at this) Have a page that lists all packages with an ability to choose the sorting method and then sort packages by that method.
 * We could just have one sorting method although I wrote a bit of code already to make this work in PackageManager and 
 the PackagesSorting view component.
 
