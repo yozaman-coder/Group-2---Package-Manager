@@ -154,6 +154,7 @@ namespace Package_Manager
             this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtProductName
             // 
@@ -204,7 +205,7 @@ namespace Package_Manager
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(717, 419);
+            this.ClientSize = new System.Drawing.Size(634, 287);
             this.Controls.Add(this.lblProdSupID);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSupplierName);

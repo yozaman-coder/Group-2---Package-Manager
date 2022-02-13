@@ -15,7 +15,6 @@ namespace Package_Manager
 {
     public partial class frmAddModifyProductSupplier : Form
     {
-        private TravelExpertsContext context = new TravelExpertsContext();
         public Product selectedProduct;
         private Supplier selectedSupplier;
         public Product product;
@@ -297,17 +296,21 @@ namespace Package_Manager
 
         private void HandleConcurrencyError(DbUpdateConcurrencyException ex)
         {
-            ex.Entries.Single().Reload();
-            var state = context.Entry(selectedProduct).State;
-            if (state == EntityState.Detached)
+            
+            using(TravelExpertsContext context = new TravelExpertsContext())
             {
-                MessageBox.Show("another user has deleted selected product", "concurrency error");
-            }
-            else
-            {
-                string message = "another user has updated selected product.\n" + "the current database values will be displayed.";
-                MessageBox.Show(message, "concurrency error");
-            }
+                ex.Entries.Single().Reload();
+                var state = context.Entry(selectedProduct).State;
+                if (state == EntityState.Detached)
+                {
+                    MessageBox.Show("another user has deleted selected product", "concurrency error");
+                }
+                else
+                {
+                    string message = "another user has updated selected product.\n" + "the current database values will be displayed.";
+                    MessageBox.Show(message, "concurrency error");
+                }
+            }  
             this.DisplayProducts();
         }
 
@@ -321,6 +324,11 @@ namespace Package_Manager
         private void btnCheckProdSup_Click(object sender, EventArgs e)
         {
             DisplayProductSupplier();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
