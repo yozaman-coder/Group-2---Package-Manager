@@ -24,8 +24,7 @@ namespace Package_Manager
         public bool isAdd;
         public int supplierID = 0;
         public int productID = 0;
-
-        
+                
         // Brett - added public property to get selected product ID for use in frmAddModifyProduct
         public string SelectedProdID
         {
@@ -37,6 +36,13 @@ namespace Package_Manager
         {
             get { return cboSupplierID.Text; }
         }
+
+        // Brett - added public property to get the combined ProductSupplier ID for use in frmAddModifyPackage
+        public string SelectedProdSupp
+        {
+            get { return lblProdSupID.Text; }
+        }
+
         public frmAddModifyProductSupplier()
         {
             InitializeComponent();
@@ -89,28 +95,7 @@ namespace Package_Manager
             frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
             addSupplierForm.AddSupplier = true;
             addSupplierForm.Show();
-            //frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
-            //addSupplierForm.AddSupplier = true;
-            //DialogResult result = addSupplierForm.ShowDialog();
-            //if (result == DialogResult.OK)
-            //{
-            //    try
-            //    {
-            //        selectedSupplier = addSupplierForm.Suppliers;
-            //        context.Suppliers.Add(selectedSupplier);
-            //        context.SaveChanges();
-            //        this.DisplaySuppliers();
-            //    }
-
-            //    catch (DbUpdateException ex)
-            //    {
-            //        HandleDatabaseError(ex);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        HandleGeneralError(ex);
-            //    }
-            //}
+            
         }
 
         private void btnNewProduct_Click(object sender, EventArgs e)
@@ -120,28 +105,7 @@ namespace Package_Manager
             addProductForm.AddProduct = true;
             addProductForm.Show();
         }
-        //DialogResult result = addProductForm.ShowDialog();
-        //if (result == DialogResult.OK)
-        //{
-        //    try
-        //    {
-        //        selectedProduct = addProductForm.Products;
-        //        context.Products.Add(selectedProduct);
-        //        context.SaveChanges();
-        //        this.DisplayProducts();
-        //    }
-
-        //    catch (DbUpdateException ex)
-        //    {
-        //        HandleDatabaseError(ex);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        HandleGeneralError(ex);
-        //    }
-
-
-
+        
 
         private void btnModifyProduct_Click(object sender, EventArgs e)
         {
@@ -154,30 +118,6 @@ namespace Package_Manager
                 //AddProduct = false,
                 //Products = selectedProduct
         }
-            
-            //DialogResult result = addModifyProductForm.ShowDialog();
-            //    if (result == DialogResult.OK)
-            //    {
-            //        try
-            //        {
-            //            selectedProduct = addModifyProductForm.Products; // Brett - I think this needs to work the other way around. The selectedProduct needs to come from this form, then it can be modified via frmAddModifyProduct. Do you agree?
-            //            context.SaveChanges();
-            //            DisplayProducts();
-            //        }
-            //        catch (DbUpdateConcurrencyException ex)
-            //        {
-            //            HandleConcurrencyError(ex);
-            //        }
-            //        catch (DbUpdateException ex)
-            //        {
-            //            HandleDatabaseError(ex);
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            HandleGeneralError(ex);
-            //        }
-            //    }
-                
         
 
         private void btnSupplierModify_Click(object sender, EventArgs e)
@@ -189,43 +129,13 @@ namespace Package_Manager
             modForm.Show();
         }
 
-        //var addModifySupplierForm = new frmAddModifySupplier()
-        //{
-        //    AddSupplier = false,
-        //    Suppliers = selectedSupplier
-        //};
-
-        //DialogResult result = addModifySupplierForm.ShowDialog();
-        //if (result == DialogResult.OK)
-        //{
-        //    try
-        //    {
-        //        selectedSupplier = addModifySupplierForm.Suppliers;
-        //        context.SaveChanges();
-        //        DisplaySuppliers();
-        //    }
-//            catch (DbUpdateConcurrencyException ex)
-//            {
-//                HandleConcurrencyError(ex);
-//    }
-//            catch (DbUpdateException ex)
-//            {
-//                HandleDatabaseError(ex);
-//}
-//            catch (Exception ex)
-//{
-//    HandleGeneralError(ex);
-//}
-//}
-
-
-private void btnAddProductToPackage_Click(object sender, EventArgs e)
+        private void btnAddProductToPackage_Click(object sender, EventArgs e)
         {
-            this.LoadProductData();
-            //this.LoadSupplierData();
-            //this.DialogResult = DialogResult.OK;
-            frmAddPackage addToPackage = new frmAddPackage();
-            // Brett - Need destination within frmAddPackage to insert new ProductSupplierID 
+            // Brett - added code for this method, it was incomplete. Now creates a new instance of the AddPackage class/form and passes the Selected ProductSupplier ID to it via the new public property SelectedProdSupp. 
+            frmAddPackage addPackage = new frmAddPackage();
+            addPackage.newProdSupp = SelectedProdSupp;
+            addPackage.Show();
+            
         }
                 
 
@@ -410,3 +320,98 @@ private void btnAddProductToPackage_Click(object sender, EventArgs e)
         }
     }
 }
+//frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
+//addSupplierForm.AddSupplier = true;
+//DialogResult result = addSupplierForm.ShowDialog();
+//if (result == DialogResult.OK)
+//{
+//    try
+//    {
+//        selectedSupplier = addSupplierForm.Suppliers;
+//        context.Suppliers.Add(selectedSupplier);
+//        context.SaveChanges();
+//        this.DisplaySuppliers();
+//    }
+
+//    catch (DbUpdateException ex)
+//    {
+//        HandleDatabaseError(ex);
+//    }
+//    catch (Exception ex)
+//    {
+//        HandleGeneralError(ex);
+//    }
+//}
+
+//DialogResult result = addProductForm.ShowDialog();
+//if (result == DialogResult.OK)
+//{
+//    try
+//    {
+//        selectedProduct = addProductForm.Products;
+//        context.Products.Add(selectedProduct);
+//        context.SaveChanges();
+//        this.DisplayProducts();
+//    }
+
+//    catch (DbUpdateException ex)
+//    {
+//        HandleDatabaseError(ex);
+//    }
+//    catch (Exception ex)
+//    {
+//        HandleGeneralError(ex);
+//    }
+
+
+//DialogResult result = addModifyProductForm.ShowDialog();
+//    if (result == DialogResult.OK)
+//    {
+//        try
+//        {
+//            selectedProduct = addModifyProductForm.Products; // Brett - I think this needs to work the other way around. The selectedProduct needs to come from this form, then it can be modified via frmAddModifyProduct. Do you agree?
+//            context.SaveChanges();
+//            DisplayProducts();
+//        }
+//        catch (DbUpdateConcurrencyException ex)
+//        {
+//            HandleConcurrencyError(ex);
+//        }
+//        catch (DbUpdateException ex)
+//        {
+//            HandleDatabaseError(ex);
+//        }
+//        catch (Exception ex)
+//        {
+//            HandleGeneralError(ex);
+//        }
+//    }
+
+//var addModifySupplierForm = new frmAddModifySupplier()
+//{
+//    AddSupplier = false,
+//    Suppliers = selectedSupplier
+//};
+
+//DialogResult result = addModifySupplierForm.ShowDialog();
+//if (result == DialogResult.OK)
+//{
+//    try
+//    {
+//        selectedSupplier = addModifySupplierForm.Suppliers;
+//        context.SaveChanges();
+//        DisplaySuppliers();
+//    }
+//            catch (DbUpdateConcurrencyException ex)
+//            {
+//                HandleConcurrencyError(ex);
+//    }
+//            catch (DbUpdateException ex)
+//            {
+//                HandleDatabaseError(ex);
+//}
+//            catch (Exception ex)
+//{
+//    HandleGeneralError(ex);
+//}
+//}

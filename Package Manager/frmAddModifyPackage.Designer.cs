@@ -59,6 +59,7 @@ namespace Package_Manager
             this.txtStop = new System.Windows.Forms.TextBox();
             this.btnCancelPackage = new System.Windows.Forms.Button();
             this.btnDeletePackage = new System.Windows.Forms.Button();
+            this.lblReceivedProdSupp = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPackages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -97,7 +98,7 @@ namespace Package_Manager
             this.lblPackageDisplay.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblPackageDisplay.Location = new System.Drawing.Point(417, 9);
             this.lblPackageDisplay.Name = "lblPackageDisplay";
-            this.lblPackageDisplay.Size = new System.Drawing.Size(128, 18);
+            this.lblPackageDisplay.Size = new System.Drawing.Size(207, 27);
             this.lblPackageDisplay.TabIndex = 2;
             this.lblPackageDisplay.Text = "Travel Packages";
             // 
@@ -118,7 +119,7 @@ namespace Package_Manager
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.Location = new System.Drawing.Point(146, 43);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(265, 23);
+            this.txtName.Size = new System.Drawing.Size(265, 30);
             this.txtName.TabIndex = 4;
             this.txtName.Tag = "Name";
             // 
@@ -129,7 +130,7 @@ namespace Package_Manager
             this.dateStartDate.MaxDate = new System.DateTime(2122, 12, 31, 0, 0, 0, 0);
             this.dateStartDate.MinDate = new System.DateTime(1900, 1, 30, 0, 0, 0, 0);
             this.dateStartDate.Name = "dateStartDate";
-            this.dateStartDate.Size = new System.Drawing.Size(265, 23);
+            this.dateStartDate.Size = new System.Drawing.Size(265, 30);
             this.dateStartDate.TabIndex = 5;
             this.dateStartDate.Tag = "Start Date";
             // 
@@ -140,7 +141,7 @@ namespace Package_Manager
             this.dateEndDate.MaxDate = new System.DateTime(2122, 12, 31, 0, 0, 0, 0);
             this.dateEndDate.MinDate = new System.DateTime(1900, 1, 30, 0, 0, 0, 0);
             this.dateEndDate.Name = "dateEndDate";
-            this.dateEndDate.Size = new System.Drawing.Size(265, 23);
+            this.dateEndDate.Size = new System.Drawing.Size(265, 30);
             this.dateEndDate.TabIndex = 6;
             this.dateEndDate.Tag = "End Date";
             // 
@@ -150,7 +151,7 @@ namespace Package_Manager
             this.lblStartDate.BackColor = System.Drawing.Color.Transparent;
             this.lblStartDate.Location = new System.Drawing.Point(3, 145);
             this.lblStartDate.Name = "lblStartDate";
-            this.lblStartDate.Size = new System.Drawing.Size(140, 15);
+            this.lblStartDate.Size = new System.Drawing.Size(219, 23);
             this.lblStartDate.TabIndex = 7;
             this.lblStartDate.Text = "Package start date:";
             // 
@@ -160,7 +161,7 @@ namespace Package_Manager
             this.lblEndDate.BackColor = System.Drawing.Color.Transparent;
             this.lblEndDate.Location = new System.Drawing.Point(18, 175);
             this.lblEndDate.Name = "lblEndDate";
-            this.lblEndDate.Size = new System.Drawing.Size(126, 15);
+            this.lblEndDate.Size = new System.Drawing.Size(197, 23);
             this.lblEndDate.TabIndex = 8;
             this.lblEndDate.Text = "Package end date:";
             // 
@@ -170,7 +171,7 @@ namespace Package_Manager
             this.lblName.BackColor = System.Drawing.Color.Transparent;
             this.lblName.Location = new System.Drawing.Point(46, 46);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(98, 15);
+            this.lblName.Size = new System.Drawing.Size(153, 23);
             this.lblName.TabIndex = 9;
             this.lblName.Text = "Package name:";
             // 
@@ -191,7 +192,7 @@ namespace Package_Manager
             this.lblDescription.BackColor = System.Drawing.Color.Transparent;
             this.lblDescription.Location = new System.Drawing.Point(-3, 72);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(147, 15);
+            this.lblDescription.Size = new System.Drawing.Size(230, 23);
             this.lblDescription.TabIndex = 11;
             this.lblDescription.Text = "Package description:";
             // 
@@ -201,7 +202,7 @@ namespace Package_Manager
             this.cboPackageID.FormattingEnabled = true;
             this.cboPackageID.Location = new System.Drawing.Point(146, 15);
             this.cboPackageID.Name = "cboPackageID";
-            this.cboPackageID.Size = new System.Drawing.Size(118, 23);
+            this.cboPackageID.Size = new System.Drawing.Size(118, 31);
             this.cboPackageID.TabIndex = 12;
             this.cboPackageID.Tag = "Package ID";
             this.cboPackageID.SelectionChangeCommitted += new System.EventHandler(this.cboPackageID_SelectionChangeCommitted);
@@ -212,7 +213,7 @@ namespace Package_Manager
             this.lblPackage.BackColor = System.Drawing.Color.Transparent;
             this.lblPackage.Location = new System.Drawing.Point(25, 18);
             this.lblPackage.Name = "lblPackage";
-            this.lblPackage.Size = new System.Drawing.Size(119, 15);
+            this.lblPackage.Size = new System.Drawing.Size(186, 23);
             this.lblPackage.TabIndex = 13;
             this.lblPackage.Text = "Current package:";
             // 
@@ -268,7 +269,7 @@ namespace Package_Manager
             this.txtBasePrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBasePrice.Location = new System.Drawing.Point(146, 198);
             this.txtBasePrice.Name = "txtBasePrice";
-            this.txtBasePrice.Size = new System.Drawing.Size(265, 23);
+            this.txtBasePrice.Size = new System.Drawing.Size(265, 30);
             this.txtBasePrice.TabIndex = 18;
             this.txtBasePrice.Tag = "Base Price";
             this.txtBasePrice.TextChanged += new System.EventHandler(this.txtBasePrice_TextChanged);
@@ -279,7 +280,7 @@ namespace Package_Manager
             this.txtCommissionPerc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCommissionPerc.Location = new System.Drawing.Point(117, 227);
             this.txtCommissionPerc.Name = "txtCommissionPerc";
-            this.txtCommissionPerc.Size = new System.Drawing.Size(98, 23);
+            this.txtCommissionPerc.Size = new System.Drawing.Size(98, 30);
             this.txtCommissionPerc.TabIndex = 19;
             this.txtCommissionPerc.Tag = "Commission Percentage";
             this.txtCommissionPerc.TextChanged += new System.EventHandler(this.txtCommissionPerc_TextChanged);
@@ -291,7 +292,7 @@ namespace Package_Manager
             this.txtComissionPrice.Location = new System.Drawing.Point(314, 227);
             this.txtComissionPrice.Name = "txtComissionPrice";
             this.txtComissionPrice.ReadOnly = true;
-            this.txtComissionPrice.Size = new System.Drawing.Size(97, 23);
+            this.txtComissionPrice.Size = new System.Drawing.Size(97, 30);
             this.txtComissionPrice.TabIndex = 20;
             this.txtComissionPrice.Tag = "Commission Price";
             // 
@@ -301,7 +302,7 @@ namespace Package_Manager
             this.lblCommissionPerc.BackColor = System.Drawing.Color.Transparent;
             this.lblCommissionPerc.Location = new System.Drawing.Point(18, 230);
             this.lblCommissionPerc.Name = "lblCommissionPerc";
-            this.lblCommissionPerc.Size = new System.Drawing.Size(98, 15);
+            this.lblCommissionPerc.Size = new System.Drawing.Size(153, 23);
             this.lblCommissionPerc.TabIndex = 21;
             this.lblCommissionPerc.Text = "Commission %:";
             // 
@@ -311,7 +312,7 @@ namespace Package_Manager
             this.lblCommissionPrice.BackColor = System.Drawing.Color.Transparent;
             this.lblCommissionPrice.Location = new System.Drawing.Point(221, 230);
             this.lblCommissionPrice.Name = "lblCommissionPrice";
-            this.lblCommissionPrice.Size = new System.Drawing.Size(84, 15);
+            this.lblCommissionPrice.Size = new System.Drawing.Size(131, 23);
             this.lblCommissionPrice.TabIndex = 22;
             this.lblCommissionPrice.Text = "Commission:";
             // 
@@ -321,7 +322,7 @@ namespace Package_Manager
             this.lblBasePrice.BackColor = System.Drawing.Color.Transparent;
             this.lblBasePrice.Location = new System.Drawing.Point(38, 201);
             this.lblBasePrice.Name = "lblBasePrice";
-            this.lblBasePrice.Size = new System.Drawing.Size(105, 15);
+            this.lblBasePrice.Size = new System.Drawing.Size(164, 23);
             this.lblBasePrice.TabIndex = 23;
             this.lblBasePrice.Text = "Package Price:";
             // 
@@ -383,14 +384,24 @@ namespace Package_Manager
             this.btnDeletePackage.Visible = false;
             this.btnDeletePackage.Click += new System.EventHandler(this.btnDeletePackage_Click);
             // 
+            // lblReceivedProdSupp
+            // 
+            this.lblReceivedProdSupp.AutoSize = true;
+            this.lblReceivedProdSupp.Location = new System.Drawing.Point(303, 452);
+            this.lblReceivedProdSupp.Name = "lblReceivedProdSupp";
+            this.lblReceivedProdSupp.Size = new System.Drawing.Size(0, 23);
+            this.lblReceivedProdSupp.TabIndex = 29;
+            this.lblReceivedProdSupp.Visible = false;
+            // 
             // frmAddPackage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1079, 507);
+            this.Controls.Add(this.lblReceivedProdSupp);
             this.Controls.Add(this.btnDeletePackage);
             this.Controls.Add(this.btnCancelPackage);
             this.Controls.Add(this.txtStop);
@@ -463,5 +474,6 @@ namespace Package_Manager
         private System.Windows.Forms.TextBox txtStop;
         private System.Windows.Forms.Button btnCancelPackage;
         private System.Windows.Forms.Button btnDeletePackage;
+        private System.Windows.Forms.Label lblReceivedProdSupp;
     }
 }

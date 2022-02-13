@@ -29,6 +29,13 @@ namespace Package_Manager
         // Selection event kept getting called when database was updating so made this to stop the selection event
         bool dontCallSelectionEvent = false;
         int firstPackage = 1; //Default package
+        // Brett - added a new property to receive the ID of the ProductSupplier combination from the AddModifyProductSupplier form. Need to find a way to append it to the products list for the selected package.
+        public string newProdSupp
+        {
+            set { lblReceivedProdSupp.Text = value; } // Brett - I just set this to an invisible text label right now. Probably a better place for this value to be stored...
+        }
+        
+
         public frmAddPackage()
         {
             InitializeComponent();
