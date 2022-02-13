@@ -53,7 +53,7 @@ namespace Package_Manager
             this.cboProductID.Location = new System.Drawing.Point(21, 43);
             this.cboProductID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cboProductID.Name = "cboProductID";
-            this.cboProductID.Size = new System.Drawing.Size(117, 35);
+            this.cboProductID.Size = new System.Drawing.Size(117, 26);
             this.cboProductID.TabIndex = 0;
             this.cboProductID.SelectedIndexChanged += new System.EventHandler(this.cboProducts_SelectedIndexChanged);
             // 
@@ -64,7 +64,7 @@ namespace Package_Manager
             this.lblProducts.Location = new System.Drawing.Point(21, 21);
             this.lblProducts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProducts.Name = "lblProducts";
-            this.lblProducts.Size = new System.Drawing.Size(116, 27);
+            this.lblProducts.Size = new System.Drawing.Size(72, 18);
             this.lblProducts.TabIndex = 1;
             this.lblProducts.Text = "Products";
             // 
@@ -75,7 +75,7 @@ namespace Package_Manager
             this.lblSupplier.Location = new System.Drawing.Point(380, 21);
             this.lblSupplier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSupplier.Name = "lblSupplier";
-            this.lblSupplier.Size = new System.Drawing.Size(116, 27);
+            this.lblSupplier.Size = new System.Drawing.Size(72, 18);
             this.lblSupplier.TabIndex = 2;
             this.lblSupplier.Text = "Supplier";
             // 
@@ -86,7 +86,7 @@ namespace Package_Manager
             this.cboSupplierID.Location = new System.Drawing.Point(380, 46);
             this.cboSupplierID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cboSupplierID.Name = "cboSupplierID";
-            this.cboSupplierID.Size = new System.Drawing.Size(117, 35);
+            this.cboSupplierID.Size = new System.Drawing.Size(117, 26);
             this.cboSupplierID.TabIndex = 3;
             this.cboSupplierID.SelectedIndexChanged += new System.EventHandler(this.cboSupplierID_SelectedIndexChanged);
             // 
@@ -114,7 +114,7 @@ namespace Package_Manager
             // 
             // btnAddProductToPackage
             // 
-            this.btnAddProductToPackage.Location = new System.Drawing.Point(285, 258);
+            this.btnAddProductToPackage.Location = new System.Drawing.Point(243, 126);
             this.btnAddProductToPackage.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddProductToPackage.Name = "btnAddProductToPackage";
             this.btnAddProductToPackage.Size = new System.Drawing.Size(181, 57);
@@ -147,7 +147,7 @@ namespace Package_Manager
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(285, 338);
+            this.btnCancel.Location = new System.Drawing.Point(243, 202);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(181, 57);
@@ -163,7 +163,7 @@ namespace Package_Manager
             this.txtProductName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.ReadOnly = true;
-            this.txtProductName.Size = new System.Drawing.Size(246, 34);
+            this.txtProductName.Size = new System.Drawing.Size(246, 25);
             this.txtProductName.TabIndex = 10;
             // 
             // txtSupplierName
@@ -174,7 +174,7 @@ namespace Package_Manager
             this.txtSupplierName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSupplierName.Name = "txtSupplierName";
             this.txtSupplierName.ReadOnly = true;
-            this.txtSupplierName.Size = new System.Drawing.Size(246, 34);
+            this.txtSupplierName.Size = new System.Drawing.Size(246, 25);
             this.txtSupplierName.TabIndex = 11;
             // 
             // label1
@@ -183,9 +183,10 @@ namespace Package_Manager
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(253, 126);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(233, 27);
+            this.label1.Size = new System.Drawing.Size(144, 18);
             this.label1.TabIndex = 12;
             this.label1.Text = "ProductSupplierID";
+            this.label1.Visible = false;
             // 
             // lblProdSupID
             // 
@@ -196,10 +197,11 @@ namespace Package_Manager
             this.lblProdSupID.Size = new System.Drawing.Size(151, 35);
             this.lblProdSupID.TabIndex = 13;
             this.lblProdSupID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblProdSupID.Visible = false;
             // 
             // frmAddModifyProductSupplier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(717, 419);

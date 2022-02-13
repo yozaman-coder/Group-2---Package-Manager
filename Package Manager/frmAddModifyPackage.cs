@@ -240,9 +240,22 @@ namespace Package_Manager
                             newProd.PackageId = selectedPackage.PackageId;
                             // And product supplier id from product supplier from ProductSupplier form
                             newProd.ProductSupplierId = secondForm.productSupplier.ProductSupplierId;
+                            var check = db.
+                                PackagesProductsSuppliers.Where(p => p.PackageId == newProd.PackageId &&
+                                                                p.ProductSupplierId == newProd.ProductSupplierId)
+                                                                .FirstOrDefault();
+
+                            if (check != null) // ProductSupplier combo already exists on package
+                            {
+                                MessageBox.Show("This product already exists on this package. Package addition has been canceled", "Product Add Canceled");
+                            }
+                            else
+                            {
                             // Add new prod as new product to package
                             db.PackagesProductsSuppliers.Add(newProd);
                             db.SaveChanges();
+                            }
+                           
                         }
                         DisplayProducts();
                     }
