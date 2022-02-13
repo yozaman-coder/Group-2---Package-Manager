@@ -132,9 +132,8 @@ namespace Package_Manager
         private void btnAddProductToPackage_Click(object sender, EventArgs e)
         {
             // Brett - added code for this method, it was incomplete. Now creates a new instance of the AddPackage class/form and passes the Selected ProductSupplier ID to it via the new public property SelectedProdSupp. 
-            frmAddPackage addPackage = new frmAddPackage();
-            addPackage.newProdSupp = SelectedProdSupp;
-            addPackage.Show();
+            frmAddPackage secondForm = new frmAddPackage();
+            this.DialogResult = DialogResult.OK;
             
         }
                 
@@ -234,6 +233,9 @@ namespace Package_Manager
                             newProdSup.ProductId = productID;
                             newProdSup.SupplierId = supplierID;
                             db.ProductsSuppliers.Add(newProdSup);
+                            var newnewProdSup = db.ProductsSuppliers.Where(p => p.ProductId == productID && p.SupplierId == supplierID).FirstOrDefault();
+                            productSupplier = newnewProdSup;
+                            Console.Write(newnewProdSup);
                             db.SaveChanges();
 
                         }
