@@ -132,6 +132,7 @@ namespace Package_Manager
         private void btnAddProductToPackage_Click(object sender, EventArgs e)
         {
             // Brett - added code for this method, it was incomplete. Now creates a new instance of the AddPackage class/form and passes the Selected ProductSupplier ID to it via the new public property SelectedProdSupp. 
+            DisplayProductSupplier();
             frmAddPackage secondForm = new frmAddPackage();
             this.DialogResult = DialogResult.OK;
             
@@ -223,9 +224,9 @@ namespace Package_Manager
                     var ProdSup = (from ps in db.ProductsSuppliers
                                   where ps.ProductId == productID
                                   where ps.SupplierId == supplierID
-                                  select ps.ProductSupplierId);
+                                  select ps);
                     
-                    if (ProdSup.FirstOrDefault() == 0)
+                    if (ProdSup.FirstOrDefault() == null)
                     {
                         try
                         {
@@ -233,11 +234,10 @@ namespace Package_Manager
                             newProdSup.ProductId = productID;
                             newProdSup.SupplierId = supplierID;
                             db.ProductsSuppliers.Add(newProdSup);
+                            db.SaveChanges();
                             var newnewProdSup = db.ProductsSuppliers.Where(p => p.ProductId == productID && p.SupplierId == supplierID).FirstOrDefault();
                             productSupplier = newnewProdSup;
-                            Console.Write(newnewProdSup);
-                            db.SaveChanges();
-
+                            
                         }
                         catch (DbUpdateConcurrencyException ex)
                         {
@@ -253,8 +253,10 @@ namespace Package_Manager
                         }
                     }
 
-                    else
-                        lblProdSupID.Text = ProdSup.FirstOrDefault().ToString();
+                    else {
+                        productSupplier = ProdSup.FirstOrDefault();   
+                        
+                    }
                 }
                 catch (DbUpdateConcurrencyException ex)
                 {
