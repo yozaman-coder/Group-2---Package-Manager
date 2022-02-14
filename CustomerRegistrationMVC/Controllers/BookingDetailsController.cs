@@ -50,26 +50,26 @@ namespace CustomerRegistrationMVC.Controllers
             }
         }
 
-        //// GET: BookingDetailsController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: BookingDetailsController/Create
+        public ActionResult Create(int packageID)
+        {
+            return View();
+        }
 
-        //// POST: BookingDetailsController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // POST: BookingDetailsController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         //// GET: BookingDetailsController/Edit/5
         //public ActionResult Edit(int id)

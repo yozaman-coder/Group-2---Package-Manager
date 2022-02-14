@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using CustomerRegistrationMVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ProductData;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -45,6 +47,7 @@ namespace CustomerRegistrationMVC.Controllers
         {
             try
             {
+                BookingAndBookingDetailsModel bookingAndBookingDetailsModel = new BookingAndBookingDetailsModel();
                 Package package = PackageManager.GetPackageById(id);
                 int? customerId = HttpContext.Session.GetInt32("CurrentCustomer");
                 if (customerId == null)
@@ -53,15 +56,19 @@ namespace CustomerRegistrationMVC.Controllers
                     TempData["Message"] = "Error no customer found. Try again later...";
                     return RedirectToAction("Index", "Home");
                 }
+                int mostRecentID = BookingManager.GetMostRecentBookingID();
                 ViewBag.CustomerID = customerId;
                 ViewBag.Package = package;
+                ViewBag.BookingID = mostRecentID += 1;
                 ViewBag.Price = package.PkgBasePrice.ToString("c");
                 ViewBag.TripTypes = GetTripTypes();
                 ViewBag.Date = DateTime.Now;
-                return View(new Booking());
+                ViewBag.Description = package.PkgDesc;
+                return View(bookingAndBookingDetailsModel);
             }
-            catch (Exception)
+            catch (DbException ex)
             {
+                Console.WriteLine(ex.InnerException.Message);
                 TempData["IsError"] = true;
                 TempData["Message"] = "Database connection error. Try again later...";
                 return RedirectToAction("Index", "Home");
@@ -72,15 +79,16 @@ namespace CustomerRegistrationMVC.Controllers
        [HttpPost]
        [ValidateAntiForgeryToken]
        [Authorize]
-        public ActionResult Create(Booking booking)
+        public ActionResult Create(BookingAndBookingDetailsModel bookingAndBookingDetailsModel)
         {
             try
             {
-                BookingManager.AddBooking(booking);
+                BookingAndBookingDetailsModel.Book(bookingAndBookingDetailsModel);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (DbException ex)
             {
+                Console.WriteLine(ex.InnerException.Message);
                 TempData["IsError"] = true;
                 TempData["Message"] = "Database connection error. Try again later...";
                 return RedirectToAction("Index" , "Home");

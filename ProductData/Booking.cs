@@ -23,14 +23,20 @@ namespace ProductData
         [Key]
         public int BookingId { get; set; }
         [Column(TypeName = "datetime")]
+        [Display(Name = "Booking Date")]
+        [DataType(DataType.Date)]
         public DateTime? BookingDate { get; set; }
         [StringLength(50)]
         public string BookingNo { get; set; }
         [Range(1, 50)]
+        [Display(Name = "Traveler Count")]
         public double? TravelerCount { get; set; }
+        [Display(Name = "Customer ID")]
         public int? CustomerId { get; set; }
         [StringLength(1)]
+        [Display(Name = "Trip Type")]
         public string TripTypeId { get; set; }
+        [Display(Name = "Package ID")]
         public int? PackageId { get; set; }
 
         [ForeignKey(nameof(CustomerId))]

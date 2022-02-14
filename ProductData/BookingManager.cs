@@ -26,5 +26,12 @@ namespace ProductData
             db.Bookings.Add(booking);
             db.SaveChanges();
         }
+
+        public static int GetMostRecentBookingID()
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            int lastId = db.Bookings.OrderBy(i => i.BookingId).Select(i => i.BookingId).LastOrDefault();
+            return lastId;
+        }
     }
 }
