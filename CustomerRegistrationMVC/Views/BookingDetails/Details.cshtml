@@ -39,21 +39,24 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.TripEnd)
         </dd>
-        @if (TempData["Description"] != "" && TempData["Description"] != null) 
+        @if (ViewBag.Description != "" && ViewBag.Description != null && ViewBag.Description != " ")
         {
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
         }
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Destination)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Destination)
-        </dd>
+        @if (ViewBag.Destination != "" && ViewBag.Destination != null && ViewBag.Destination != " ")
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Destination)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Destination)
+            </dd>
+        }
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BasePrice)
         </dt>

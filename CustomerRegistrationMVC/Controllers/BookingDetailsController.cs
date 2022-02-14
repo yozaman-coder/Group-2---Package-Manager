@@ -23,7 +23,23 @@ namespace CustomerRegistrationMVC.Controllers
             try
             {
                 BookingDetail bookingdetails = BookingDetailManager.GetBookingDetailWithBookingID(id);
-                TempData["Description"] = bookingdetails.Description;
+                if(bookingdetails.Description == null && bookingdetails.Description == "" && bookingdetails.Description == " ")
+                {
+                    ViewBag.Description = "";
+                }
+                else
+                {
+                    ViewBag.Description = bookingdetails.Description;
+                }
+                if (bookingdetails.Destination == null && bookingdetails.Destination == "" && bookingdetails.Destination == " ")
+                {
+                    ViewBag.Destination = "";
+                }
+                else
+                {
+                    ViewBag.Destination = bookingdetails.Destination;
+                }
+
                 return View(bookingdetails);
             }
             catch (Exception)
