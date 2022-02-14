@@ -26,6 +26,7 @@ namespace ProductData
         public DateTime? BookingDate { get; set; }
         [StringLength(50)]
         public string BookingNo { get; set; }
+        [Range(1, 50)]
         public double? TravelerCount { get; set; }
         public int? CustomerId { get; set; }
         [StringLength(1)]
