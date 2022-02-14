@@ -73,7 +73,7 @@ namespace Package_Manager
                 
                 // format the first column
                 dgvListProducts.Columns[0].HeaderText = "Product ID";
-                dgvListProducts.Columns[0].Width = 200;
+                dgvListProducts.Columns[0].Width = 100;
                 // format the second column
                 dgvListProducts.Columns[1].HeaderText = "Product Name";
                 dgvListProducts.Columns[dgvListProducts.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -100,21 +100,29 @@ namespace Package_Manager
             {
                 using (TravelExpertsContext db = new TravelExpertsContext())
                 {
-                    try
+                    if (db.Products.Any(p => p.ProdName == txtProductName.Text))
                     {
-                        db.Products.Add(newProd);
-                        db.SaveChanges();
-                    }
-                    catch (DbUpdateException ex)
+                        MessageBox.Show($"{txtProductName.Text} exists, enter another name.");
+                        return;
+                     }
+                    else
                     {
-                        this.HandleDataBaseError(ex);
+                        try
+                        {
+                            db.Products.Add(newProd);
+                            db.SaveChanges();
+                        }
+                        catch (DbUpdateException ex)
+                        {
+                            this.HandleDataBaseError(ex);
+                        }
+                        catch (Exception ex)
+                        {
+                            this.HandleGeneralError(ex);
+                        }
+                        LoadProducts();
+                        MessageBox.Show("New record was added to the database.");
                     }
-                    catch (Exception ex)
-                    {
-                        this.HandleGeneralError(ex);
-                    }
-                    LoadProducts();
-                    MessageBox.Show("New record was added to the database.");
                 }
             }
         }
