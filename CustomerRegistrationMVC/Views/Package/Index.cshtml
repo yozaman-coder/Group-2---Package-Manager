@@ -15,23 +15,25 @@
             <th>
                 @Html.DisplayNameFor(model => model.PkgName)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.PkgStartDate)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.PkgEndDate)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PkgDesc)
             </th>
-            <th></th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.PkgBasePrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PkgAgencyCommission)
+
             </th>
-            <th></th>*@
+            @*<th>
+            @Html.DisplayNameFor(model => model.PkgAgencyCommission)
+        </th>*@
+
         </tr>
     </thead>
     <tbody>
@@ -43,23 +45,23 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PkgName)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.PkgStartDate)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.PkgEndDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PkgDesc)
             </td>
-            @*<td>
+            <td>
                 @Html.DisplayFor(modelItem => item.PkgBasePrice)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.PkgAgencyCommission)
             </td>*@
             <td>
-                @Html.ActionLink("Book this package.", "Create", "Package", new {  id=item.PackageId  }) 
+                @Html.ActionLink("Book this package.", "Create", "Booking", new {  id = item.PackageId  }) 
             </td>
         </tr>
 }

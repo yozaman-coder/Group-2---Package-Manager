@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,12 @@ namespace ProductData
         {
             TravelExpertsContext db = new TravelExpertsContext();
             return db.Packages.ToList();
+        }
+
+        public static Package GetPackageById(int id)
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            return db.Packages.Find(id);
         }
 
         public static List<Package> GetCurrentPackages()

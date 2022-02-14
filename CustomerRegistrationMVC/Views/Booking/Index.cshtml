@@ -4,10 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Your Bookings</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <h4>
+        @Html.ActionLink("Create a new booking.", "Index", "Package")
+    </h4>
 </p>
 <table class="table">
     <thead>

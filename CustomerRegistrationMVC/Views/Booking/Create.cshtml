@@ -1,0 +1,66 @@
+﻿@model ProductData.Booking
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Booking</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<input asp-for="BookingDate" class="form-control" />*@
+                <input value="@TempData["BookingDateDisplay"]" class="form-control" readonly />
+                <input asp-for="BookingDate" value="@TempData["BookingDate"]" class="form-control" readonly style="visibility:hidden" />
+                @*<span asp-validation-for="BookingDate" class="text-danger"></span> *@
+            </div>
+            @*<div class="form-group">  NOT SURE WHAT THIS BOOKING NO IS SUPPOSED TO BE
+            <label asp-for="BookingNo" class="control-label"></label>
+            <input asp-for="BookingNo" class="form-control" />
+            <span asp-validation-for="BookingNo" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label asp-for="TravelerCount" class="control-label">How many people are you traveling with?</label>
+                <input asp-for="TravelerCount" class="form-control" />
+                <span asp-validation-for="TravelerCount" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+        <label asp-for="CustomerId" class="control-label"></label>*@
+            <input asp-for="CustomerId" value="@TempData["CustomerID"]" class="form-control" readonly />
+            @*<span asp-validation-for="CustomerId" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                @*Trip types in dropdown*@
+                <label asp-for="TripTypeId" class="control-label"></label>
+                <input asp-for="TripTypeId" class="form-control" />
+                <span asp-validation-for="TripTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PackageId" class="control-label">Package ID</label>
+                <input asp-for="PackageId" class="form-control" value="@TempData["PackageID"]" readonly />
+                <span asp-validation-for="PackageId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h6><u>Package Information</u></h6>
+            </div>
+            <div class="form-group">
+                <p>Package Name: @ViewBag.Package.PkgName</p>
+                <p>Package Description: @ViewBag.Package.PkgDesc</p>
+                <p>Package Price: @ViewBag.Package.PkgBasePrice</p>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary m-1">Cancel Booking</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Packages</a>
+</div>
+

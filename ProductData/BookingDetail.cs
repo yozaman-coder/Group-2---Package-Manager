@@ -23,16 +23,23 @@ namespace ProductData
         public int BookingDetailId { get; set; }
         public double? ItineraryNo { get; set; }
         [Column(TypeName = "datetime")]
+        [Display(Name = "Trip Start Date")]
+        [DataType(DataType.Date)]
         public DateTime? TripStart { get; set; }
         [Column(TypeName = "datetime")]
+        [Display(Name = "Trip End Date")]
+        [DataType(DataType.Date)]
         public DateTime? TripEnd { get; set; }
         [StringLength(255)]
         public string Description { get; set; }
         [StringLength(255)]
         public string Destination { get; set; }
         [Column(TypeName = "money")]
+        [Display(Name = "Price")]
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         public decimal? BasePrice { get; set; }
         [Column(TypeName = "money")]
+       
         public decimal? AgencyCommission { get; set; }
         public int? BookingId { get; set; }
         [StringLength(5)]

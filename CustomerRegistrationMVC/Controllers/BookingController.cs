@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductData;
 using System;
@@ -11,6 +12,7 @@ namespace CustomerRegistrationMVC.Controllers
     public class BookingController : Controller
     {
         // GET: BookingController
+        [Authorize]
         public ActionResult Index() // Gets bookings for logged in customer
         {
             int? customer = HttpContext.Session.GetInt32("CurrentCustomer");
@@ -26,15 +28,30 @@ namespace CustomerRegistrationMVC.Controllers
         //    return View();
         //}
 
-        //// GET: BookingController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: BookingController/Create
+        [Authorize]
+        public ActionResult Create(int id)
+        {
+            Package package = PackageManager.GetPackageById(id);
+            int? customerId = HttpContext.Session.GetInt32("CurrentCustomer");
+            if (customerId == null)
+            {
+                TempData["IsError"] = true;
+                TempData["Message"] = "Error no customer found. Try again later...";
+                return RedirectToAction("Index");
+            }
+            ViewBag.Package = package;
+            TempData["BookingDate"] = DateTime.Now;
+            TempData["BookingDateDisplay"] = DateTime.Now.ToString();
+            TempData["PackageID"] = package.PackageId;
+            TempData["CustomerID"] = customerId;
+            return View(new Booking());
+        }
 
-        // POST: BookingController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //POST: BookingController/Create
+       [HttpPost]
+       [ValidateAntiForgeryToken]
+       [Authorize]
         public ActionResult Create(IFormCollection collection)
         {
             try
