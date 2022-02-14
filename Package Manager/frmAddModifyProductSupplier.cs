@@ -93,7 +93,7 @@ namespace Package_Manager
             // Brett - modified to redirect to frmAddModifySupplier for addition of new supplier
             frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
             addSupplierForm.AddSupplier = true;
-            addSupplierForm.Show();
+            addSupplierForm.ShowDialog();
             
         }
 
@@ -102,7 +102,7 @@ namespace Package_Manager
             // Brett - changed this to have the new product function moved to the AddModifyProduct form
             frmAddModifyProduct addProductForm = new frmAddModifyProduct();
             addProductForm.AddProduct = true;
-            addProductForm.Show();
+            addProductForm.ShowDialog();
         }
         
 
@@ -111,7 +111,7 @@ namespace Package_Manager
             // Brett - changed this to have the modify product function moved to the AddModifyProduct form
             frmAddModifyProduct modForm = new frmAddModifyProduct();
             modForm.getselectedProdID = SelectedProdID;
-            modForm.Show();
+            modForm.ShowDialog();
             
                 
                 //AddProduct = false,
@@ -125,7 +125,7 @@ namespace Package_Manager
 
             frmAddModifySupplier modForm = new frmAddModifySupplier();
             modForm.getselectedSupplierID = SelectedSupplierID;
-            modForm.Show();
+            modForm.ShowDialog();
         }
 
         private void btnAddProductToPackage_Click(object sender, EventArgs e)
