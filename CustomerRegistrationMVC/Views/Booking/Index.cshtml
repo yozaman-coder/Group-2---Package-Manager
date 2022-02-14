@@ -20,9 +20,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.BookingDate)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.BookingNo)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.TravelerCount)
             </th>
@@ -30,7 +30,7 @@
                 @Html.DisplayNameFor(model => model.CustomerId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TripTypeId)
+                @Html.DisplayNameFor(model => model.TripType.Ttname)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PackageId)@* WE WILL HAVE THIS LATER BUT FOR CURRENT CUSTOMERS ITS NULL*@
@@ -47,9 +47,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.BookingDate)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.BookingNo)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.TravelerCount)
             </td>
@@ -57,7 +57,7 @@
                 @Html.DisplayFor(modelItem => item.CustomerId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TripTypeId)
+                @Html.DisplayFor(modelItem => item.TripType.Ttname)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PackageId)@* WE WILL HAVE THIS LATER BUT FOR CURRENT CUSTOMERS ITS NULL*@

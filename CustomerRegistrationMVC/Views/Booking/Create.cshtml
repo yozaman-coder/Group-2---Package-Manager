@@ -14,8 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 @*<input asp-for="BookingDate" class="form-control" />*@
-                <input value="@TempData["BookingDateDisplay"]" class="form-control" readonly />
-                <input asp-for="BookingDate" value="@TempData["BookingDate"]" class="form-control" readonly style="visibility:hidden" />
+                <input type="hidden" asp-for="BookingDate" value="@ViewBag.Date" />
                 @*<span asp-validation-for="BookingDate" class="text-danger"></span> *@
             </div>
             @*<div class="form-group">  NOT SURE WHAT THIS BOOKING NO IS SUPPOSED TO BE
@@ -30,18 +29,18 @@
             </div>
             @*<div class="form-group">
         <label asp-for="CustomerId" class="control-label"></label>*@
-            <input asp-for="CustomerId" value="@TempData["CustomerID"]" class="form-control" readonly />
+            <input type="hidden" asp-for="CustomerId" value="@ViewBag.CustomerID"/>
             @*<span asp-validation-for="CustomerId" class="text-danger"></span>
         </div>*@
             <div class="form-group">
                 @*Trip types in dropdown*@
-                <label asp-for="TripTypeId" class="control-label"></label>
-                <input asp-for="TripTypeId" class="form-control" />
+                <label asp-for="TripTypeId" class="control-label">Trip Type</label>
+                <select asp-items="@ViewBag.TripTypes" asp-for="TripTypeId" class="form-control"></select>
                 <span asp-validation-for="TripTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PackageId" class="control-label">Package ID</label>
-                <input asp-for="PackageId" class="form-control" value="@TempData["PackageID"]" readonly />
+                <input asp-for="PackageId" class="form-control" value="@ViewBag.Package.PackageId" readonly />
                 <span asp-validation-for="PackageId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -50,10 +49,7 @@
             <div class="form-group">
                 <p>Package Name: @ViewBag.Package.PkgName</p>
                 <p>Package Description: @ViewBag.Package.PkgDesc</p>
-                <p>
-                @Html.DisplayNameFor(model => model.Package.PkgBasePrice): 
-                @Html.DisplayFor(model => model.Package.PkgBasePrice)
-                </p>
+                <p>Price: @ViewBag.Price</p>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

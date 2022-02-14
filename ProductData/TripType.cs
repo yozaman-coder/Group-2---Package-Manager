@@ -20,6 +20,7 @@ namespace ProductData
         public string TripTypeId { get; set; }
         [Column("TTName")]
         [StringLength(25)]
+        [Display(Name = "Trip Type")]
         public string Ttname { get; set; }
 
         [InverseProperty(nameof(Booking.TripType))]

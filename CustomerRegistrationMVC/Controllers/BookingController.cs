@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProductData;
 using System;
 using System.Collections.Generic;
@@ -28,39 +29,61 @@ namespace CustomerRegistrationMVC.Controllers
         //    return View();
         //}
 
+        // auxilliary method for Create GET
+        protected SelectList GetTripTypes()
+        {
+            // call property types manager to get key/value pairs for property types drop down list 
+            var types = TripTypeManager.GetAllAsKeyValuePairs();
+            // convert it to a form that drop down list can use, and add to the bag
+            var tt = new SelectList(types, "Value", "Text");
+            return tt;
+        }
+
         // GET: BookingController/Create
         [Authorize]
         public ActionResult Create(int id)
         {
-            Package package = PackageManager.GetPackageById(id);
-            int? customerId = HttpContext.Session.GetInt32("CurrentCustomer");
-            if (customerId == null)
+            try
+            {
+                Package package = PackageManager.GetPackageById(id);
+                int? customerId = HttpContext.Session.GetInt32("CurrentCustomer");
+                if (customerId == null)
+                {
+                    TempData["IsError"] = true;
+                    TempData["Message"] = "Error no customer found. Try again later...";
+                    return RedirectToAction("Index", "Home");
+                }
+                ViewBag.CustomerID = customerId;
+                ViewBag.Package = package;
+                ViewBag.Price = package.PkgBasePrice.ToString("c");
+                ViewBag.TripTypes = GetTripTypes();
+                ViewBag.Date = DateTime.Now;
+                return View(new Booking());
+            }
+            catch (Exception)
             {
                 TempData["IsError"] = true;
-                TempData["Message"] = "Error no customer found. Try again later...";
-                return RedirectToAction("Index");
+                TempData["Message"] = "Database connection error. Try again later...";
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.Package = package;
-            TempData["BookingDate"] = DateTime.Now;
-            TempData["BookingDateDisplay"] = DateTime.Now.ToString();
-            TempData["PackageID"] = package.PackageId;
-            TempData["CustomerID"] = customerId;
-            return View(new Booking());
         }
 
         //POST: BookingController/Create
        [HttpPost]
        [ValidateAntiForgeryToken]
        [Authorize]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Booking booking)
         {
             try
             {
+                BookingManager.AddBooking(booking);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                TempData["IsError"] = true;
+                TempData["Message"] = "Database connection error. Try again later...";
+                return RedirectToAction("Index" , "Home");
             }
         }
 
