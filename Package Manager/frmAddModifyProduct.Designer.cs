@@ -38,6 +38,7 @@ namespace Package_Manager
             this.btnCancel = new System.Windows.Forms.Button();
             this.dgvListProducts = new System.Windows.Forms.DataGridView();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@ namespace Package_Manager
             this.txtProductID.ReadOnly = true;
             this.txtProductID.Size = new System.Drawing.Size(256, 25);
             this.txtProductID.TabIndex = 0;
+            this.txtProductID.Tag = "Product ID";
             // 
             // btnAddProduct
             // 
@@ -73,6 +75,7 @@ namespace Package_Manager
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(256, 25);
             this.txtProductName.TabIndex = 2;
+            this.txtProductName.Tag = "Product Name";
             // 
             // label1
             // 
@@ -98,7 +101,7 @@ namespace Package_Manager
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(139, 217);
+            this.btnCancel.Location = new System.Drawing.Point(139, 192);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(128, 41);
@@ -120,7 +123,7 @@ namespace Package_Manager
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(248, 134);
+            this.btnSave.Location = new System.Drawing.Point(139, 141);
             this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(128, 41);
@@ -129,6 +132,17 @@ namespace Package_Manager
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Visible = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(139, 141);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(128, 41);
+            this.btnAdd.TabIndex = 8;
+            this.btnAdd.Text = "&Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Visible = false;
             // 
             // frmAddModifyProduct
             // 
@@ -139,6 +153,7 @@ namespace Package_Manager
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(816, 281);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dgvListProducts);
             this.Controls.Add(this.btnCancel);
@@ -169,5 +184,6 @@ namespace Package_Manager
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.DataGridView dgvListProducts;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

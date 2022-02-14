@@ -138,17 +138,17 @@ namespace Package_Manager
         }
                 
 
-        private void LoadSupplierData()
-        {
-            supplier.SupplierId = cboSupplierID.SelectedIndex;
-            supplier.SupName = txtSupplierName.Text;
-        }
+        //private void LoadSupplierData()
+        //{
+        //    supplier.SupplierId = cboSupplierID.SelectedIndex;
+        //    supplier.SupName = txtSupplierName.Text;
+        //}
 
-        private void LoadProductData()
-        {
-            product.ProductId = cboProductID.SelectedIndex;
-            product.ProdName = txtProductName.Text;
-        }
+        //private void LoadProductData()
+        //{
+        //    product.ProductId = cboProductID.SelectedIndex;
+        //    product.ProdName = txtProductName.Text;
+        //}
 
 
         private void SelectProduct(int selectedProductID)

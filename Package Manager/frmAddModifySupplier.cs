@@ -89,27 +89,28 @@ namespace Package_Manager
             {
                 var newSupplier = new Supplier();
                 this.FillSupplierData(newSupplier);
-                try 
-                { 
-                    db.Suppliers.Add(newSupplier);
-                    db.SaveChanges();
-                }
-                catch (DbUpdateException ex)
-                {
-                    this.HandleDataBaseError(ex);
-                }
-                catch (Exception ex)
-                {
-                    this.HandleGeneralError(ex);
-                }
-                LoadSuppliers();
-                
+
+                    try
+                    {
+
+                        db.Suppliers.Add(newSupplier);
+                        db.SaveChanges();
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        this.HandleDataBaseError(ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.HandleGeneralError(ex);
+                    }
+                    LoadSuppliers();         
             }
         }
 
         private void FillSupplierData(Supplier Suppliers)
         {
-            if (Validator.IsInt32(txtSupplierID))
+            if (Validator.IsInt32(txtSupplierID) && Validator.IsPresent(txtSupplierName))
             {
                 using (TravelExpertsContext db = new TravelExpertsContext())
                 {
@@ -180,7 +181,7 @@ namespace Package_Manager
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(139, 217);
+            this.btnCancel.Location = new System.Drawing.Point(139, 181);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(128, 41);
             this.btnCancel.TabIndex = 11;
@@ -216,10 +217,11 @@ namespace Package_Manager
             this.txtSupplierName.Name = "txtSupplierName";
             this.txtSupplierName.Size = new System.Drawing.Size(254, 25);
             this.txtSupplierName.TabIndex = 8;
+            this.txtSupplierName.Tag = "Supplier Name";
             // 
             // btnAddSupplier
             // 
-            this.btnAddSupplier.Location = new System.Drawing.Point(24, 134);
+            this.btnAddSupplier.Location = new System.Drawing.Point(139, 134);
             this.btnAddSupplier.Name = "btnAddSupplier";
             this.btnAddSupplier.Size = new System.Drawing.Size(128, 41);
             this.btnAddSupplier.TabIndex = 7;
@@ -252,7 +254,7 @@ namespace Package_Manager
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(248, 134);
+            this.btnSave.Location = new System.Drawing.Point(139, 134);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(128, 41);
             this.btnSave.TabIndex = 13;

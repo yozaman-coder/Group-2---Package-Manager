@@ -94,26 +94,29 @@ namespace Package_Manager
             //frmAddModifyProduct formAddModify = new frmAddModifyProduct();
             //DialogResult result = formAddModify.ShowDialog();
             //context.SaveChanges();
-            using (TravelExpertsContext db = new TravelExpertsContext())
+            var newProd = new Product();
+            this.FillProductData(newProd);
+            if (Validator.IsPresent(txtProductName))
+            {
+                using (TravelExpertsContext db = new TravelExpertsContext())
                 {
-                var newProd = new Product();
-                this.FillProductData(newProd);
-                try
-                {
-                    db.Products.Add(newProd);
-                    db.SaveChanges();
+                    try
+                    {
+                        db.Products.Add(newProd);
+                        db.SaveChanges();
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        this.HandleDataBaseError(ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.HandleGeneralError(ex);
+                    }
+                    LoadProducts();
+                    MessageBox.Show("New record was added to the database.");
                 }
-                catch (DbUpdateException ex)
-                {
-                    this.HandleDataBaseError(ex);
-                }
-                catch (Exception ex)
-                {
-                    this.HandleGeneralError(ex);
-                }
-                LoadProducts();
-                MessageBox.Show("New record was added to the database.");
-                }
+            }
         }
 
         private void FillProductData(Product Products)
@@ -143,10 +146,14 @@ namespace Package_Manager
             using (var db = new TravelExpertsContext())
             {
                 var modProduct = db.Products.Find(Convert.ToInt32(getselectedProdID));
-                modProduct.ProdName = txtProductName.Text;
-                db.SaveChanges();
-                LoadProducts();
-                MessageBox.Show("Change made successfully.");
+                if (Validator.IsPresent(txtProductName))
+                {
+                    modProduct.ProdName = txtProductName.Text;
+                    db.SaveChanges();
+                    LoadProducts();
+                    MessageBox.Show("Change made successfully.");
+                }
+   
             }
         }
 
