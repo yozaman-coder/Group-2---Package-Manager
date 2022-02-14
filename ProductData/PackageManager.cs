@@ -29,5 +29,11 @@ namespace ProductData
             TravelExpertsContext db = new TravelExpertsContext();
             return db.Packages.ToList();
         }
+
+        public static List<Package> GetCurrentPackages()
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            return db.Packages.Where(p => p.PkgEndDate >= DateTime.Now).ToList();
+        }
     }
 }
