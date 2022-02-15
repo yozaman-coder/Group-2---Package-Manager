@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CustomerRegistrationMVC.ViewComponents
 {
-    public class PackagesSorting : ViewComponent
+    public class PackagesSortingViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(decimal min, decimal max, int sortType)
+        public async Task<IViewComponentResult> InvokeAsync(decimal min, decimal max)/*, int sortType*/
         {
             List<Package> packages;
 
-            if (sortType == 0) // User is sorting by decimal
-            {
+            //if (sortType == 0) // User is sorting by decimal
+            //{
                 if(min == 0 && max == 0)
                 {
                     // Get all travel packages
@@ -25,13 +25,14 @@ namespace CustomerRegistrationMVC.ViewComponents
                     // Get travel packages within range
                     packages = PackageManager.GetPackagesByPriceRange(min, max);
                 } 
-            }
-            if (sortType == 1) // User is sorting by another option
-            {
+            //}
+            //if (sortType == 1) // Brett - I modified this so that the user can sort by start date. 
+            //{
+            //    DateTime startDate = DateTime.Now;
+            //    packages = PackageManager.GetPackagesByStartDate(startDate);
+            //}
 
-            }
-
-            return View();
+            return View(packages);
         }
     }
 }

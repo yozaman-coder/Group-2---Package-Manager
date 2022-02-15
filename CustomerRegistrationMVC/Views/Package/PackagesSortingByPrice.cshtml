@@ -1,0 +1,33 @@
+﻿@{ ViewData["Title"] = "Filter by price";}
+
+<h1>Packages filtered by price</h1>
+
+<div class="form-group">
+    <select id="uxPackages" asp-items="@ViewBag.Packages" class="form-control">
+    </select>
+</div>
+
+<div id="uxDisplay">
+    @await Component.InvokeAsync("PackagesSorting", new { min=0, max=0})
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+        // .change function waits for a change in the uxPackages price range
+            $("#uxPackages").change(function () {
+                var minPrice = $("#uxPackages").val();
+                var maxPrice = $("uxPackages").val();
+                // call asynchronous javascript function .ajax
+                $.ajax({
+                    method: 'GET',
+                    url: '/Package/PackagesSorting',
+                    data: { minPrice, maxPrice  }
+                }).done(function (result, statusText, xhdr) {
+                    $("#uxDisplay").html(result);
+                    });
+            });
+        });
+    </script>
+    }
+

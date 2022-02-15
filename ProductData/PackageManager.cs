@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace ProductData
 {
@@ -31,6 +33,12 @@ namespace ProductData
             return db.Packages.ToList();
         }
 
+        public static List<Package> GetPackagesByStartDate(DateTime startDate)
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            return db.Packages.OrderByDescending(d => d.PkgStartDate).ToList(); // display most recent at the top
+        }
+
         public static Package GetPackageById(int id)
         {
             TravelExpertsContext db = new TravelExpertsContext();
@@ -41,6 +49,14 @@ namespace ProductData
         {
             TravelExpertsContext db = new TravelExpertsContext();
             return db.Packages.Where(p => p.PkgEndDate >= DateTime.Now).ToList();
+        }
+
+        public static IList GetPackagesAsKeyValuePairs()
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            var packages = db.Packages.OrderBy(p => p.PkgBasePrice).Select(p => new { Value = p.PkgBasePrice, Text = p.PkgName }).ToList();
+            return packages;
+
         }
     }
 }

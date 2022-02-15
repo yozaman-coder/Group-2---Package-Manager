@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProductData;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +38,40 @@ namespace CustomerRegistrationMVC.Controllers
             ViewBag.PageTracker = pageTracker;
             return View(package);
         }
+        // Get list of all packages as key:value pairs
+        private IEnumerable GetPackagesWithAll()
+        {
+            var packages = PackageManager.GetPackagesAsKeyValuePairs();
+            var list = new SelectList(packages, "Value", "Text").ToList();
+            list.Insert(0, new SelectListItem { Value = "0", Text = "All" });
+            return list;
+        }
+
+        public ActionResult PackagesSortingByPrice()
+        {
+            try
+            {
+                ViewBag.Packages = GetPackagesWithAll();
+                return View();
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = "Database connection problem. Try again later.";
+                TempData["IsError"] = true;
+                return RedirectToAction("Index");
+            }
+        }
+        
+        public ActionResult PackagesByPrice(decimal min, decimal max)
+        {
+            return ViewComponent("PackagesSorting", new { min, max});
+        }
+
+        //// GET: PackageController/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    return View();
+        //}
 
         //// GET: PackageController/Create
         //public ActionResult Create()
