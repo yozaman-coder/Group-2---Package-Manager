@@ -56,7 +56,22 @@ namespace ProductData
             TravelExpertsContext db = new TravelExpertsContext();
             var packages = db.Packages.OrderBy(p => p.PkgBasePrice).Select(p => new { Value = p.PkgBasePrice, Text = p.PkgName }).ToList();
             return packages;
-
         }
+
+        public static List<Tuple<decimal,decimal>> PackagePriceRanges()
+        {
+            var priceRanges = new List<Tuple<decimal, decimal>> 
+            { 
+                Tuple.Create(0m, 1000m),
+                Tuple.Create(1000m, 2000m), 
+                Tuple.Create(2000m, 3000m), 
+                Tuple.Create(3000m, 4000m), 
+                Tuple.Create(4000m, 5000m)
+            };
+            // build list of prices that will be used to populate dropdown menu
+            return priceRanges;
+            
+        }
+        
     }
 }

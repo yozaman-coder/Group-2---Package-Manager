@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace CustomerRegistrationMVC.Controllers
 {
     public class PackageController : Controller
@@ -47,24 +48,32 @@ namespace CustomerRegistrationMVC.Controllers
             return list;
         }
 
-        public ActionResult PackagesSortingByPrice()
-        {
-            try
-            {
-                ViewBag.Packages = GetPackagesWithAll();
-                return View();
-            }
-            catch (Exception)
-            {
-                TempData["Message"] = "Database connection problem. Try again later.";
-                TempData["IsError"] = true;
-                return RedirectToAction("Index");
-            }
-        }
+        //public ActionResult PackagesSortingByPrice()
+        //{
+        //    try
+        //    {
+        //        ViewBag.Packages = GetPackagesWithAll();
+        //        return View();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        TempData["Message"] = "Database connection problem. Try again later.";
+        //        TempData["IsError"] = true;
+        //        return RedirectToAction("Index");
+        //    }
+        //}
         
         public ActionResult PackagesByPrice(decimal min, decimal max)
         {
             return ViewComponent("PackagesSorting", new { min, max});
+        }
+
+        public ActionResult PackagesSortingByPrice()
+        {
+            Tuple<List<decimal>, List<Package>> tuple;
+            tuple = new Tuple<List<decimal,decimal>, List<Package>(PackageManager.PackagePriceRanges(), PackageManager.GetCurrentPackages());
+                
+              return View("PackagesSortingByPrice", tuple);
         }
 
         //// GET: PackageController/Details/5

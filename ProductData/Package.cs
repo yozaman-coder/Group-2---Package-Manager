@@ -40,6 +40,20 @@ namespace ProductData
         [Column(TypeName = "money")]
         public decimal? PkgAgencyCommission { get; set; }
 
+        // Brett - added Package class constructor
+        public Package(int packageId, string pkgName, DateTime? pkgStartDate, DateTime? pkgEndDate, string pkgDesc, decimal pkgBasePrice, decimal? pkgAgencyCommission, ICollection<Booking> bookings, ICollection<PackagesProductsSupplier> packagesProductsSuppliers)
+        {
+            PackageId = packageId;
+            PkgName = pkgName;
+            PkgStartDate = pkgStartDate;
+            PkgEndDate = pkgEndDate;
+            PkgDesc = pkgDesc;
+            PkgBasePrice = pkgBasePrice;
+            PkgAgencyCommission = pkgAgencyCommission;
+            Bookings = bookings;
+            PackagesProductsSuppliers = packagesProductsSuppliers;
+        }
+
         [InverseProperty(nameof(Booking.Package))]
         public virtual ICollection<Booking> Bookings { get; set; }
         [InverseProperty(nameof(PackagesProductsSupplier.Package))]
