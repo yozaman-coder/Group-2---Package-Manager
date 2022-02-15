@@ -12,6 +12,6 @@ sql and modify it a bit.
 
 6. (James - This is done) SHOW PRICE BREAKDOWN OF ALL PURCHASED PACKAGES AT USERS BOOKINGS.
 
-7. (James - Doing this next) Add user data update page which should just be the register page again but with a customer ID in a hidden input, 
+7. (James - This is done) Add user data update page which should just be the register page again but with a customer ID in a hidden input, 
 Will have to implement a hidden input into register page.
 
