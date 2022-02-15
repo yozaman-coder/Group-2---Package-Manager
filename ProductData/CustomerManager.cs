@@ -38,5 +38,12 @@ namespace ProductData
 
 
         }
+
+        public static Customer GetCustomerById(int id)
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            Customer customer = db.Customers.Find(id);
+            return customer;
+        }
     }
 }

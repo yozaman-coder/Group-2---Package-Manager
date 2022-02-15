@@ -82,13 +82,13 @@ namespace CustomerRegistrationMVC.Controllers
         {
             try
             {
+                Customer customer = new Customer();
                 if(HttpContext.Session.GetInt32("CurrentCustomer") != null)
                 {
-                    TempData["IsError"] = true;
-                    TempData["Message"] = "You are already signed in!";
-                    return RedirectToAction("Index", "Home");
+                    ViewBag.CustomerID = HttpContext.Session.GetInt32("CurrentCustomer");
+                    customer = CustomerManager.GetCustomerById(ViewBag.CustomerID);
                 }
-                return View();
+                return View(customer);
             }
             catch (Exception)
             {

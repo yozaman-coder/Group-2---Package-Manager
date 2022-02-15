@@ -10,11 +10,10 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                    <label asp-for="CustomerId" class="control-label"></label>
-                    <input asp-for="CustomerId" class="form-control" />
-                    <span asp-validation-for="CustomerId" class="text-danger"></span>
-                </div>*@
+            @if (ViewBag.CustomerID != null)
+            {
+                <input type="hidden" asp-for="CustEmail" value="@ViewBag.CustomerID" />
+            }
             <div class="form-group">
                 <label asp-for="CustFirstName" class="control-label">First Name</label>
                 <input asp-for="CustFirstName" class="form-control" />
@@ -45,16 +44,17 @@
                 <input asp-for="CustPostal" class="form-control" />
                 <span asp-validation-for="CustPostal" class="text-danger"></span>
             </div>
-            <div class="form-group">@*NEED TO MAKE THIS A SELECT LIST AS WE DONT WANT NULL OR EMPTY*@
+            <div class="form-group">
+                @*NEED TO MAKE THIS A SELECT LIST AS WE DONT WANT NULL OR EMPTY*@
                 <label asp-for="CustCountry" class="control-label">Country</label>
                 <input asp-for="CustCountry" class="form-control" />
                 <span asp-validation-for="CustCountry" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-                <label asp-for="CustHomePhone" class="control-label"></label>
-                <input asp-for="CustHomePhone" class="form-control" />
-                <span asp-validation-for="CustHomePhone" class="text-danger"></span>
-            </div>*@
+            <label asp-for="CustHomePhone" class="control-label"></label>
+            <input asp-for="CustHomePhone" class="form-control" />
+            <span asp-validation-for="CustHomePhone" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="CustBusPhone" class="control-label">Phone Number</label>
                 <input asp-for="CustBusPhone" class="form-control" />
@@ -66,10 +66,10 @@
                 <span asp-validation-for="CustEmail" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-                <label asp-for="AgentId" class="control-label"></label>
-                <input asp-for="AgentId" class="form-control" />
-                <span asp-validation-for="AgentId" class="text-danger"></span>
-            </div>*@
+            <label asp-for="AgentId" class="control-label"></label>
+            <input asp-for="AgentId" class="form-control" />
+            <span asp-validation-for="AgentId" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="CustPassword" class="control-label">Password</label>
                 <input asp-for="CustPassword" class="form-control" />
