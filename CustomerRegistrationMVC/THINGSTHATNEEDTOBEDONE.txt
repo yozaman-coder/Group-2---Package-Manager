@@ -1,13 +1,13 @@
 ﻿IF YOU WANT TO DO ONE OF THE TASKS WRITE YOUR NAME OVER IT SO THAT WE DON'T WORK ON THE SAME THING ELL O ELL
 YOU CAN ALWAYS ADD TO THIS AS WELL IF I FORGET SOME STUFF
 
-1. Validate user registration data
+1. (Brett) Validate user registration data
 
-2. (Brett) Sorting packages by various categories.
+2. (Brett - I need some help with this...) Sorting packages by various categories.
 
 4. (brendan) CSS and styling
 
-5. Fix TRAVELEXPERTSDB!!README!! so that it is just one sql. Should be really easy just need to use the old travel experts
+5. (Brett - complete, replaced content of TRAVELEXPERTSDB!!README!! with the full SQL script, maybe we should package it as a .SQL file somehow?) Fix TRAVELEXPERTSDB!!README!! so that it is just one sql. Should be really easy just need to use the old travel experts
 sql and modify it a bit.
 
 6. (Brett) SHOW PRICE BREAKDOWN OF ALL PURCHASED PACKAGES AT USER BOOKING.
