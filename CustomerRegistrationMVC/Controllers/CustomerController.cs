@@ -104,16 +104,23 @@ namespace CustomerRegistrationMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Customer customer)
         {
-            try
+            if (ModelState.IsValid)
             {
-                //Adds customer with the form data
-                CustomerManager.AddCustomer(customer);
-                return RedirectToAction("Index", "Home");
+                try
+                {
+                    //Adds customer with the form data
+                    CustomerManager.AddCustomer(customer);
+                    return RedirectToAction("Index", "Home");
+                }
+                catch (Exception)
+                {
+                    TempData["IsError"] = true;
+                    TempData["Message"] = "Database connection error. Try again later...";
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            catch (Exception)
+            else
             {
-                TempData["IsError"] = true;
-                TempData["Message"] = "Database connection error. Try again later...";
                 return RedirectToAction("Index", "Home");
             }
         }

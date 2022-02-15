@@ -35,16 +35,24 @@ namespace ProductData
         [Required]
         [StringLength(2)]
         public string CustProv { get; set; }
+        
         [Required]
         [StringLength(7)]
+        [RegularExpression("^[ABCEGHJ-NPRSTVXY]{1}[0-9]{1}[ABCEGHJ-NPRSTV-Z]{1}[ ]?[0-9]{1}[ABCEGHJ-NPRSTV-Z]{1}[0-9]{1}$", ErrorMessage = "Postal code must be in the proper format (e.g. T2M 0L4).")]
         public string CustPostal { get; set; }
+        
         [StringLength(25)]
         public string CustCountry { get; set; }
+        
         [StringLength(20)]
+        [RegularExpression(@"^\(?\d{3}\)?[-\.]? *\d{3}[-\.]? *[-\.]?\d{4}$", ErrorMessage = "Please enter a valid phone number including area code.")]
         public string CustHomePhone { get; set; }
+        
         [Required]
         [StringLength(20)]
+        [RegularExpression(@"^\(?\d{3}\)?[-\.]? *\d{3}[-\.]? *[-\.]?\d{4}$", ErrorMessage = "Please enter a valid phone number including area code.")]
         public string CustBusPhone { get; set; }
+        
         [Required]
         [StringLength(50)]
         public string CustEmail { get; set; }
