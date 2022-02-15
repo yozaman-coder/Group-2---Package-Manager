@@ -10,8 +10,8 @@ YOU CAN ALWAYS ADD TO THIS AS WELL IF I FORGET SOME STUFF
 5. (Brett - complete, replaced content of TRAVELEXPERTSDB!!README!! with the full SQL script, maybe we should package it as a .SQL file somehow?) Fix TRAVELEXPERTSDB!!README!! so that it is just one sql. Should be really easy just need to use the old travel experts
 sql and modify it a bit.
 
-6. (Brett) SHOW PRICE BREAKDOWN OF ALL PURCHASED PACKAGES AT USER BOOKING.
+6. (James) SHOW PRICE BREAKDOWN OF ALL PURCHASED PACKAGES AT USER BOOKING.
 
-7. Add user data update page which should just be the register page again but with a customer ID in a hidden input, 
+7. (James) Add user data update page which should just be the register page again but with a customer ID in a hidden input, 
 Will have to implement a hidden input into register page.
 

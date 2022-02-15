@@ -22,6 +22,20 @@ namespace CustomerRegistrationMVC.Controllers
             if (customer == null) // There is no customer somehow
                 customer = 0;// Show blank data
             var bookings = BookingManager.GetBookingsForCustomer((int)customer);
+            decimal totalOwing = 0m;
+            foreach(var booking in bookings)
+            {
+                if(booking.PackageId != null)
+                {
+                    var package = PackageManager.GetPackageById((int)booking.PackageId);
+                    totalOwing += package.PkgBasePrice;
+                }
+                else
+                {
+                    totalOwing += 0m;
+                }
+            }
+            ViewBag.Total = totalOwing.ToString("c");
             return View(bookings);
         }
 
