@@ -115,7 +115,8 @@ namespace Package_Manager
                 using (TravelExpertsContext db = new TravelExpertsContext())
                 {
                     if
-                        (db.Suppliers.Any(s => s.SupplierId == Convert.ToInt32(txtSupplierID.Text))|| (db.Suppliers.Any(s => s.SupName == txtSupplierName.Text)))
+                        (db.Suppliers.Any(s => s.SupplierId == Convert.ToInt32(txtSupplierID.Text))|| 
+                        (db.Suppliers.Any(s => s.SupName == txtSupplierName.Text)))
                     {
                         MessageBox.Show($"{txtSupplierID.Text} or {txtSupplierName.Text} exists, enter a different number and/or name.");
                         return;
