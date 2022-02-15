@@ -15,9 +15,6 @@ namespace CustomerRegistrationMVC.Models
             var bookingDetails = bookingAndBookingDetailsModel.BookingDetail;
             db.Bookings.Add(booking);
             db.SaveChanges();
-            bookingDetails.BookingId = db.Bookings.Where(p => p.BookingId == booking.BookingId).Select(p => p.BookingId).FirstOrDefault();
-            db.BookingDetails.Add(bookingDetails);
-            db.SaveChanges();
         }
     }
 }

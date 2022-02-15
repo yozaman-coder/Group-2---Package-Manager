@@ -60,9 +60,10 @@
             @*<td>
                 @Html.DisplayFor(modelItem => item.PkgAgencyCommission)
             </td>*@
-            <td>
-                @Html.ActionLink("Book this package.", "Create", "Booking", new {  id = item.PackageId  }) 
-            </td>
+        <td>
+            @Html.ActionLink("View package details", "Details", "Package", new { id = item.PackageId }) | 
+            @Html.ActionLink("Book this package.", "Create", "Booking", new { id = item.PackageId , pageTracker = 1 })
+        </td>
         </tr>
 }
     </tbody>

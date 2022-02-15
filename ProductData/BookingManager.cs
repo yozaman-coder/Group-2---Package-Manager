@@ -17,7 +17,7 @@ namespace ProductData
         public static List<Booking> GetBookingsForCustomer(int custID)
         {
             TravelExpertsContext db = new TravelExpertsContext();
-            return db.Bookings.Include(bd => bd.BookingDetails).Include(tt => tt.TripType).Where(b => b.CustomerId == custID).ToList();
+            return db.Bookings.Include(p => p.Package).Include(tt => tt.TripType).Where(b => b.CustomerId == custID).ToList();
         }
         
         public static void AddBooking(Booking booking)

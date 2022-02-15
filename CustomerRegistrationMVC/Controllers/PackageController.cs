@@ -17,11 +17,25 @@ namespace CustomerRegistrationMVC.Controllers
             return View(packages);
         }
 
-        //// GET: PackageController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        // GET: PackageController/Details/5
+        public ActionResult Details(int id, int pageTracker)
+        {
+          
+            List<Product> ProductList = new List<Product>();
+            var package = PackageManager.GetPackageById(id);
+            if (package != null)
+            {
+                var products = PackagesProductsSupplierManager.GetProductsOfPackage(package.PackageId);
+                foreach (var product in products)
+                {
+                    var productSupplier = ProductSupplierManager.GetProductSupplierWithID(product.ProductSupplierId);
+                    ProductList.Add(ProductManager.GetProductWithID((int)productSupplier.ProductId));
+                }
+                ViewBag.ProductList = ProductList;
+            }
+            ViewBag.PageTracker = pageTracker;
+            return View(package);
+        }
 
         //// GET: PackageController/Create
         //public ActionResult Create()
