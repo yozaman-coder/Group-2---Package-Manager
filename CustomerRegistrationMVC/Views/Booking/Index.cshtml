@@ -3,18 +3,22 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Your Bookings</h1>
-
-<p>
-    <h4>
-        @Html.ActionLink("Create a new booking.", "Index", "Package")
-    </h4>
-</p>
-<div class="text-center">
-    <h5><u>Total Cost Owing</u></h5>
-    <h6>@ViewBag.Total</h6>
-</div>
+<br />
+<br />
+<section class="jumbotron">
+    <div class="text-center">
+        <h1 class="jumbotron-title display-1">
+            <b>Your Bookings</b>
+        </h1>
+        <h4 class="jumbotron-subtitle">
+            @Html.ActionLink("Create a new booking.", "Index", "Package")
+        </h4>
+        <div class="text-center">
+            <h5><u>Total Cost Owing</u></h5>
+            <h6>@ViewBag.Total</h6>
+        </div>
+    </div>
+</section>
 <table class="table">
     <thead>
         <tr>

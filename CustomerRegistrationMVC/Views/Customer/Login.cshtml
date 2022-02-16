@@ -3,19 +3,42 @@
     ViewData["Title"] = "Login Page";
 }
 
-<form asp-action="Login">
-    <h3>Login</h3>
-    <table class="table">
-        <tr>
-            <td>Email: </td>
-            <td><input type="text" asp-for="CustEmail" /></td>
-        </tr>
-        <tr>
-            <td>Password: </td>
-            <td><input type="text" asp-for="CustPassword" /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Authenticate" class="btn btn-primary"></td>
-        </tr>
-    </table>
-</form>
+<br />
+<br />
+<section class="jumbotron">
+    <div class="text-center">
+        <h1 class="jumbotron-title display-1 ">
+            <b>Login</b>
+        </h1>
+        <h2 class="jumbotron-subtitle">
+            Login to your account or create one using the register link.
+        </h2>
+    </div>
+</section>
+<section class="container">
+    <form asp-action="Login">
+        <div class="form-group">
+            <div><label>Email:</label></div>
+            <div>
+                <input type="text" asp-for="CustEmail" class="form-control" />
+            </div>
+            <div class="col">
+                <span asp-validation-for="CustEmail" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div><label>Password:</label></div>
+                <div>
+                    <input type="password" asp-for="CustPassword" class="form-control" />
+                </div>
+                <div class="col">
+                    <span asp-validation-for="CustPassword" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Authenticate" class="button1">
+            </div>
+        </div>
+    </form>
+</section>
