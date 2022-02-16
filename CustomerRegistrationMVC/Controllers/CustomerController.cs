@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Data.Common;
 
 namespace CustomerRegistrationMVC.Controllers
 {
@@ -87,6 +88,7 @@ namespace CustomerRegistrationMVC.Controllers
                 {
                     ViewBag.CustomerID = HttpContext.Session.GetInt32("CurrentCustomer");
                     customer = CustomerManager.GetCustomerById(ViewBag.CustomerID);
+                    ViewBag.CustomerEmail = customer.CustEmail;
                 }
                 return View(customer);
             }
@@ -108,11 +110,22 @@ namespace CustomerRegistrationMVC.Controllers
             {
                 try
                 {
-                    //Adds customer with the form data
-                    CustomerManager.AddCustomer(customer);
-                    return RedirectToAction("Index", "Home");
+                    int CustID = customer.CustomerId;
+                    if(CustID != 0)
+                    {
+                        CustomerManager.UpdateCustomer(customer);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        //Adds customer with the form data
+                        CustomerManager.AddCustomer(customer);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    
+                   
                 }
-                catch (Exception)
+                catch (DbException)
                 {
                     TempData["IsError"] = true;
                     TempData["Message"] = "Database connection error. Try again later...";
