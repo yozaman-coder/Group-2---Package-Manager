@@ -1,17 +1,25 @@
 ﻿IF YOU WANT TO DO ONE OF THE TASKS WRITE YOUR NAME OVER IT SO THAT WE DON'T WORK ON THE SAME THING ELL O ELL
 YOU CAN ALWAYS ADD TO THIS AS WELL IF I FORGET SOME STUFF
 
-1. (Brett - i believe this is done) Validate user registration data
+--Form--
 
-2. (Brett - I need some help with this...) Sorting packages by various categories.
+Needs much better validation with as many metrics as possible.
 
-4. (brendan) CSS and styling
+Cleaner UI.
 
-5. (Brett - complete, replaced content of TRAVELEXPERTSDB!!README!! with the full SQL script, maybe we should package it as a .SQL file somehow?) Fix TRAVELEXPERTSDB!!README!! so that it is just one sql. Should be really easy just need to use the old travel experts
-sql and modify it a bit.
+*Product Supplier rework*
 
-6. (James - This is done) SHOW PRICE BREAKDOWN OF ALL PURCHASED PACKAGES AT USERS BOOKINGS.
+-Some suppliers cannot provide certain products. Will have supplier type associated with product in some way in db.
+-Generally more user friendly look needed
+-Need to sort that weird lag out as well
 
-7. (James - This is done) Add user data update page which should just be the register page again but with a customer ID in a hidden input, 
-Will have to implement a hidden input into register page.
+--WebApp--
+
+Updating of  user should be working. 
+
+Needs much better validation with as many metrics as possible.
+- Country/Province validation.
+- Password validation.
+
+CSS needs a bit of work
 

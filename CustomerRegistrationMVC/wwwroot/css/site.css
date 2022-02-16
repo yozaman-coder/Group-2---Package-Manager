@@ -168,6 +168,10 @@ th {
     top: 0;
 }
 
+.opacity{
+    opacity: 0.5;
+}
+
 thead {
     position: sticky;
     top: 0;
@@ -241,8 +245,12 @@ body2 {
 .center {
     margin: 0;
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%;
-    -ms-transform: translate(-50%, -45%);
-    transform: translate(-50%, -45%);
+    -ms-transform: translate(-50%, -30%);
+    transform: translate(-50%, -30%);
+}
+
+.opacity {
+    opacity: 0.5;
 }
