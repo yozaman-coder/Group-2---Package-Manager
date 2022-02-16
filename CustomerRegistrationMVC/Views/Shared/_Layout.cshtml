@@ -6,6 +6,8 @@
     <title>@ViewData["Title"] - CustomerRegistrationMVC</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 </head>
 <body>
     @if (TempData["Message"] != null)
@@ -28,6 +30,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Package" asp-action="Index">View Packages</a>
                         </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Package" asp-action="PackagesSortingByPrice">View Packages2</a>
+                        </li>*@
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
