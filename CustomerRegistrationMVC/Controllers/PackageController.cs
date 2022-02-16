@@ -48,33 +48,50 @@ namespace CustomerRegistrationMVC.Controllers
             return list;
         }
 
-        //public ActionResult PackagesSortingByPrice()
-        //{
-        //    try
-        //    {
-        //        ViewBag.Packages = GetPackagesWithAll();
-        //        return View();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        TempData["Message"] = "Database connection problem. Try again later.";
-        //        TempData["IsError"] = true;
-        //        return RedirectToAction("Index");
-        //    }
-        //}
-        
+        private List<Tuple<decimal, decimal>> PackagePriceRanges()
+        {
+            var priceRanges = new List<Tuple<decimal, decimal>>
+            {
+                Tuple.Create(0m, 1000m),
+                Tuple.Create(1000m, 2000m),
+                Tuple.Create(2000m, 3000m),
+                Tuple.Create(3000m, 4000m),
+                Tuple.Create(4000m, 5000m)
+            };
+            // build list of prices that will be used to populate dropdown menu
+            return priceRanges;
+
+        }
+
+       
+        public ActionResult PackagesSortingByPrice(decimal min = 0, decimal max = 0)
+        {
+            try
+            {
+                ViewBag.Packages = GetPackagesWithAll();
+                ViewBag.PriceRanges = PackageManager.GetPackagesByPriceRange(min,max);
+                return View("PackagesSortingByPrice");
+            }
+            catch (Exception)
+            {
+                TempData["Message"] = "Database connection problem. Try again later.";
+                TempData["IsError"] = true;
+                return RedirectToAction("_Index");
+            }
+        }
+
         public ActionResult PackagesByPrice(decimal min, decimal max)
         {
             return ViewComponent("PackagesSorting", new { min, max});
         }
 
-        public ActionResult PackagesSortingByPrice()
-        {
-            Tuple<List<decimal>, List<Package>> tuple;
-            tuple = new Tuple<List<decimal,decimal>, List<Package>(PackageManager.PackagePriceRanges(), PackageManager.GetCurrentPackages());
+        //public ActionResult PackagesSortingByPrice()
+        //{
+        //    Tuple<List<decimal>, List<Package>> tuple;
+        //    tuple = new Tuple<List<decimal,decimal>, List<Package>(PackageManager.PackagePriceRanges(), PackageManager.GetCurrentPackages());
                 
-              return View("PackagesSortingByPrice", tuple);
-        }
+        //      return View("PackagesSortingByPrice", tuple);
+        //}
 
         //// GET: PackageController/Details/5
         //public ActionResult Details(int id)

@@ -45,5 +45,30 @@ namespace ProductData
             Customer customer = db.Customers.Find(id);
             return customer;
         }
+
+        public static void UpdateCustomer(Customer customer)
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            Customer oldCustomerData = (from c in db.Customers
+                                        where c.CustomerId == customer.CustomerId
+                                        select c).FirstOrDefault();
+            oldCustomerData.CustEmail = customer.CustEmail;
+            oldCustomerData.CustAddress = customer.CustAddress;
+            oldCustomerData.CustBusPhone = customer.CustBusPhone;
+            oldCustomerData.CustFirstName = customer.CustFirstName;
+            oldCustomerData.CustLastName = customer.CustLastName;
+            oldCustomerData.CustCity = customer.CustCity;
+            oldCustomerData.CustProv = customer.CustProv;
+            oldCustomerData.CustPostal = customer.CustPostal;
+            oldCustomerData.CustPassword = customer.CustPassword;
+            db.SaveChanges();
+        }
+
+        public static int GetLastCustomer()
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            Customer result = db.Customers.OrderBy(c => c.CustomerId).LastOrDefault();
+            return result.CustomerId;
+        }
     }
 }

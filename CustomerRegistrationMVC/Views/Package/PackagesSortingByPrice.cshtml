@@ -3,12 +3,12 @@
 <h1>Packages filtered by price</h1>
 
 <div class="form-group">
-    <select id="uxPackages" asp-items="@ViewBag.Packages" class="form-control">
+    <select id="uxPackages" asp-items="@ViewBag.PriceRanges" class="form-control">
     </select>
 </div>
 
 <div id="uxDisplay">
-    @await Component.InvokeAsync("PackagesSorting", new { min=0, max=0})
+    @await Component.InvokeAsync("PackagesSorting", (0,0))
 </div>
 
 @section Scripts{
@@ -17,11 +17,11 @@
         // .change function waits for a change in the uxPackages price range
             $("#uxPackages").change(function () {
                 var minPrice = $("#uxPackages").val();
-                var maxPrice = $("uxPackages").val();
+                var maxPrice = $("#uxPackages").val();
                 // call asynchronous javascript function .ajax
                 $.ajax({
                     method: 'GET',
-                    url: '/Package/PackagesSorting',
+                    url: '/Package/PackagesByPrice',
                     data: { minPrice, maxPrice  }
                 }).done(function (result, statusText, xhdr) {
                     $("#uxDisplay").html(result);
