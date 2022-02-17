@@ -219,6 +219,10 @@ td {
         text-decoration: none;
     }
 
+  /*Centers register buttons*/
+.center2 {
+    transform: translate(8%, 8%);
+}
 /*home BODY2 css*/
 
 body2 {
@@ -255,3 +259,4 @@ body2 {
 .opacity {
     opacity: 0.5;
 }
+

@@ -21,10 +21,10 @@
 <br />
 <div class="container">
     <div class="center">
-        <div class="button1">@Html.ActionLink("Go to packages", "Index", "Package", null, null)</div>
+        <input class="button1" type="submit" value="Go to Packages!" onclick="location.href='@Url.Action("Index","Package")'" />
     </div>
     </div>
-    <p class="jumbotron-head text-center" style=" width: 709px; padding: 5px;">
+    <p class="jumbotron-head text-center" style=" width: 708px; padding: 5px;">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
         molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
         numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium

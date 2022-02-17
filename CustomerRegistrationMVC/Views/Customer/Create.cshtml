@@ -14,7 +14,6 @@
 </section>
 
     <section class="container">
-        <div>
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 @if (ViewBag.CustomerID != null)
@@ -82,12 +81,11 @@
                     <input asp-for="CustPassword" class="form-control" />
                     <span asp-validation-for="CustPassword" class="text-danger"></span>
                 </div>
-                <div class="form-group row">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Create" class="button1" />&nbsp;&nbsp;&nbsp;
-                    <div class="button1">@Html.ActionLink("Cancel", "Index", "Home", null, null)</div>
+                <div class="form-group row center2">
+                    <input type="submit" value="Create" class="button1" />&nbsp;&nbsp;
+                    <input class="button1" type="reset" value="Cancel" onclick="location.href='@Url.Action("Index","Home")'" />
                 </div>
             </form>
-        </div>
 
 
     @section Scripts {
