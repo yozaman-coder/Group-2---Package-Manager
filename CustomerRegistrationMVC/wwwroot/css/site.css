@@ -229,7 +229,6 @@ body2 {
     display: inline-table;
     background: rgba(0,0,0,0.3);
     border: 4px ridge rgba(100, 149, 237, 0.6);
-    align-self:center;
 }
 
 * {
@@ -240,14 +239,14 @@ body2 {
     float: left;
     width: 40%;
     margin-top: 6px;
+    margin-bottom: 6px;
     padding: 20px;
     color: white;
 }
-
 .center {
     margin: 0;
     position: absolute;
-    top: 35%;
+    top: 36%;
     left: 50%;
     -ms-transform: translate(-50%, -30%);
     transform: translate(-50%, -30%);
