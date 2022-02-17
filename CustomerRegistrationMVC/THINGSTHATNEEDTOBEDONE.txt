@@ -9,7 +9,7 @@ Cleaner UI.
 
 *Product Supplier rework*
 --Package -> Product -> Supplier 
--Some suppliers cannot provide certain products. Will have supplier type associated with product in some way in db.
+-Some suppliers cannot provide certain products. So we should display suppliers that supply that product and seperate the ability to add product suppliers or somethin. 
 -Generally more user friendly look needed
 -Need to sort that weird lag out as well
 
