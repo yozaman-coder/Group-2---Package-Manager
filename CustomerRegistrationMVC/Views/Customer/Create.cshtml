@@ -84,17 +84,16 @@
                 <div class="form-group row">
                     @if (ViewBag.CustomerID != null)
                     {
-                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <input type="submit" value="Update" class="button1" /><div>&nbsp;&nbsp;</div>
+                        <input class="button1" type="button" value="Cancel" onclick="location.href='@Url.Action("Index","Home")'" />
                     }
                     else
                     {
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <input type="submit" value="Create" class="button1" /><div>&nbsp;&nbsp;</div>
+                        <input class="button1" type="reset" value="Cancel" onclick="location.href='@Url.Action("Index","Home")'" />
                     }
-                    <div class="btn btn-secondary m-1">@Html.ActionLink("Cancel", "Index", "Home", null, null)</div>
                 </div>
             </form>
-                    @*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Create" class="button1" />&nbsp;&nbsp;&nbsp;*@
-        </div>
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }

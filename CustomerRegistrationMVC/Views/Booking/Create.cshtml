@@ -4,63 +4,64 @@
     var booking = Model.Booking;
     var bookingDetail = Model.BookingDetail;
 }
-<div class="container">
-    <h1>Create</h1>
-
-    <h4>Booking</h4>
-    <hr />
-
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    @*<input asp-for="BookingDate" class="form-control" />*@
-                    <input type="hidden" asp-for="@booking.BookingDate" value="@ViewBag.Date" />
-                    @*<span asp-validation-for="BookingDate" class="text-danger"></span> *@
-                </div>
-                @*<div class="form-group">  NOT SURE WHAT THIS BOOKING NO IS SUPPOSED TO BE
-                        <label asp-for="BookingNo" class="control-label"></label>
-                        <input asp-for="BookingNo" class="form-control" />
-                        <span asp-validation-for="BookingNo" class="text-danger"></span>
-                    </div>*@
-                <div class="form-group">
-                    <label asp-for="@booking.TravelerCount" class="control-label">How many people are you traveling with?</label>
-                    <input asp-for="@booking.TravelerCount" class="form-control" required />
-                    <span asp-validation-for="@booking.TravelerCount" class="text-danger"></span>
-                </div>
-                @*<div class="form-group">
-                    <label asp-for="CustomerId" class="control-label"></label>*@
-                <input type="hidden" asp-for="@booking.CustomerId" value="@ViewBag.CustomerID" />
-                @*<span asp-validation-for="CustomerId" class="text-danger"></span>
-                    </div>*@
-                <div class="form-group">
-                    @*Trip types in dropdown*@
-                    <label asp-for="@booking.TripTypeId" class="control-label">Trip Type</label>
-                    <select asp-items="@ViewBag.TripTypes" asp-for="@booking.TripTypeId" class="form-control"></select>
-                    <span asp-validation-for="@booking.TripTypeId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="@booking.PackageId" class="control-label">Package ID</label>
-                    <input asp-for="@booking.PackageId" class="form-control" value="@ViewBag.Package.PackageId" readonly />
-                    <span asp-validation-for="@booking.PackageId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <h6><u>Package Information</u></h6>
-                </div>
-                <div class="form-group">
-                    <p>Package Name: @ViewBag.Package.PkgName</p>
-                    <p>Package Description: @ViewBag.Package.PkgDesc</p>
-                    <p>Price: @ViewBag.Price</p>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                    <div class="btn btn-secondary m-1">@Html.ActionLink("Back to packages", "Index", "Package", null, null)</div>
-                </div>
-            </form>
-        </div>
+<br />
+<br />
+<section class="jumbotron">
+    <div class="text-center">
+        <h class="jumbotron-register display-1 ">
+            <b>Create Booking!</b>
+        </h>
     </div>
-</div>
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+</section>
+<section class="jumbotron-booking">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @*<input asp-for="BookingDate" class="form-control" />*@
+                <input type="hidden" asp-for="@booking.BookingDate" value="@ViewBag.Date" />
+                @*<span asp-validation-for="BookingDate" class="text-danger"></span> *@
+            </div>
+            @*<div class="form-group">  NOT SURE WHAT THIS BOOKING NO IS SUPPOSED TO BE
+                    <label asp-for="BookingNo" class="control-label"></label>
+                    <input asp-for="BookingNo" class="form-control" />
+                    <span asp-validation-for="BookingNo" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="@booking.TravelerCount" class="control-label">How many people are you traveling with?</label>
+                <input asp-for="@booking.TravelerCount" class="form-control" required />
+                <span asp-validation-for="@booking.TravelerCount" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>*@
+            <input type="hidden" asp-for="@booking.CustomerId" value="@ViewBag.CustomerID" />
+            @*<span asp-validation-for="CustomerId" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                @*Trip types in dropdown*@
+                <label asp-for="@booking.TripTypeId" class="control-label">Trip Type</label>
+                <select asp-items="@ViewBag.TripTypes" asp-for="@booking.TripTypeId" class="form-control"></select>
+                <span asp-validation-for="@booking.TripTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@booking.PackageId" class="control-label">Package ID</label>
+                <input asp-for="@booking.PackageId" class="form-control" value="@ViewBag.Package.PackageId" readonly />
+                <span asp-validation-for="@booking.PackageId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h6><b><u>Package Information</u></b></h6>
+            </div>
+            <div class="form-group ">
+                <p><b>Package Name:</b> @ViewBag.Package.PkgName</p>
+                <p><b>Package Description:</b> @ViewBag.Package.PkgDesc</p>
+                <p><b>Price:</b> @ViewBag.Price</p>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="button1" />&nbsp;&nbsp;
+                <input class="button1" type="submit" value="Go Back" onclick="location.href='@Url.Action("Index","Package")'" />
+            </div>
+        </form>
+</section>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

@@ -11,7 +11,7 @@
             <b>Your Bookings</b>
         </h1>
         <h4 class="jumbotron-subtitle">
-            @Html.ActionLink("Create a new booking.", "Index", "Package")
+           <input class="button1" type="submit" value="Create a Booking" onclick="location.href='@Url.Action("Index","Package")'" />
         </h4>
         <div class="text-center">
             <h5><u>Total Cost Owing</u></h5>
@@ -70,12 +70,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TripType.Ttname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Package.PkgName)@* WE WILL HAVE THIS LATER BUT FOR CURRENT CUSTOMERS ITS NULL*@
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Package.PkgBasePrice)
                 </td>
                 <td>
                     @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
