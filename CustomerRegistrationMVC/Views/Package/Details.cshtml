@@ -3,72 +3,74 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-<h1>Details</h1>
-
-<div>
-    <h4>Package</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PackageId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PackageId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PkgName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PkgName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PkgStartDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PkgStartDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PkgEndDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PkgEndDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PkgDesc)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PkgDesc)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PkgBasePrice)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PkgBasePrice)
-        </dd>
-        @*<dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.PkgAgencyCommission)
+<br />
+<br />
+<section class="jumbotron text-center">
+    <h1>
+        <b> Package Details</b>
+    </h1>
+</section>
+    <div class="jumbotron-package">
+        <dl>
+            <dt class="row">
+                @Html.DisplayNameFor(model => model.PackageId):
             </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.PkgAgencyCommission)
-            </dd>*@
-    </dl>
-    @if (ViewBag.ProductList != null)
-    {
-        <h4><u>Products Included In Package</u></h4>
-        @foreach (var prod in ViewBag.ProductList)
+            <dd>
+                @Html.DisplayFor(model => model.PackageId)
+            </dd>
+            <dt class="row">
+                @Html.DisplayNameFor(model => model.PkgName):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PkgName)
+            </dd>
+            <dt class="row">
+                @Html.DisplayNameFor(model => model.PkgStartDate):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PkgStartDate)
+            </dd>
+            <dt class="row">
+                @Html.DisplayNameFor(model => model.PkgEndDate):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PkgEndDate)
+            </dd>
+            <dt class="row">
+                @Html.DisplayNameFor(model => model.PkgDesc):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PkgDesc)
+            </dd>
+            <dt class="row">
+                @Html.DisplayNameFor(model => model.PkgBasePrice):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PkgBasePrice)
+            </dd>
+            @*<dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PkgAgencyCommission)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PkgAgencyCommission)
+                </dd>*@
+        </dl>
+        @if (ViewBag.ProductList != null)
         {
-            <h6>@prod.ProdName</h6>
+            <h4><u>Products Included In Package</u></h4>
+            @foreach (var prod in ViewBag.ProductList)
+            {
+                <h6>@prod.ProdName</h6>
+            }
         }
-    }
 </div>
-<div>
+<div class="center3">
     @if (ViewBag.PageTracker == 1)
     {
-        <div class="btn btn-secondary m-1">@Html.ActionLink("Back", "Index", "Booking", null, null)</div>
+        <input class="button1" type="button" value="Back" onclick="location.href='@Url.Action("Index","Booking")'" />
     }
-    else if(ViewBag.PageTracker == 0)
+    else if (ViewBag.PageTracker == 0)
     {
-        <div class="btn btn-secondary m-1">@Html.ActionLink("Back", "Index", "Package", null, null)</div>
+        <input class="button1" type="button" value="Back" onclick="location.href='@Url.Action("Index","Package")'" />
     }
 </div>
