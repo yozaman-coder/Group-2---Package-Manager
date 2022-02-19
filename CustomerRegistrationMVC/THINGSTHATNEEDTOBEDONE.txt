@@ -7,7 +7,7 @@ Needs much better validation with as many metrics as possible.
 
 Cleaner UI.
 
-*Product Supplier rework*
+(Brett) *Product Supplier rework*
 --Package -> Product -> Supplier 
 -Some suppliers cannot provide certain products. So we should display suppliers that supply that product and seperate the ability to add product suppliers or somethin. 
 -Generally more user friendly look needed
@@ -17,7 +17,7 @@ Cleaner UI.
 
 Updating of  user should be working. 
 
-Needs much better validation with as many metrics as possible.
+(Brett) Needs much better validation with as many metrics as possible.
 - Country/Province validation.
 - Password validation.
 
