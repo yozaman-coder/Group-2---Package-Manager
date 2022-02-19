@@ -8,6 +8,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Data.Common;
+using System.Collections;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CustomerRegistrationMVC.Controllers
 {
@@ -90,6 +92,7 @@ namespace CustomerRegistrationMVC.Controllers
                     customer = CustomerManager.GetCustomerById(ViewBag.CustomerID);
                     ViewBag.CustomerEmail = customer.CustEmail;
                 }
+                ViewBag.Provinces = GetProvinces();
                 return View(customer);
             }
             catch (Exception)
@@ -99,6 +102,27 @@ namespace CustomerRegistrationMVC.Controllers
                 return RedirectToAction("Index", "Home");
             }
          
+        }
+
+        // Gets all provinces 
+        private SelectList GetProvinces()
+        {
+            List<Province> list = new List<Province>();
+            list.Add(new Province("AB", "Alberta"));
+            list.Add(new Province("BC", "British Columbia"));
+            list.Add(new Province("MB", "Manitoba"));
+            list.Add(new Province("NB", "New Brunswick"));
+            list.Add(new Province("NF", "Newfoundland"));
+            list.Add(new Province("NT", "Northwest Territories"));
+            list.Add(new Province("NS", "Nova Scotia"));
+            list.Add(new Province("NU", "Nunavut"));
+            list.Add(new Province("ON", "Ontario"));
+            list.Add(new Province("PE", "Prince Edward Island"));
+            list.Add(new Province("PQ", "Quebec"));
+            list.Add(new Province("SK", "Saskatchewan"));
+            list.Add(new Province("YT", "Yukon"));
+            var provSelect = new SelectList(list, "Value", "Text");
+            return provSelect;
         }
 
         // POST: CustomerController/Create
