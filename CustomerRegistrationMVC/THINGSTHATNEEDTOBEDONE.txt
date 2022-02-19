@@ -3,6 +3,7 @@ YOU CAN ALWAYS ADD TO THIS AS WELL IF I FORGET SOME STUFF
 
 --Form--
 
+(James)
 Needs much better validation with as many metrics as possible.
 
 Cleaner UI.
@@ -15,11 +16,10 @@ Cleaner UI.
 
 --WebApp--
 
-Updating of  user should be working. 
-
 (Brett) Needs much better validation with as many metrics as possible.
 - Country/Province validation.
 - Password validation.
 
+(Brendan)
 CSS needs a bit of work
 
