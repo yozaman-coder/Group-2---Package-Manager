@@ -16,7 +16,7 @@ Cleaner UI.
 
 --WebApp--
 
-(Brett) Needs much better validation with as many metrics as possible.
+(James) Needs much better validation with as many metrics as possible.
 - Country/Province validation.
 - Password validation.
 
