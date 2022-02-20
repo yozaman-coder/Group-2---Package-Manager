@@ -7,7 +7,7 @@
 
             <li class="navbar-brand float-right">
                 <h4 class="nav-link" title="Welcome">
-                    <b>Welcome @User.Identity.Name</b>
+                    <b style="color: white">Welcome @User.Identity.Name</b>
                 </h4>
                 <a class="nav-link navbar-text" asp-controller="Customer" asp-action="Create">Change Account Info</a>
                 <a class="nav-link navbar-text" asp-controller="Customer" asp-action="Logout" asp-route-returnUrl=@Url.Action("Index", "Home")>Logout</a>
