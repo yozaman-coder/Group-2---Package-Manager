@@ -70,5 +70,22 @@ namespace ProductData
             Customer result = db.Customers.OrderBy(c => c.CustomerId).LastOrDefault();
             return result.CustomerId;
         }
+
+        public static string GetCustEmail(int customerId)
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            string result = db.Customers.Where(c => c.CustomerId == customerId).Select(c => c.CustEmail).ToString();
+            return result;
+        }
+
+        public static bool SearchForCustEmail(string custEmail)
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            bool result = (from c in db.Customers
+                           where c.CustEmail == custEmail
+                           select c).Any();
+                //db.Customers.FirstOrDefault(c => c.CustEmail == custEmail).CustEmail
+            return result;
+        }
     }
 }

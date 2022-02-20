@@ -1,4 +1,4 @@
-﻿@model ProductData.Customer
+﻿@model CustomerWithCheckModel
 
 @{
     ViewData["Title"] = "Create";
@@ -18,53 +18,53 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @if (ViewBag.CustomerID != null)
             {
-                <input type="hidden" asp-for="CustomerId" value="@ViewBag.CustomerID" />
+                <input type="hidden" asp-for="Customer.CustomerId" value="@ViewBag.CustomerID" />
             }
             <div class="form-group row">
-                <label asp-for="CustFirstName" class="control-label">First Name</label>
-                <input asp-for="CustFirstName" class="form-control" />
-                <span asp-validation-for="CustFirstName" class="text-danger"></span>
+                <label asp-for="Customer.CustFirstName" class="control-label">First Name</label>
+                <input asp-for="Customer.CustFirstName" class="form-control" />
+                <span asp-validation-for="Customer.CustFirstName" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <label asp-for="CustLastName" class="control-label">Last Name</label>
-                <input asp-for="CustLastName" class="form-control" />
-                <span asp-validation-for="CustLastName" class="text-danger"></span>
+                <label asp-for="Customer.CustLastName" class="control-label">Last Name</label>
+                <input asp-for="Customer.CustLastName" class="form-control" />
+                <span asp-validation-for="Customer.CustLastName" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <label asp-for="CustAddress" class="control-label">Address</label>
-                <input asp-for="CustAddress" class="form-control" />
-                <span asp-validation-for="CustAddress" class="text-danger"></span>
+                <label asp-for="Customer.CustAddress" class="control-label">Address</label>
+                <input asp-for="Customer.CustAddress" class="form-control" />
+                <span asp-validation-for="Customer.CustAddress" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <label asp-for="CustCity" class="control-label">City</label>
-                <input asp-for="CustCity" class="form-control" />
-                <span asp-validation-for="CustCity" class="text-danger"></span>
+                <label asp-for="Customer.CustCity" class="control-label">City</label>
+                <input asp-for="Customer.CustCity" class="form-control" />
+                <span asp-validation-for="Customer.CustCity" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <label asp-for="CustProv" class="control-label">Province</label>
-                <select asp-items="@ViewBag.Provinces" asp-for="CustProv" class="form-control" ></select>
-                <span asp-validation-for="CustProv" class="text-danger"></span>
+                <label asp-for="Customer.CustProv" class="control-label">Province</label>
+                <select asp-items="@ViewBag.Provinces" asp-for="Customer.CustProv" class="form-control"></select>
+                <span asp-validation-for="Customer.CustProv" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <label asp-for="CustPostal" class="control-label">Postal Code</label>
-                <input asp-for="CustPostal" class="form-control" />
-                <span asp-validation-for="CustPostal" class="text-danger"></span>
+                <label asp-for="Customer.CustPostal" class="control-label">Postal Code</label>
+                <input asp-for="Customer.CustPostal" class="form-control" />
+                <span asp-validation-for="Customer.CustPostal" class="text-danger"></span>
             </div>
-            <input type="hidden" asp-for="CustCountry" value="Canada" />
+            <input type="hidden" asp-for="Customer.CustCountry" value="Canada" />
             @*<div class="form-group">
             <label asp-for="CustHomePhone" class="control-label"></label>
             <input asp-for="CustHomePhone" class="form-control" />
             <span asp-validation-for="CustHomePhone" class="text-danger"></span>
         </div>*@
             <div class="form-group row">
-                <label asp-for="CustBusPhone" class="control-label">Phone Number</label>
-                <input asp-for="CustBusPhone" class="form-control" />
-                <span asp-validation-for="CustBusPhone" class="text-danger"></span>
+                <label asp-for="Customer.CustBusPhone" class="control-label">Phone Number</label>
+                <input asp-for="Customer.CustBusPhone" class="form-control" />
+                <span asp-validation-for="Customer.CustBusPhone" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <label asp-for="CustEmail" class="control-label">Email</label>
-                <input asp-for="CustEmail" class="form-control" />
-                <span asp-validation-for="CustEmail" class="text-danger"></span>
+                <label asp-for="Customer.CustEmail" class="control-label">Email</label>
+                <input asp-for="Customer.CustEmail" class="form-control" />
+                <span asp-validation-for="Customer.CustEmail" class="text-danger"></span>
             </div>
             @*<div class="form-group">
             <label asp-for="AgentId" class="control-label"></label>
@@ -72,9 +72,13 @@
             <span asp-validation-for="AgentId" class="text-danger"></span>
         </div>*@
             <div class="form-group row">
-                <label asp-for="CustPassword" class="control-label">Password</label>
-                <input asp-for="CustPassword" class="form-control" />
-                <span asp-validation-for="CustPassword" class="text-danger"></span>
+                <label asp-for="Customer.CustPassword" class="control-label">Password</label>
+                <input asp-for="Customer.CustPassword" class="form-control" />
+                <span asp-validation-for="Customer.CustPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="PassCheck" class="control-label">Password</label>
+                <input asp-for="PassCheck" class="form-control" />
             </div>
             <div class="form-group row center2">
                 @if (ViewBag.CustomerID != null)

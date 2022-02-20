@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Data.Common;
 using System.Collections;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using CustomerRegistrationMVC.Models;
 
 namespace CustomerRegistrationMVC.Controllers
 {
@@ -85,14 +86,18 @@ namespace CustomerRegistrationMVC.Controllers
         {
             try
             {
-                Customer customer = new Customer();
+                CustomerWithCheckModel customer = new CustomerWithCheckModel();
                 if(HttpContext.Session.GetInt32("CurrentCustomer") != null)
                 {
                     ViewBag.CustomerID = HttpContext.Session.GetInt32("CurrentCustomer");
                     customer = CustomerManager.GetCustomerById(ViewBag.CustomerID);
-                    ViewBag.CustomerEmail = customer.CustEmail;
+                    ViewBag.CustomerEmail = customer.Customer.CustEmail;
                 }
                 ViewBag.Provinces = GetProvinces();
+                if (TempData["WrongPassOrEmail"] != null)
+                {
+                    customer = (CustomerWithCheckModel)TempData["WrongPassOrEmail"];
+                }
                 return View(customer);
             }
             catch (Exception)
@@ -128,25 +133,42 @@ namespace CustomerRegistrationMVC.Controllers
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Customer customer)
+        public ActionResult Create(CustomerWithCheckModel newCustomer)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    int CustID = customer.CustomerId;
-                    if(CustID != 0)
+                    bool dbEmail = CustomerManager.SearchForCustEmail(newCustomer.Customer.CustEmail);
+                    if (newCustomer.Customer.CustPassword == newCustomer.PassCheck && dbEmail != true)
                     {
-                        CustomerManager.UpdateCustomer(customer);
-                        return RedirectToAction("Index", "Home");
+                        int CustID = newCustomer.Customer.CustomerId;
+                        if (CustID != 0)
+                        {
+                            CustomerManager.UpdateCustomer(newCustomer.Customer);
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            //Adds customer with the form data
+                            CustomerManager.AddCustomer(newCustomer.Customer);
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                     else
                     {
-                        //Adds customer with the form data
-                        CustomerManager.AddCustomer(customer);
-                        return RedirectToAction("Index", "Home");
+                        TempData["IsError"] = true;
+                        ViewBag.Provinces = GetProvinces();
+                        if (dbEmail == true)
+                        {
+                            TempData["Message"] = "Email is already taken!";
+                        }
+                        else
+                        {
+                            TempData["Message"] = "Passwords are not the same!";
+                        }
+                        return View(newCustomer);
                     }
-                    
                    
                 }
                 catch (DbException)
