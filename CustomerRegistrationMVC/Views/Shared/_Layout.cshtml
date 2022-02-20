@@ -16,17 +16,22 @@
     }
     <header>
         <nav>
-            <ul>
-                <li class="navbar-brand align-text-center"> 
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/Img/logo.png" style="width:auto; height:6rem;">
-                    </a></li>
-
+            <ul style="width:100%">
                 <li class="navbar-brand align-text-center">
+                    <a class="navbar-brand logo-hov" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="/Img/logo.png" style="width:auto; height:5rem;">
+                    </a>
+                </li>
+                <li class="navbar-brand align-text-center" style=" text-align: center;">
                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
 
                 <li class="navbar-brand align-text-center">
                     <a class="nav-link" asp-controller="Package" asp-action="Index">View Packages</a>
+                </li>
+
+                <li class="navbar-brand align-text-center">
+                    <a class="nav-link" asp-controller="Booking" asp-action="Index">My Bookings</a>
                 </li>
 
                 <li class="navbar-brand">
