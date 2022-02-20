@@ -24,11 +24,12 @@ namespace Package_Manager
         public int supplierID = 0;
         public int productID = 0;
         // Brett - added public property to get selected product ID for use in frmAddModifyProduct
-        public string SelectedProdID
-        {get { return cboProductID.Text; }}
+        public int SelectedProdID
+        { get; set; }
+    
         // Brett - added public property to get selected supplier ID for use in frmAddModifySupplier
-        public string SelectedSupplierID
-        {get { return cboSupplierID.Text; }}
+        //public string SelectedSupplierID
+        //{get { return ; }}
         
         public frmAddModProdSupp()
         {
@@ -54,28 +55,40 @@ namespace Package_Manager
                     this.Close();
                 }
                 // Display current product supplier
-                cboProductID.SelectedItem = productSupplier.ProductId;
-                cboSupplierID.SelectedItem = productSupplier.SupplierId;
+                //dgvProducts = productSupplier.ProductId;
+                //dgvSuppliers = productSupplier.SupplierId;
             }
         }
 
-        private void cboProducts_SelectedIndexChanged(object sender, EventArgs e)
+        private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Get product ID for selection from combo box
-            int selectedProductID = Convert.ToInt32(this.cboProductID.GetItemText(this.cboProductID.SelectedItem));
-            // Select product with id and display information
-            SelectProduct(selectedProductID);
+            int selectedIndex = (int)dgvProducts.Rows[e.RowIndex].Cells[0].Value;
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var selectedProduct = db.Products.Find(selectedIndex);
+                int selectedProdID = selectedProduct.ProductId;
+            }
+            
+            dgvSuppliers.DataSource = SelectSuppFromProdID(selectedIndex);
+            dgvSuppliers.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvSuppliers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSuppliers.MultiSelect = false;
+            dgvSuppliers.RowHeadersVisible = false;
+            dgvSuppliers.ColumnHeadersDefaultCellStyle.Font = new Font("Consolas", 10, FontStyle.Bold);
+            dgvSuppliers.Columns[0].Width = 50;
+            dgvSuppliers.Columns[1].Width = 400;
+            dgvSuppliers.Columns[2].Width = 0;
+            dgvSuppliers.Columns[3].Width = 0;
         }
-
-        private void cboSupplierID_SelectedIndexChanged(object sender, EventArgs e)
+        // Brett - generate list of suppliers from the ProductSupplier table that have the passed-in Product ID
+        private List<Supplier> SelectSuppFromProdID(int prodID)
         {
-            // Get supplier ID for selection from combo box
-            int selectedSupplierID = Convert.ToInt32(this.cboSupplierID.GetItemText(this.cboSupplierID.SelectedItem));
-            // Select supplier with id and display information
-            SelectSupplier(selectedSupplierID);
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var suppliers = db.ProductsSuppliers.Where(ps => ps.ProductId == prodID).Select(s => s.Supplier).ToList();
+                return suppliers;
+            }
         }
-
-
         private void btnNewSupplier_Click(object sender, EventArgs e)
         {
             // Brett - modified to redirect to frmAddModifySupplier for addition of new supplier
@@ -97,40 +110,39 @@ namespace Package_Manager
         {
             // Brett - changed this to have the modify product function moved to the AddModifyProduct form
             frmAddModifyProduct modForm = new frmAddModifyProduct();
-            modForm.getselectedProdID = SelectedProdID;
+            //modForm.getselectedProdID = SelectedProdID;
             modForm.ShowDialog();
         }
-
 
         private void btnSupplierModify_Click(object sender, EventArgs e)
         {
             // Brett - changed this to have the modify supplier function moved to the AddModifySupplier form
 
             frmAddModifySupplier modForm = new frmAddModifySupplier();
-            modForm.getselectedSupplierID = SelectedSupplierID;
+            //modForm.getselectedSupplierID = SelectedSupplierID;
             modForm.ShowDialog();
         }
 
         private void btnAddProductToPackage_Click(object sender, EventArgs e)
         {
             // Brett - added code for this method, it was incomplete. Now creates a new instance of the AddPackage class/form and passes the Selected ProductSupplier ID to it via the new public property SelectedProdSupp. 
-            DisplayProductSupplier();
-            frmAddPackage secondForm = new frmAddPackage();
+            //DisplayProductSupplier();
+            frmAddPackage addToPackage = new frmAddPackage();
             this.DialogResult = DialogResult.OK;
         }
 
 
-        private void SelectProduct(int selectedProductID)
-        {
-            using (TravelExpertsContext db = new TravelExpertsContext())
-            {
-                // Load selected product using selected product ID
-                selectedProduct = db.Products.Find(selectedProductID);
-            }
-            // Display product information
-            cboProductID.Text = selectedProduct.ProductId.ToString();
-            txtProductName.Text = selectedProduct.ProdName;
-        }
+        //private void SelectProduct(int selectedProductID)
+        //{
+        //    using (TravelExpertsContext db = new TravelExpertsContext())
+        //    {
+        //        // Load selected product using selected product ID
+        //        selectedProduct = db.Products.Find(selectedProductID);
+        //    }
+        //    // Display product information
+        //    int selectedProduct = dgvProducts.Rows.ProductId.ToString();
+        //    //txtProductName.Text = selectedProduct.ProdName;
+        //}
 
         private void SelectSupplier(int selectedSupplierID)
         {
@@ -140,8 +152,8 @@ namespace Package_Manager
                 selectedSupplier = db.Suppliers.Find(selectedSupplierID);
             }
             // Display product information
-            cboSupplierID.Text = selectedSupplier.SupplierId.ToString();
-            txtSupplierName.Text = selectedSupplier.SupName;
+            //cboSupplierID.Text = selectedSupplier.SupplierId.ToString();
+            //txtSupplierName.Text = selectedSupplier.SupName;
         }
 
         private void DisplayProducts()
@@ -154,27 +166,18 @@ namespace Package_Manager
                     p.ProdName
                 }).ToList();
 
-                lstProducts.Items.Add(products);
+                dgvProducts.DataSource = products;
+                dgvProducts.ClearSelection();
             }
+            dgvProducts.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+            dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProducts.MultiSelect = false;
+            dgvProducts.RowHeadersVisible = false;
+            dgvProducts.ColumnHeadersDefaultCellStyle.Font = new Font("Consolas", 10, FontStyle.Bold);
+            dgvProducts.Columns[dgvProducts.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-
-        //private void DisplaySuppliers()
-        //{
-        //    using (TravelExpertsContext db = new TravelExpertsContext())
-        //    {
-        //        var suppliers = db.Suppliers.Select(s => new
-        //        {
-        //            s.SupplierId,
-        //            s.SupName
-        //        }).ToList();
-
-        //        for (var i = 0; i < suppliers.Count; i++)
-        //        {
-        //            cboSupplierID.Items.Add(suppliers[i].SupplierId);
-        //        }
-        //    }
-        //}
-        private static void JoinedProdSuppNames()
+               
+        private void JoinedProdSuppNames()
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
@@ -190,70 +193,70 @@ namespace Package_Manager
                      SupplierName = supp.SupName
                  }).ToList();
             }
-
         }
-        private void DisplayProductSupplier()
-        {
-            supplierID = Convert.ToInt32(cboSupplierID.Text);
-            productID = Convert.ToInt32(cboProductID.Text);
+        
+        //private void DisplayProductSupplier()
+        //{
+        //    supplierID = Convert.ToInt32(lstSuppliers.SelectedItem.ToString());
+        //    productID = Convert.ToInt32(lstProducts.SelectedItem.ToString());
 
 
-            using (TravelExpertsContext db = new TravelExpertsContext())
-            {
-                try
-                {
-                    var ProdSup = (from ps in db.ProductsSuppliers
-                                   where ps.ProductId == productID &&
-                                   ps.SupplierId == supplierID
-                                   select ps);
+        //    using (TravelExpertsContext db = new TravelExpertsContext())
+        //    {
+        //        try
+        //        {
+        //            var ProdSup = (from ps in db.ProductsSuppliers
+        //                           where ps.ProductId == productID &&
+        //                           ps.SupplierId == supplierID
+        //                           select ps);
 
-                    if (ProdSup.FirstOrDefault() == null)
-                    {
-                        try
-                        {
-                            ProductsSupplier newProdSup = new ProductsSupplier();
-                            newProdSup.ProductId = productID;
-                            newProdSup.SupplierId = supplierID;
-                            db.ProductsSuppliers.Add(newProdSup);
-                            db.SaveChanges();
-                            var newnewProdSup = db.ProductsSuppliers.Where(p => p.ProductId == productID && p.SupplierId == supplierID).FirstOrDefault();
-                            productSupplier = newnewProdSup;
+        //            if (ProdSup.FirstOrDefault() == null)
+        //            {
+        //                try
+        //                {
+        //                    ProductsSupplier newProdSup = new ProductsSupplier();
+        //                    newProdSup.ProductId = productID;
+        //                    newProdSup.SupplierId = supplierID;
+        //                    db.ProductsSuppliers.Add(newProdSup);
+        //                    db.SaveChanges();
+        //                    var newnewProdSup = db.ProductsSuppliers.Where(p => p.ProductId == productID && p.SupplierId == supplierID).FirstOrDefault();
+        //                    productSupplier = newnewProdSup;
 
-                        }
-                        catch (DbUpdateConcurrencyException ex)
-                        {
-                            HandleConcurrencyError(ex);
-                        }
-                        catch (DbUpdateException ex)
-                        {
-                            HandleDatabaseError(ex);
-                        }
-                        catch (Exception ex)
-                        {
-                            HandleGeneralError(ex);
-                        }
-                    }
+        //                }
+        //                catch (DbUpdateConcurrencyException ex)
+        //                {
+        //                    HandleConcurrencyError(ex);
+        //                }
+        //                catch (DbUpdateException ex)
+        //                {
+        //                    HandleDatabaseError(ex);
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    HandleGeneralError(ex);
+        //                }
+        //            }
 
-                    else
-                    {
-                        productSupplier = ProdSup.FirstOrDefault();
+        //            else
+        //            {
+        //                productSupplier = ProdSup.FirstOrDefault();
 
-                    }
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    HandleConcurrencyError(ex);
-                }
-                catch (DbUpdateException ex)
-                {
-                    HandleDatabaseError(ex);
-                }
-                catch (Exception ex)
-                {
-                    HandleGeneralError(ex);
-                }
-            }
-        }
+        //            }
+        //        }
+        //        catch (DbUpdateConcurrencyException ex)
+        //        {
+        //            HandleConcurrencyError(ex);
+        //        }
+        //        catch (DbUpdateException ex)
+        //        {
+        //            HandleDatabaseError(ex);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            HandleGeneralError(ex);
+        //        }
+        //    }
+        //}
 
         private void btnNewProdSupply_Click(object sender, EventArgs e)
         {
@@ -302,10 +305,6 @@ namespace Package_Manager
             this.Close();
         }
 
-        private void frmAddModProdSupp_Load_1(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
-

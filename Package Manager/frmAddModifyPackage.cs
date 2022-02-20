@@ -222,7 +222,7 @@ namespace Package_Manager
             else
             {
                 // Opens secondForm to add new product/supplier.
-                frmAddModifyProductSupplier secondForm = new frmAddModifyProductSupplier();
+                frmAddModProdSupp secondForm = new frmAddModProdSupp();
                 secondForm.isAdd = true; // Adding a product supplier
                 secondForm.productSupplier = null; // No product supplier selected
 
@@ -373,7 +373,7 @@ namespace Package_Manager
                 // Opens second form to change selected products/supplier supplier/product.
                 if (selectedProductSupplier != null)
                 {
-                    frmAddModifyProductSupplier secondForm = new frmAddModifyProductSupplier();
+                    frmAddModProdSupp secondForm = new frmAddModProdSupp();
                     secondForm.isAdd = false; // Tells second form that this is a modify action
                     secondForm.productSupplier = selectedProductSupplier;
 

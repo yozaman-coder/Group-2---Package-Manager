@@ -29,33 +29,15 @@ namespace Package_Manager
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstProducts = new System.Windows.Forms.ListBox();
-            this.lstSuppliers = new System.Windows.Forms.ListBox();
             this.btnAddProductToPackage = new System.Windows.Forms.Button();
             this.btnNewProduct = new System.Windows.Forms.Button();
             this.btnNewSupplier = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.dgvSuppliers = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lstProducts
-            // 
-            this.lstProducts.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lstProducts.FormattingEnabled = true;
-            this.lstProducts.ItemHeight = 27;
-            this.lstProducts.Location = new System.Drawing.Point(55, 38);
-            this.lstProducts.Name = "lstProducts";
-            this.lstProducts.Size = new System.Drawing.Size(520, 382);
-            this.lstProducts.TabIndex = 0;
-            // 
-            // lstSuppliers
-            // 
-            this.lstSuppliers.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lstSuppliers.FormattingEnabled = true;
-            this.lstSuppliers.ItemHeight = 27;
-            this.lstSuppliers.Location = new System.Drawing.Point(659, 38);
-            this.lstSuppliers.Name = "lstSuppliers";
-            this.lstSuppliers.Size = new System.Drawing.Size(520, 382);
-            this.lstSuppliers.TabIndex = 1;
             // 
             // btnAddProductToPackage
             // 
@@ -97,31 +79,54 @@ namespace Package_Manager
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // dgvProducts
+            // 
+            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProducts.Location = new System.Drawing.Point(26, 33);
+            this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.RowHeadersWidth = 62;
+            this.dgvProducts.RowTemplate.Height = 20;
+            this.dgvProducts.Size = new System.Drawing.Size(505, 375);
+            this.dgvProducts.TabIndex = 6;
+            this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
+            // 
+            // dgvSuppliers
+            // 
+            this.dgvSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSuppliers.Location = new System.Drawing.Point(612, 33);
+            this.dgvSuppliers.Name = "dgvSuppliers";
+            this.dgvSuppliers.RowHeadersWidth = 62;
+            this.dgvSuppliers.RowTemplate.Height = 20;
+            this.dgvSuppliers.Size = new System.Drawing.Size(591, 374);
+            this.dgvSuppliers.TabIndex = 7;
+            // 
             // frmAddModProdSupp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1242, 776);
+            this.Controls.Add(this.dgvSuppliers);
+            this.Controls.Add(this.dgvProducts);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnNewSupplier);
             this.Controls.Add(this.btnNewProduct);
             this.Controls.Add(this.btnAddProductToPackage);
-            this.Controls.Add(this.lstSuppliers);
-            this.Controls.Add(this.lstProducts);
             this.Name = "frmAddModProdSupp";
             this.Text = "frmAddModProdSupp";
-            this.Load += new System.EventHandler(this.frmAddModProdSupp_Load_1);
+            this.Load += new System.EventHandler(this.frmAddModProdSupp_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox lstProducts;
-        private System.Windows.Forms.ListBox lstSuppliers;
         private System.Windows.Forms.Button btnAddProductToPackage;
         private System.Windows.Forms.Button btnNewProduct;
         private System.Windows.Forms.Button btnNewSupplier;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.DataGridView dgvProducts;
+        private System.Windows.Forms.DataGridView dgvSuppliers;
     }
 }
