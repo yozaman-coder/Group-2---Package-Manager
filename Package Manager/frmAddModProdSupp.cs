@@ -1,7 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using ProductData;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,10 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using ProductData;
 
 namespace Package_Manager
 {
-    public partial class frmAddModifyProductSupplier : Form
+    public partial class frmAddModProdSupp : Form
     {
         public Product selectedProduct;
         private Supplier selectedSupplier;
@@ -23,35 +23,23 @@ namespace Package_Manager
         public bool isAdd;
         public int supplierID = 0;
         public int productID = 0;
-                
         // Brett - added public property to get selected product ID for use in frmAddModifyProduct
         public string SelectedProdID
-        {
-            get { return cboProductID.Text; }
-        }
-
+        {get { return cboProductID.Text; }}
         // Brett - added public property to get selected supplier ID for use in frmAddModifySupplier
         public string SelectedSupplierID
-        {
-            get { return cboSupplierID.Text; }
-        }
-
-        // Brett - added public property to get the combined ProductSupplier ID for use in frmAddModifyPackage
-        public string SelectedProdSupp
-        {
-            get { return lblProdSupID.Text; }
-        }
-
-        public frmAddModifyProductSupplier()
+        {get { return cboSupplierID.Text; }}
+        
+        public frmAddModProdSupp()
         {
             InitializeComponent();
         }
 
-        private void frmAddModifyProductSupplier_Load(object sender, EventArgs e)
+        private void frmAddModProdSupp_Load(object sender, EventArgs e)
         {
             DisplayProducts();
-            DisplaySuppliers();
-            if(isAdd)
+            //DisplaySuppliers();
+            if (isAdd)
             {
                 this.Text = "Add Product Supplier";
                 btnAddProductToPackage.Text = "Add product to package";
@@ -94,7 +82,6 @@ namespace Package_Manager
             frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
             addSupplierForm.AddSupplier = true;
             addSupplierForm.ShowDialog();
-            
         }
 
         private void btnNewProduct_Click(object sender, EventArgs e)
@@ -104,7 +91,7 @@ namespace Package_Manager
             addProductForm.AddProduct = true;
             addProductForm.ShowDialog();
         }
-        
+
 
         private void btnModifyProduct_Click(object sender, EventArgs e)
         {
@@ -112,12 +99,8 @@ namespace Package_Manager
             frmAddModifyProduct modForm = new frmAddModifyProduct();
             modForm.getselectedProdID = SelectedProdID;
             modForm.ShowDialog();
-            
-                
-                //AddProduct = false,
-                //Products = selectedProduct
         }
-        
+
 
         private void btnSupplierModify_Click(object sender, EventArgs e)
         {
@@ -134,21 +117,7 @@ namespace Package_Manager
             DisplayProductSupplier();
             frmAddPackage secondForm = new frmAddPackage();
             this.DialogResult = DialogResult.OK;
-            
         }
-                
-
-        //private void LoadSupplierData()
-        //{
-        //    supplier.SupplierId = cboSupplierID.SelectedIndex;
-        //    supplier.SupName = txtSupplierName.Text;
-        //}
-
-        //private void LoadProductData()
-        //{
-        //    product.ProductId = cboProductID.SelectedIndex;
-        //    product.ProdName = txtProductName.Text;
-        //}
 
 
         private void SelectProduct(int selectedProductID)
@@ -185,31 +154,44 @@ namespace Package_Manager
                     p.ProdName
                 }).ToList();
 
-                for (var i = 0; i < products.Count; i++)
-                {
-                    cboProductID.Items.Add(products[i].ProductId);
-                }
+                lstProducts.Items.Add(products);
             }
         }
 
+        //private void DisplaySuppliers()
+        //{
+        //    using (TravelExpertsContext db = new TravelExpertsContext())
+        //    {
+        //        var suppliers = db.Suppliers.Select(s => new
+        //        {
+        //            s.SupplierId,
+        //            s.SupName
+        //        }).ToList();
 
-        private void DisplaySuppliers()
+        //        for (var i = 0; i < suppliers.Count; i++)
+        //        {
+        //            cboSupplierID.Items.Add(suppliers[i].SupplierId);
+        //        }
+        //    }
+        //}
+        private static void JoinedProdSuppNames()
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                var suppliers = db.Suppliers.Select(s => new
-                {
-                    s.SupplierId,
-                    s.SupName
-                }).ToList();
-
-                for (var i = 0; i < suppliers.Count; i++)
-                {
-                    cboSupplierID.Items.Add(suppliers[i].SupplierId);
-                }
+                var joinedTable =
+                (from prodsupp in db.ProductsSuppliers
+                 join prod in db.Products on prodsupp.ProductId equals prod.ProductId
+                 join supp in db.Suppliers on prodsupp.SupplierId equals supp.SupplierId
+                 select new
+                 {
+                     ProductID = prod.ProductId,
+                     ProductName = prod.ProdName,
+                     SupplierID = supp.SupplierId,
+                     SupplierName = supp.SupName
+                 }).ToList();
             }
-        }
 
+        }
         private void DisplayProductSupplier()
         {
             supplierID = Convert.ToInt32(cboSupplierID.Text);
@@ -221,10 +203,10 @@ namespace Package_Manager
                 try
                 {
                     var ProdSup = (from ps in db.ProductsSuppliers
-                                  where ps.ProductId == productID
-                                  where ps.SupplierId == supplierID
-                                  select ps);
-                    
+                                   where ps.ProductId == productID &&
+                                   ps.SupplierId == supplierID
+                                   select ps);
+
                     if (ProdSup.FirstOrDefault() == null)
                     {
                         try
@@ -236,7 +218,7 @@ namespace Package_Manager
                             db.SaveChanges();
                             var newnewProdSup = db.ProductsSuppliers.Where(p => p.ProductId == productID && p.SupplierId == supplierID).FirstOrDefault();
                             productSupplier = newnewProdSup;
-                            
+
                         }
                         catch (DbUpdateConcurrencyException ex)
                         {
@@ -252,9 +234,10 @@ namespace Package_Manager
                         }
                     }
 
-                    else {
-                        productSupplier = ProdSup.FirstOrDefault();   
-                        
+                    else
+                    {
+                        productSupplier = ProdSup.FirstOrDefault();
+
                     }
                 }
                 catch (DbUpdateConcurrencyException ex)
@@ -296,8 +279,8 @@ namespace Package_Manager
 
         private void HandleConcurrencyError(DbUpdateConcurrencyException ex)
         {
-            
-            using(TravelExpertsContext context = new TravelExpertsContext())
+
+            using (TravelExpertsContext context = new TravelExpertsContext())
             {
                 ex.Entries.Single().Reload();
                 var state = context.Entry(selectedProduct).State;
@@ -310,120 +293,19 @@ namespace Package_Manager
                     string message = "another user has updated selected product.\n" + "the current database values will be displayed.";
                     MessageBox.Show(message, "concurrency error");
                 }
-            }  
+            }
             this.DisplayProducts();
-        }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            DisplayProducts();
-            DisplaySuppliers();
-
-        }
-
-        private void btnCheckProdSup_Click(object sender, EventArgs e)
-        {
-            DisplayProductSupplier();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        private void frmAddModProdSupp_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-//frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
-//addSupplierForm.AddSupplier = true;
-//DialogResult result = addSupplierForm.ShowDialog();
-//if (result == DialogResult.OK)
-//{
-//    try
-//    {
-//        selectedSupplier = addSupplierForm.Suppliers;
-//        context.Suppliers.Add(selectedSupplier);
-//        context.SaveChanges();
-//        this.DisplaySuppliers();
-//    }
 
-//    catch (DbUpdateException ex)
-//    {
-//        HandleDatabaseError(ex);
-//    }
-//    catch (Exception ex)
-//    {
-//        HandleGeneralError(ex);
-//    }
-//}
-
-//DialogResult result = addProductForm.ShowDialog();
-//if (result == DialogResult.OK)
-//{
-//    try
-//    {
-//        selectedProduct = addProductForm.Products;
-//        context.Products.Add(selectedProduct);
-//        context.SaveChanges();
-//        this.DisplayProducts();
-//    }
-
-//    catch (DbUpdateException ex)
-//    {
-//        HandleDatabaseError(ex);
-//    }
-//    catch (Exception ex)
-//    {
-//        HandleGeneralError(ex);
-//    }
-
-
-//DialogResult result = addModifyProductForm.ShowDialog();
-//    if (result == DialogResult.OK)
-//    {
-//        try
-//        {
-//            selectedProduct = addModifyProductForm.Products; // Brett - I think this needs to work the other way around. The selectedProduct needs to come from this form, then it can be modified via frmAddModifyProduct. Do you agree?
-//            context.SaveChanges();
-//            DisplayProducts();
-//        }
-//        catch (DbUpdateConcurrencyException ex)
-//        {
-//            HandleConcurrencyError(ex);
-//        }
-//        catch (DbUpdateException ex)
-//        {
-//            HandleDatabaseError(ex);
-//        }
-//        catch (Exception ex)
-//        {
-//            HandleGeneralError(ex);
-//        }
-//    }
-
-//var addModifySupplierForm = new frmAddModifySupplier()
-//{
-//    AddSupplier = false,
-//    Suppliers = selectedSupplier
-//};
-
-//DialogResult result = addModifySupplierForm.ShowDialog();
-//if (result == DialogResult.OK)
-//{
-//    try
-//    {
-//        selectedSupplier = addModifySupplierForm.Suppliers;
-//        context.SaveChanges();
-//        DisplaySuppliers();
-//    }
-//            catch (DbUpdateConcurrencyException ex)
-//            {
-//                HandleConcurrencyError(ex);
-//    }
-//            catch (DbUpdateException ex)
-//            {
-//                HandleDatabaseError(ex);
-//}
-//            catch (Exception ex)
-//{
-//    HandleGeneralError(ex);
-//}
-//}
