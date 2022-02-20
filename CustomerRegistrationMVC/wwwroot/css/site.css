@@ -1,21 +1,7 @@
 ﻿
-
-
 /*CSS Mostly done By Brendan, Im not sure who else added to it*/
 
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-/* Sticky footer styles
--------------------------------------------------- */
 html {
     font-size: 14px;
     position: relative;
@@ -58,7 +44,7 @@ body {
     background-color: rgba(0,0,0,0.3);
     color: white;
     border: 4px ridge rgba(100, 149, 237, 0.6);
-    padding-bottom: 1em;
+    padding-bottom: 0.5em;
     padding-top: 1.5em;
     padding-right: 2em;
     padding-left: 2em;
@@ -121,10 +107,14 @@ body {
 /*navbar*/
 nav {
     width: 100%;
-    height: 103px;
+    height: 7.6rem;
     background-color: rgba(0,0,0,0.3);
     border: 4px ridge rgba(100, 149, 237, 0.6);
 }
+.nav-link{
+    color:White;
+}
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -134,7 +124,6 @@ a.navbar-brand {
 .navbar-text {
     font-size: 15px;
     float: right;
-    padding-top: -50px;
 }
 
 .navbar a {
@@ -148,8 +137,7 @@ a.navbar-brand {
 
 li a:hover {
     background-color: rgba(100, 149, 237, 0.6);
-    border-radius: 45%;
-    
+    border-radius: 35px;
 }
 
 li a {

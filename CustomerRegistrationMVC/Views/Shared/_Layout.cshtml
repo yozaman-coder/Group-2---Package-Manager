@@ -15,19 +15,24 @@
         <h1 class="@(TempData["IsError"] != null?"bg-danger":"bg-info") text-center bg- text-white p-2">@TempData["Message"]</h1>
     }
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/Img/logo.png" style="width:auto; height:6rem;"></a>
-                    <ul>
-                        <li class="navbar-brand">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="navbar-brand">
-                            <a class="nav-link" asp-controller="Package" asp-action="Index">View Packages</a>
-                        </li>
-                        <li class="navbar-brand"><partial name="_LoginPartial" /></li>
-                    </ul>
-                </div>
+        <nav>
+            <ul>
+                <li class="navbar-brand align-text-center"> 
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/Img/logo.png" style="width:auto; height:6rem;">
+                    </a></li>
+
+                <li class="navbar-brand align-text-center">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+
+                <li class="navbar-brand align-text-center">
+                    <a class="nav-link" asp-controller="Package" asp-action="Index">View Packages</a>
+                </li>
+
+                <li class="navbar-brand">
+                    <partial name="_LoginPartial" />
+                </li>
+            </ul>
         </nav>
     </header>
     <div class="container">
