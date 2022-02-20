@@ -68,7 +68,7 @@ namespace Package_Manager
 
                 dgvListProducts.DataSource = products; /* gets the entries stored in the products local variable and sets 
                                                         * them as the DataGridView's datasource. */
-                                
+                dgvListProducts.RowHeadersVisible = false;
                 dgvListProducts.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold); //setting DGV's header font 
                 
                 // format the first column

@@ -58,6 +58,7 @@ namespace Package_Manager
             this.btnNewProduct.TabIndex = 3;
             this.btnNewProduct.Text = "Add New Product";
             this.btnNewProduct.UseVisualStyleBackColor = true;
+            this.btnNewProduct.Click += new System.EventHandler(this.btnNewProduct_Click_1);
             // 
             // btnNewSupplier
             // 
@@ -68,6 +69,7 @@ namespace Package_Manager
             this.btnNewSupplier.TabIndex = 4;
             this.btnNewSupplier.Text = "Add New Supplier";
             this.btnNewSupplier.UseVisualStyleBackColor = true;
+            this.btnNewSupplier.Click += new System.EventHandler(this.btnNewSupplier_Click_1);
             // 
             // btnCancel
             // 

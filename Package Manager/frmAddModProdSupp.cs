@@ -89,20 +89,20 @@ namespace Package_Manager
                 return suppliers;
             }
         }
-        private void btnNewSupplier_Click(object sender, EventArgs e)
-        {
-            // Brett - modified to redirect to frmAddModifySupplier for addition of new supplier
-            frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
-            addSupplierForm.AddSupplier = true;
-            addSupplierForm.ShowDialog();
-        }
-
-        private void btnNewProduct_Click(object sender, EventArgs e)
+        private void btnNewProduct_Click_1(object sender, EventArgs e)
         {
             // Brett - changed this to have the new product function moved to the AddModifyProduct form
             frmAddModifyProduct addProductForm = new frmAddModifyProduct();
             addProductForm.AddProduct = true;
             addProductForm.ShowDialog();
+        }
+
+        private void btnNewSupplier_Click_1(object sender, EventArgs e)
+        {
+            // Brett - modified to redirect to frmAddModifySupplier for addition of new supplier
+            frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
+            addSupplierForm.AddSupplier = true;
+            addSupplierForm.ShowDialog();
         }
 
 
@@ -305,6 +305,15 @@ namespace Package_Manager
             this.Close();
         }
 
-        
+        private void btnNewProduct_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNewSupplier_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
