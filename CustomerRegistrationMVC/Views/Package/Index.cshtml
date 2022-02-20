@@ -14,7 +14,7 @@
         </h4>
     </div>
 </section>
-<table class="d-block table2" >
+<table class="d-block table-package" >
     <thead>
         <tr>
             <th>
@@ -24,8 +24,8 @@
                 @Html.DisplayNameFor(model => model.PkgName)
             </th>
             @*<th>
-                    @Html.DisplayNameFor(model => model.PkgStartDate)
-                </th>*@
+            @Html.DisplayNameFor(model => model.PkgStartDate)
+        </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.PkgEndDate)
             </th>
@@ -36,11 +36,14 @@
                 @Html.DisplayNameFor(model => model.PkgBasePrice)
             </th>
             <th>
-
+                Detail
+            </th>
+            <th>
+                Book
             </th>
             @*<th>
-                    @Html.DisplayNameFor(model => model.PkgAgencyCommission)
-                </th>*@
+            @Html.DisplayNameFor(model => model.PkgAgencyCommission)
+        </th>*@
 
         </tr>
     </thead>
@@ -69,10 +72,13 @@
                 @*<td>
                         @Html.DisplayFor(modelItem => item.PkgAgencyCommission)
                     </td>*@
-                <td>
-                    @Html.ActionLink("View package details", "Details", "Package", new { id = item.PackageId }) |
-                    @Html.ActionLink("Book this package.", "Create", "Booking", new { id = item.PackageId, pageTracker = 1 })
-                </td>
+            <td>
+                <input class="button-pkg" type="button" value="Details" onclick="location.href='@Url.Action("Details","Package", new { id = item.PackageId })'" />
+
+            </td>
+            <td>
+                <input class="button-pkg" type="button" value="Book Now!" onclick="location.href='@Url.Action("Create","Booking", new { id = item.PackageId, pageTracker = 1})'" />
+            </td>
             </tr>
         }
     </tbody>

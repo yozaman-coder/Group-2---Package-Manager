@@ -54,6 +54,15 @@ body {
     color: white;
     border: 4px ridge rgba(100, 149, 237, 0.6);
 }
+.jumbotron-register {
+    background-color: rgba(0,0,0,0.3);
+    color: white;
+    border: 4px ridge rgba(100, 149, 237, 0.6);
+    padding-bottom: 1em;
+    padding-top: 1.5em;
+    padding-right: 2em;
+    padding-left: 2em;
+}
 
 .jumbotron-title {
     color: white;
@@ -71,7 +80,7 @@ body {
 .jumbotron-subtitle {
     font-size: 25px;
 }
-.jumbotron-register {
+.register-title {
     color: white;
     font-size: 50px;
 }
@@ -90,6 +99,8 @@ body {
     padding-left: 15px;
     padding-top: 15px;
     padding-right: 15px;
+    width:50%;
+    transform: translate(50%);
 }
 .jumbotron-package {
     background-color: rgba(0,0,0,0.3);
@@ -97,6 +108,15 @@ body {
     border: 4px ridge rgba(100, 149, 237, 0.6);
     padding-left:20px;
     padding-top:5px;
+}
+.jumbotron-login {
+    background-color: rgba(0,0,0,0.3);
+    color: white;
+    border: 4px ridge rgba(100, 149, 237, 0.6);
+    padding-bottom:1.5em;
+    padding-top:1.5em;
+    padding-right:2em;
+    padding-left:2em;
 }
 /*navbar*/
 nav {
@@ -155,6 +175,11 @@ table {
 .container {
     width: fit-content;
     align-content: center;
+}
+
+/*login form*/
+.container-login {
+    transform: translate(25%);
 }
 
 tr:nth-child(even):hover {
@@ -230,9 +255,116 @@ td {
         text-decoration: none;
     }
 
+    /*login buttons*/
+.button-login {
+    background: #73A8FF;
+    background-image: -webkit-linear-gradient(top, #73A8FF, #00234C);
+    background-image: -moz-linear-gradient(top, #73A8FF, #00234C);
+    background-image: -o-linear-gradient(top, #73A8FF, #00234C);
+    background-image: -webkit-gradient(to bottom, #73A8FF, #00234C);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-family: Verdana;
+    font-size: 19px;
+    font-weight: 100;
+    padding: 10px;
+    text-shadow: 1px 1px 3px #000000;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+    .button-login:hover {
+        background: #00234C;
+        background-image: -webkit-linear-gradient(top, #00234C, #73A8FF);
+        background-image: -moz-linear-gradient(top, #00234C, #73A8FF);
+        background-image: -o-linear-gradient(top, #00234C, #73A8FF);
+        background-image: -webkit-gradient(to bottom, #00234C, #73A8FF);
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        text-decoration: none;
+    }
+/* detail Button*/
+.button-detail {
+    background: #73A8FF;
+    background-image: -webkit-linear-gradient(top, #73A8FF, #00234C);
+    background-image: -moz-linear-gradient(top, #73A8FF, #00234C);
+    background-image: -o-linear-gradient(top, #73A8FF, #00234C);
+    background-image: -webkit-gradient(to bottom, #73A8FF, #00234C);
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    color: #FFFFFF;
+    font-family: Verdana;
+    font-size: 20px;
+    font-weight: 100;
+    padding: 2px;
+    text-shadow: 1px 1px 3px #000000;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+    .button-detail:hover {
+        background: #00234C;
+        background-image: -webkit-linear-gradient(top, #00234C, #73A8FF);
+        background-image: -moz-linear-gradient(top, #00234C, #73A8FF);
+        background-image: -o-linear-gradient(top, #00234C, #73A8FF);
+        background-image: -webkit-gradient(to bottom, #00234C, #73A8FF);
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        text-decoration: none;
+    }
+/* available packages Buttons*/
+.button-pkg {
+    background: #73A8FF;
+    background-image: -webkit-linear-gradient(top, #73A8FF, #00234C);
+    background-image: -moz-linear-gradient(top, #73A8FF, #00234C);
+    background-image: -o-linear-gradient(top, #73A8FF, #00234C);
+    background-image: -webkit-gradient(to bottom, #73A8FF, #00234C);
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    color: #FFFFFF;
+    font-family: Verdana;
+    font-size: 20px;
+    font-weight: 100;
+    padding: 2px;
+    text-shadow: 1px 1px 3px #000000;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+    .button-pkg:hover {
+        background: #00234C;
+        background-image: -webkit-linear-gradient(top, #00234C, #73A8FF);
+        background-image: -moz-linear-gradient(top, #00234C, #73A8FF);
+        background-image: -o-linear-gradient(top, #00234C, #73A8FF);
+        background-image: -webkit-gradient(to bottom, #00234C, #73A8FF);
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        text-decoration: none;
+    }
+
   /*Centers register buttons*/
-.center2 {
-    transform: translate(12%, 12%);
+.center-register-btn {
+    transform: translate(25%);
+}
+/*Centers create booking buttons*/
+.center-booking-btn {
+    transform: translate(10%, 10%);
+}
+.center-booking-details {
+    transform: translate(25%);
 }
 /*home BODY2 css*/
 
@@ -256,11 +388,12 @@ body2 {
     padding: 20px;
     color: white;
 }
-/*Centers package detail buttons*/
-.center3 {
+/*Centers package details*/
+.center-package {
     transform: translate(35%, 35%);
 }
-.table2 {
+/*package table*/
+.table-package {
     font-size: 0.9em;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     height: auto;

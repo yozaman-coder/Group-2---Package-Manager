@@ -46,7 +46,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Package.PkgBasePrice)
             </th>
-            <th></th>
+            <th>
+                Details
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -72,8 +74,14 @@
                     @Html.DisplayFor(modelItem => item.TripType.Ttname)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Package.PkgName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Package.PkgBasePrice)
+                </td>
+                <td>
                     @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
-                    @Html.ActionLink("Details", "Details", "Package", new { id = item.PackageId, pageTracker = 1 })
+                    <input class="button-detail" type="button" value="Details" onclick="location.href='@Url.Action("Details","Package", new { id = item.PackageId, pageTracker = 1 } )'" />
                     @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                 </td>
             </tr>
