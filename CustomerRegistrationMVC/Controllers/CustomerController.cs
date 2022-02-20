@@ -11,6 +11,7 @@ using System.Data.Common;
 using System.Collections;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using CustomerRegistrationMVC.Models;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace CustomerRegistrationMVC.Controllers
 {
@@ -90,18 +91,21 @@ namespace CustomerRegistrationMVC.Controllers
                 if(HttpContext.Session.GetInt32("CurrentCustomer") != null)
                 {
                     ViewBag.CustomerID = HttpContext.Session.GetInt32("CurrentCustomer");
-                    customer = CustomerManager.GetCustomerById(ViewBag.CustomerID);
+                    customer.Customer = CustomerManager.GetCustomerById(ViewBag.CustomerID);
                     ViewBag.CustomerEmail = customer.Customer.CustEmail;
                 }
                 ViewBag.Provinces = GetProvinces();
-                if (TempData["WrongPassOrEmail"] != null)
-                {
-                    customer = (CustomerWithCheckModel)TempData["WrongPassOrEmail"];
-                }
                 return View(customer);
             }
-            catch (Exception)
+            catch (DbException)
             {
+                TempData["IsError"] = true;
+                TempData["Message"] = "Database connection error. Try again later...";
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
                 TempData["IsError"] = true;
                 TempData["Message"] = "Database connection error. Try again later...";
                 return RedirectToAction("Index", "Home");
@@ -139,21 +143,29 @@ namespace CustomerRegistrationMVC.Controllers
             {
                 try
                 {
-                    bool dbEmail = CustomerManager.SearchForCustEmail(newCustomer.Customer.CustEmail);
-                    if (newCustomer.Customer.CustPassword == newCustomer.PassCheck && dbEmail != true)
+                    int CustID = newCustomer.Customer.CustomerId;
+                    if (CustID != 0)
                     {
-                        int CustID = newCustomer.Customer.CustomerId;
-                        if (CustID != 0)
+                        if(newCustomer.Customer.CustPassword != newCustomer.PassCheck)
+                        {
+                            TempData["IsError"] = true;
+                            ViewBag.Provinces = GetProvinces();
+                            ViewBag.CustomerID = HttpContext.Session.GetInt32("CurrentCustomer");
+                            TempData["Message"] = "Passwords are not the same!";
+                            return View(newCustomer);
+                        }
+                        else
                         {
                             CustomerManager.UpdateCustomer(newCustomer.Customer);
                             return RedirectToAction("Index", "Home");
                         }
-                        else
-                        {
-                            //Adds customer with the form data
-                            CustomerManager.AddCustomer(newCustomer.Customer);
-                            return RedirectToAction("Index", "Home");
-                        }
+                    }
+                    bool dbEmail = CustomerManager.SearchForCustEmail(newCustomer.Customer.CustEmail);
+                    if (newCustomer.Customer.CustPassword == newCustomer.PassCheck && dbEmail != true)
+                    {
+                        //Adds customer with the form data
+                        CustomerManager.AddCustomer(newCustomer.Customer);
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -177,6 +189,14 @@ namespace CustomerRegistrationMVC.Controllers
                     TempData["Message"] = "Database connection error. Try again later...";
                     return RedirectToAction("Index", "Home");
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    TempData["IsError"] = true;
+                    TempData["Message"] = "Database connection error. Try again later...";
+                    return RedirectToAction("Index", "Home");
+                }
+                
             }
             else
             {
