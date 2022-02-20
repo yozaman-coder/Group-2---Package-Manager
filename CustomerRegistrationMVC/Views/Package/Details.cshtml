@@ -13,7 +13,7 @@
     <div class="jumbotron-package">
         <dl>
             <dt class="row">
-                @Html.DisplayNameFor(model => model.PackageId):
+                Package ID:
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.PackageId)
@@ -37,7 +37,7 @@
                 @Html.DisplayFor(model => model.PkgEndDate)
             </dd>
             <dt class="row">
-                @Html.DisplayNameFor(model => model.PkgDesc):
+                Description:
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.PkgDesc)
@@ -64,7 +64,7 @@
             }
         }
 </div>
-<div class="center3">
+<div class="center-package">
     @if (ViewBag.PageTracker == 1)
     {
         <input class="button1" type="button" value="Back" onclick="location.href='@Url.Action("Index","Booking")'" />
