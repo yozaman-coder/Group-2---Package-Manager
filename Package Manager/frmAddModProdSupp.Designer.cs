@@ -42,17 +42,18 @@ namespace Package_Manager
             // btnAddProductToPackage
             // 
             this.btnAddProductToPackage.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAddProductToPackage.Location = new System.Drawing.Point(484, 477);
+            this.btnAddProductToPackage.Location = new System.Drawing.Point(492, 562);
             this.btnAddProductToPackage.Name = "btnAddProductToPackage";
-            this.btnAddProductToPackage.Size = new System.Drawing.Size(258, 95);
+            this.btnAddProductToPackage.Size = new System.Drawing.Size(244, 85);
             this.btnAddProductToPackage.TabIndex = 2;
             this.btnAddProductToPackage.Text = "Add Product-Supplier to Package";
             this.btnAddProductToPackage.UseVisualStyleBackColor = true;
+            this.btnAddProductToPackage.Click += new System.EventHandler(this.btnAddProductToPackage_Click_1);
             // 
             // btnNewProduct
             // 
             this.btnNewProduct.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnNewProduct.Location = new System.Drawing.Point(55, 477);
+            this.btnNewProduct.Location = new System.Drawing.Point(57, 562);
             this.btnNewProduct.Name = "btnNewProduct";
             this.btnNewProduct.Size = new System.Drawing.Size(201, 87);
             this.btnNewProduct.TabIndex = 3;
@@ -63,7 +64,7 @@ namespace Package_Manager
             // btnNewSupplier
             // 
             this.btnNewSupplier.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnNewSupplier.Location = new System.Drawing.Point(978, 477);
+            this.btnNewSupplier.Location = new System.Drawing.Point(991, 562);
             this.btnNewSupplier.Name = "btnNewSupplier";
             this.btnNewSupplier.Size = new System.Drawing.Size(201, 87);
             this.btnNewSupplier.TabIndex = 4;
@@ -74,9 +75,9 @@ namespace Package_Manager
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCancel.Location = new System.Drawing.Point(484, 633);
+            this.btnCancel.Location = new System.Drawing.Point(505, 693);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(258, 95);
+            this.btnCancel.Size = new System.Drawing.Size(226, 59);
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -88,7 +89,7 @@ namespace Package_Manager
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowHeadersWidth = 62;
             this.dgvProducts.RowTemplate.Height = 20;
-            this.dgvProducts.Size = new System.Drawing.Size(505, 375);
+            this.dgvProducts.Size = new System.Drawing.Size(505, 466);
             this.dgvProducts.TabIndex = 6;
             this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
             // 
@@ -99,8 +100,9 @@ namespace Package_Manager
             this.dgvSuppliers.Name = "dgvSuppliers";
             this.dgvSuppliers.RowHeadersWidth = 62;
             this.dgvSuppliers.RowTemplate.Height = 20;
-            this.dgvSuppliers.Size = new System.Drawing.Size(591, 374);
+            this.dgvSuppliers.Size = new System.Drawing.Size(591, 466);
             this.dgvSuppliers.TabIndex = 7;
+            this.dgvSuppliers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSuppliers_CellContentClick);
             // 
             // frmAddModProdSupp
             // 

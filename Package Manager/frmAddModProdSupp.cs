@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* Add/Modify ProductSupplier Form
+ * Author: Brett Dawson
+ * Date: Jan-Feb, 2022
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,20 +20,22 @@ namespace Package_Manager
     public partial class frmAddModProdSupp : Form
     {
         public Product selectedProduct;
-        private Supplier selectedSupplier;
+        public Supplier selectedSupplier;
         public Product product;
         public Supplier supplier;
         public ProductsSupplier productSupplier;
         public bool isAdd;
         public int supplierID = 0;
         public int productID = 0;
+        public int selectedProdID = 1;
+        public int selectedSuppID = 1;
         // Brett - added public property to get selected product ID for use in frmAddModifyProduct
         public int SelectedProdID
-        { get; set; }
+        { get { return selectedProdID; } }
     
         // Brett - added public property to get selected supplier ID for use in frmAddModifySupplier
-        //public string SelectedSupplierID
-        //{get { return ; }}
+        public int SelectedSupplierID
+        { get { return selectedSuppID; } }
         
         public frmAddModProdSupp()
         {
@@ -39,7 +45,7 @@ namespace Package_Manager
         private void frmAddModProdSupp_Load(object sender, EventArgs e)
         {
             DisplayProducts();
-            //DisplaySuppliers();
+            
             if (isAdd)
             {
                 this.Text = "Add Product Supplier";
@@ -54,22 +60,19 @@ namespace Package_Manager
                     MessageBox.Show("There is no product supplier selected!", "Modify Error");
                     this.Close();
                 }
-                // Display current product supplier
-                //dgvProducts = productSupplier.ProductId;
-                //dgvSuppliers = productSupplier.SupplierId;
             }
         }
 
         private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int selectedIndex = (int)dgvProducts.Rows[e.RowIndex].Cells[0].Value;
+            int selectedIndex_Prod = (int)dgvProducts.Rows[e.RowIndex].Cells[0].Value;
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                var selectedProduct = db.Products.Find(selectedIndex);
-                int selectedProdID = selectedProduct.ProductId;
+                var selectedProduct = db.Products.Find(selectedIndex_Prod);
+                selectedProdID = selectedProduct.ProductId;
             }
             
-            dgvSuppliers.DataSource = SelectSuppFromProdID(selectedIndex);
+            dgvSuppliers.DataSource = SelectSuppFromProdID(selectedProdID);
             dgvSuppliers.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
             dgvSuppliers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSuppliers.MultiSelect = false;
@@ -105,7 +108,16 @@ namespace Package_Manager
             addSupplierForm.ShowDialog();
         }
 
-
+        private void dgvSuppliers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int selectedIndex_Supp = (int)dgvSuppliers.Rows[e.RowIndex].Cells[0].Value;
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var selectedSupp = db.Suppliers.Find(selectedIndex_Supp);
+                selectedSuppID = selectedSupp.SupplierId;
+            }
+            
+        }
         private void btnModifyProduct_Click(object sender, EventArgs e)
         {
             // Brett - changed this to have the modify product function moved to the AddModifyProduct form
@@ -121,39 +133,6 @@ namespace Package_Manager
             frmAddModifySupplier modForm = new frmAddModifySupplier();
             //modForm.getselectedSupplierID = SelectedSupplierID;
             modForm.ShowDialog();
-        }
-
-        private void btnAddProductToPackage_Click(object sender, EventArgs e)
-        {
-            // Brett - added code for this method, it was incomplete. Now creates a new instance of the AddPackage class/form and passes the Selected ProductSupplier ID to it via the new public property SelectedProdSupp. 
-            //DisplayProductSupplier();
-            frmAddPackage addToPackage = new frmAddPackage();
-            this.DialogResult = DialogResult.OK;
-        }
-
-
-        //private void SelectProduct(int selectedProductID)
-        //{
-        //    using (TravelExpertsContext db = new TravelExpertsContext())
-        //    {
-        //        // Load selected product using selected product ID
-        //        selectedProduct = db.Products.Find(selectedProductID);
-        //    }
-        //    // Display product information
-        //    int selectedProduct = dgvProducts.Rows.ProductId.ToString();
-        //    //txtProductName.Text = selectedProduct.ProdName;
-        //}
-
-        private void SelectSupplier(int selectedSupplierID)
-        {
-            using (TravelExpertsContext db = new TravelExpertsContext())
-            {
-                // Load selected product using selected product ID
-                selectedSupplier = db.Suppliers.Find(selectedSupplierID);
-            }
-            // Display product information
-            //cboSupplierID.Text = selectedSupplier.SupplierId.ToString();
-            //txtSupplierName.Text = selectedSupplier.SupName;
         }
 
         private void DisplayProducts()
@@ -176,93 +155,71 @@ namespace Package_Manager
             dgvProducts.ColumnHeadersDefaultCellStyle.Font = new Font("Consolas", 10, FontStyle.Bold);
             dgvProducts.Columns[dgvProducts.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-               
-        private void JoinedProdSuppNames()
+
+        private void DisplayProductSupplier()
         {
+            productID = selectedProdID;
+            supplierID = selectedSuppID;
+
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                var joinedTable =
-                (from prodsupp in db.ProductsSuppliers
-                 join prod in db.Products on prodsupp.ProductId equals prod.ProductId
-                 join supp in db.Suppliers on prodsupp.SupplierId equals supp.SupplierId
-                 select new
-                 {
-                     ProductID = prod.ProductId,
-                     ProductName = prod.ProdName,
-                     SupplierID = supp.SupplierId,
-                     SupplierName = supp.SupName
-                 }).ToList();
+                try
+                {
+                    var ProdSup = (from ps in db.ProductsSuppliers
+                                   where ps.ProductId == productID &&
+                                   ps.SupplierId == supplierID
+                                   select ps);
+                    if (ProdSup.FirstOrDefault() == null)
+                    {
+                        try
+                        {
+                            ProductsSupplier newProdSup = new ProductsSupplier();
+                            newProdSup.ProductId = productID;
+                            newProdSup.SupplierId = supplierID;
+                            db.ProductsSuppliers.Add(newProdSup);
+                            db.SaveChanges();
+                            var newnewProdSup = db.ProductsSuppliers.Where(p => p.ProductId == productID && p.SupplierId == supplierID).FirstOrDefault();
+                            productSupplier = newnewProdSup;
+                        }
+                        catch (DbUpdateConcurrencyException ex)
+                        {HandleConcurrencyError(ex);}
+                        catch (DbUpdateException ex)
+                        {HandleDatabaseError(ex);}
+                        catch (Exception ex)
+                        {HandleGeneralError(ex);}
+                    }
+                    else
+                    {
+                        productSupplier = ProdSup.FirstOrDefault();
+                    }
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    HandleConcurrencyError(ex);
+                }
+                catch (DbUpdateException ex)
+                {
+                    HandleDatabaseError(ex);
+                }
+                catch (Exception ex)
+                {
+                    HandleGeneralError(ex);
+                }
             }
         }
-        
-        //private void DisplayProductSupplier()
-        //{
-        //    supplierID = Convert.ToInt32(lstSuppliers.SelectedItem.ToString());
-        //    productID = Convert.ToInt32(lstProducts.SelectedItem.ToString());
 
-
-        //    using (TravelExpertsContext db = new TravelExpertsContext())
-        //    {
-        //        try
-        //        {
-        //            var ProdSup = (from ps in db.ProductsSuppliers
-        //                           where ps.ProductId == productID &&
-        //                           ps.SupplierId == supplierID
-        //                           select ps);
-
-        //            if (ProdSup.FirstOrDefault() == null)
-        //            {
-        //                try
-        //                {
-        //                    ProductsSupplier newProdSup = new ProductsSupplier();
-        //                    newProdSup.ProductId = productID;
-        //                    newProdSup.SupplierId = supplierID;
-        //                    db.ProductsSuppliers.Add(newProdSup);
-        //                    db.SaveChanges();
-        //                    var newnewProdSup = db.ProductsSuppliers.Where(p => p.ProductId == productID && p.SupplierId == supplierID).FirstOrDefault();
-        //                    productSupplier = newnewProdSup;
-
-        //                }
-        //                catch (DbUpdateConcurrencyException ex)
-        //                {
-        //                    HandleConcurrencyError(ex);
-        //                }
-        //                catch (DbUpdateException ex)
-        //                {
-        //                    HandleDatabaseError(ex);
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    HandleGeneralError(ex);
-        //                }
-        //            }
-
-        //            else
-        //            {
-        //                productSupplier = ProdSup.FirstOrDefault();
-
-        //            }
-        //        }
-        //        catch (DbUpdateConcurrencyException ex)
-        //        {
-        //            HandleConcurrencyError(ex);
-        //        }
-        //        catch (DbUpdateException ex)
-        //        {
-        //            HandleDatabaseError(ex);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            HandleGeneralError(ex);
-        //        }
-        //    }
-        //}
+        private void btnAddProductToPackage_Click_1(object sender, EventArgs e)
+        {
+            // Brett - added code for this method, it was incomplete. Now creates a new instance of the AddPackage class/form and passes the Selected ProductSupplier ID to it via the new public property SelectedProdSupp. 
+            DisplayProductSupplier();
+            frmAddPackage addToPackage = new frmAddPackage();
+            this.DialogResult = DialogResult.OK;
+        }
 
         private void btnNewProdSupply_Click(object sender, EventArgs e)
         {
             return;
         }
-
 
         private void HandleGeneralError(Exception ex)
         {
@@ -299,21 +256,51 @@ namespace Package_Manager
             }
             this.DisplayProducts();
         }
-
+        private void JoinedProdSuppNames()
+        {
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                var joinedTable =
+                (from prodsupp in db.ProductsSuppliers
+                 join prod in db.Products on prodsupp.ProductId equals prod.ProductId
+                 join supp in db.Suppliers on prodsupp.SupplierId equals supp.SupplierId
+                 select new
+                 {
+                     ProductID = prod.ProductId,
+                     ProductName = prod.ProdName,
+                     SupplierID = supp.SupplierId,
+                     SupplierName = supp.SupName
+                 }).ToList();
+            }
+        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnNewProduct_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnNewSupplier_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
     }
 }
+//private void SelectProduct(int selectedProductID)
+//{
+//    using (TravelExpertsContext db = new TravelExpertsContext())
+//    {
+//        // Load selected product using selected product ID
+//        selectedProduct = db.Products.Find(selectedProductID);
+//    }
+//    // Display product information
+//    int selectedProduct = dgvProducts.Rows.ProductId.ToString();
+//    //txtProductName.Text = selectedProduct.ProdName;
+//}
+
+//private void SelectSupplier(int selectedSupplierID)
+//{
+//    using (TravelExpertsContext db = new TravelExpertsContext())
+//    {
+//        // Load selected product using selected product ID
+//        selectedSupplier = db.Suppliers.Find(selectedSupplierID);
+//    }
+//    // Display product information
+//    //cboSupplierID.Text = selectedSupplier.SupplierId.ToString();
+//    //txtSupplierName.Text = selectedSupplier.SupName;
+//}
