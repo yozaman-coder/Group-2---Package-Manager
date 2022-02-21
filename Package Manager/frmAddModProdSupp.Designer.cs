@@ -84,6 +84,7 @@ namespace Package_Manager
             // 
             // dgvProducts
             // 
+            this.dgvProducts.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Location = new System.Drawing.Point(26, 33);
             this.dgvProducts.Name = "dgvProducts";
@@ -95,6 +96,7 @@ namespace Package_Manager
             // 
             // dgvSuppliers
             // 
+            this.dgvSuppliers.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSuppliers.Location = new System.Drawing.Point(612, 33);
             this.dgvSuppliers.Name = "dgvSuppliers";
@@ -108,6 +110,8 @@ namespace Package_Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Package_Manager.Properties.Resources.BackgroundImage;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1242, 776);
             this.Controls.Add(this.dgvSuppliers);

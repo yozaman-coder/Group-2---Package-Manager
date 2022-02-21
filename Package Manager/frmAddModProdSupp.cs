@@ -1,6 +1,7 @@
-﻿/* Add/Modify ProductSupplier Form
+﻿/* Add/Modify ProductSupplier Form - Add products, and associated supplier, to the travel package. Modify products/suppliers than are currently in a travel package.
  * Author: Brett Dawson
- * Date: Jan-Feb, 2022
+ * Created: January 21, 2022
+ * Last Updated: February 20, 2022
  */
 using System;
 using System.Collections.Generic;
