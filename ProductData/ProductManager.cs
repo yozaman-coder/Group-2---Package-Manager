@@ -15,6 +15,12 @@ namespace ProductData
             return db.Products.OrderBy(d => d.ProdName).Select(d => new { Value = d.ProductId, Text = d.ProdName }).ToList();
         }
 
+        public static List<Product> GetAllProducts()
+        {
+            TravelExpertsContext db = new TravelExpertsContext();
+            return db.Products.OrderBy(d => d.ProdName).ToList();
+        }
+
         public static Product GetProductWithID(int id)
         {
             TravelExpertsContext db = new TravelExpertsContext();

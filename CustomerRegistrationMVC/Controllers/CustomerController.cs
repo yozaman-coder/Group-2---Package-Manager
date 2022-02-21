@@ -31,18 +31,19 @@ namespace CustomerRegistrationMVC.Controllers
         public async Task<IActionResult> LoginAsync(Customer customer)
         {
             Customer cst = CustomerManager.Authenticate(customer.CustEmail, customer.CustPassword);
-            if(cst == null)
+            if(cst == null) // There is no customer with that email and password
             {
                 TempData["IsError"] = true;
                 TempData["Message"] = "Your login information is incorrect!";
                 return View(); // Stay on the login page
             }
 
+            // If you made it here then you have signed in so set the session data for the customer ID
             HttpContext.Session.SetInt32("CurrentCustomer", (int)cst.CustomerId);
 
             List<Claim> claims = new List<Claim>
             {
-                // Make new claim for user
+                // Make new claims for user
                 new Claim(ClaimTypes.Email, cst.CustEmail), 
                 new Claim(ClaimTypes.Name, cst.CustFirstName), 
                 new Claim("LastName", cst.CustLastName), 
@@ -53,18 +54,20 @@ namespace CustomerRegistrationMVC.Controllers
 
             await HttpContext.SignInAsync("Cookies", claimsPrincipal);
 
-            if(TempData["ReturnUrl"] == null)
+            if(TempData["ReturnUrl"] == null) // There is no return url
             {
                 return RedirectToAction("Index", "Home");
             }
             else
             {
+                // Return to previous page
                 return Redirect(TempData["ReturnUrl"].ToString());
             }
         }
 
         public async Task<IActionResult> LogoutAsync()
         {
+            // Logout user and clear session data
             await HttpContext.SignOutAsync("Cookies");
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
@@ -88,7 +91,7 @@ namespace CustomerRegistrationMVC.Controllers
             try
             {
                 CustomerWithCheckModel customer = new CustomerWithCheckModel();
-                if(HttpContext.Session.GetInt32("CurrentCustomer") != null)
+                if(HttpContext.Session.GetInt32("CurrentCustomer") != null) // Customer is signed in
                 {
                     ViewBag.CustomerID = HttpContext.Session.GetInt32("CurrentCustomer");
                     customer.Customer = CustomerManager.GetCustomerById(ViewBag.CustomerID);

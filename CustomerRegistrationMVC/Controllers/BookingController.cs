@@ -25,6 +25,7 @@ namespace CustomerRegistrationMVC.Controllers
             decimal totalOwing = 0m;
             foreach(var booking in bookings)
             {
+                // If package id exists add price of package to totalOwing
                 if(booking.PackageId != null)
                 {
                     var package = PackageManager.GetPackageById((int)booking.PackageId);
@@ -35,6 +36,7 @@ namespace CustomerRegistrationMVC.Controllers
                     totalOwing += 0m;
                 }
             }
+            // Send total owing to viewbag for display
             ViewBag.Total = totalOwing.ToString("c");
             return View(bookings);
         }
@@ -64,6 +66,7 @@ namespace CustomerRegistrationMVC.Controllers
                 BookingAndBookingDetailsModel bookingAndBookingDetailsModel = new BookingAndBookingDetailsModel();
                 Package package = PackageManager.GetPackageById(id);
                 int? customerId = HttpContext.Session.GetInt32("CurrentCustomer");
+                // Customer is somehow null. Should not happen
                 if (customerId == null)
                 {
                     TempData["IsError"] = true;
@@ -71,6 +74,7 @@ namespace CustomerRegistrationMVC.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 int mostRecentID = BookingManager.GetMostRecentBookingID();
+                // Send various information to view
                 ViewBag.CustomerID = customerId;
                 ViewBag.Package = package;
                 ViewBag.BookingID = mostRecentID += 1;
@@ -97,6 +101,7 @@ namespace CustomerRegistrationMVC.Controllers
         {
             try
             {
+                // Book booking
                 BookingAndBookingDetailsModel.Book(bookingAndBookingDetailsModel);
                 return RedirectToAction(nameof(Index));
             }

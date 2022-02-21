@@ -87,12 +87,13 @@ namespace Package_Manager
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                var newSupplier = new Supplier();
-                this.FillSupplierData(newSupplier);
+                if (Validator.IsInt32(txtSupplierID) && Validator.IsPresent(txtSupplierName))
+                {
+                    var newSupplier = new Supplier();
+                    this.FillSupplierData(newSupplier);
 
                     try
                     {
-
                         db.Suppliers.Add(newSupplier);
                         db.SaveChanges();
                     }
@@ -104,37 +105,39 @@ namespace Package_Manager
                     {
                         this.HandleGeneralError(ex);
                     }
-                    LoadSuppliers();         
+                    LoadSuppliers();
+                }
+                else
+                {
+                    MessageBox.Show("Must correct error before proceeding with record entry.");
+                }
+
             }
         }
 
         private void FillSupplierData(Supplier Suppliers)
         {
-            if (Validator.IsInt32(txtSupplierID) && Validator.IsPresent(txtSupplierName))
-            {
-                using (TravelExpertsContext db = new TravelExpertsContext())
-                {
-                    if
-                        (db.Suppliers.Any(s => s.SupplierId == Convert.ToInt32(txtSupplierID.Text))|| 
-                        (db.Suppliers.Any(s => s.SupName == txtSupplierName.Text)))
-                    {
-                        MessageBox.Show($"{txtSupplierID.Text} or {txtSupplierName.Text} exists, enter a different number and/or name.");
-                        return;
-                    }
-                    
-                    else
-                    {
-                        MessageBox.Show("New record was added to the database.");
-                    }
 
-                }
-                Suppliers.SupplierId = Convert.ToInt32(txtSupplierID.Text);
-                Suppliers.SupName = txtSupplierName.Text;
-            }
-            else
+            using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                MessageBox.Show("Must correct error before proceeding with record entry.");
+                if
+                    (db.Suppliers.Any(s => s.SupplierId == Convert.ToInt32(txtSupplierID.Text))|| 
+                    (db.Suppliers.Any(s => s.SupName == txtSupplierName.Text)))
+                {
+                    MessageBox.Show($"{txtSupplierID.Text} or {txtSupplierName.Text} exists, enter a different number and/or name.");
+                    return;
+                }
+                
+                else
+                {
+                    MessageBox.Show("New record was added to the database.");
+                }
+
             }
+            Suppliers.SupplierId = Convert.ToInt32(txtSupplierID.Text);
+            Suppliers.SupName = txtSupplierName.Text;
+            
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -293,7 +296,8 @@ namespace Package_Manager
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

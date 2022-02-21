@@ -167,7 +167,7 @@ namespace Package_Manager
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.DialogResult = DialogResult.OK;
         }
 
         //private void dgvListProducts_SelectionChanged(object sender, DataGridViewCellEventArgs e)

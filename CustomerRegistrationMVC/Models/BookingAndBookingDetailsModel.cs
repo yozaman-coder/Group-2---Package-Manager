@@ -12,7 +12,8 @@ namespace CustomerRegistrationMVC.Models
         {
             TravelExpertsContext db = new TravelExpertsContext();
             var booking = bookingAndBookingDetailsModel.Booking;
-            var bookingDetails = bookingAndBookingDetailsModel.BookingDetail;
+            // was using this but turned out to be not usefull 
+            //var bookingDetails = bookingAndBookingDetailsModel.BookingDetail; 
             db.Bookings.Add(booking);
             db.SaveChanges();
         }

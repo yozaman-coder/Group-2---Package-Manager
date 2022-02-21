@@ -33,11 +33,11 @@ namespace Package_Manager
         // Brett - added public property to get selected product ID for use in frmAddModifyProduct
         public int SelectedProdID
         { get { return selectedProdID; } }
-    
+
         // Brett - added public property to get selected supplier ID for use in frmAddModifySupplier
         public int SelectedSupplierID
         { get { return selectedSuppID; } }
-        
+
         public frmAddModProdSupp()
         {
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace Package_Manager
         private void frmAddModProdSupp_Load(object sender, EventArgs e)
         {
             DisplayProducts();
-            
+
             if (isAdd)
             {
                 this.Text = "Add Product Supplier";
@@ -72,7 +72,7 @@ namespace Package_Manager
                 var selectedProduct = db.Products.Find(selectedIndex_Prod);
                 selectedProdID = selectedProduct.ProductId;
             }
-            
+
             dgvSuppliers.DataSource = SelectSuppFromProdID(selectedProdID);
             dgvSuppliers.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
             dgvSuppliers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -99,6 +99,10 @@ namespace Package_Manager
             frmAddModifyProduct addProductForm = new frmAddModifyProduct();
             addProductForm.AddProduct = true;
             addProductForm.ShowDialog();
+            if(addProductForm.DialogResult == DialogResult.OK)
+            {
+                DisplayProducts();
+            }
         }
 
         private void btnNewSupplier_Click_1(object sender, EventArgs e)
@@ -107,6 +111,10 @@ namespace Package_Manager
             frmAddModifySupplier addSupplierForm = new frmAddModifySupplier();
             addSupplierForm.AddSupplier = true;
             addSupplierForm.ShowDialog();
+            if (addSupplierForm.DialogResult == DialogResult.OK)
+            {
+                DisplayProducts();
+            }
         }
 
         private void dgvSuppliers_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -117,7 +125,7 @@ namespace Package_Manager
                 var selectedSupp = db.Suppliers.Find(selectedIndex_Supp);
                 selectedSuppID = selectedSupp.SupplierId;
             }
-            
+
         }
         private void btnModifyProduct_Click(object sender, EventArgs e)
         {
@@ -183,11 +191,11 @@ namespace Package_Manager
                             productSupplier = newnewProdSup;
                         }
                         catch (DbUpdateConcurrencyException ex)
-                        {HandleConcurrencyError(ex);}
+                        { HandleConcurrencyError(ex); }
                         catch (DbUpdateException ex)
-                        {HandleDatabaseError(ex);}
+                        { HandleDatabaseError(ex); }
                         catch (Exception ex)
-                        {HandleGeneralError(ex);}
+                        { HandleGeneralError(ex); }
                     }
                     else
                     {
@@ -257,29 +265,58 @@ namespace Package_Manager
             }
             this.DisplayProducts();
         }
-        private void JoinedProdSuppNames()
-        {
-            using (TravelExpertsContext db = new TravelExpertsContext())
-            {
-                var joinedTable =
-                (from prodsupp in db.ProductsSuppliers
-                 join prod in db.Products on prodsupp.ProductId equals prod.ProductId
-                 join supp in db.Suppliers on prodsupp.SupplierId equals supp.SupplierId
-                 select new
-                 {
-                     ProductID = prod.ProductId,
-                     ProductName = prod.ProdName,
-                     SupplierID = supp.SupplierId,
-                     SupplierName = supp.SupName
-                 }).ToList();
-            }
-        }
+        //private void JoinedProdSuppNames()
+        //{
+        //    using (TravelExpertsContext db = new TravelExpertsContext())
+        //    {
+        //        var joinedTable =
+        //        (from prodsupp in db.ProductsSuppliers
+        //         join prod in db.Products on prodsupp.ProductId equals prod.ProductId
+        //         join supp in db.Suppliers on prodsupp.SupplierId equals supp.SupplierId
+        //         select new
+        //         {
+        //             ProductID = prod.ProductId,
+        //             ProductName = prod.ProdName,
+        //             SupplierID = supp.SupplierId,
+        //             SupplierName = supp.SupName
+        //         }).ToList();
+        //    }
+        //}
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        
+        private void btnAddProdSup_Click(object sender, EventArgs e)
+        {
+            frmAddProdSup secondForm = new frmAddProdSup();
+            DialogResult result = secondForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                DisplayProducts();
+                using(TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    int id = db.ProductsSuppliers.OrderBy(p => p.ProductSupplierId).Select(p => p.ProductId).LastOrDefault().Value;
+                    string idName = db.ProductsSuppliers.OrderBy(p => p.ProductSupplierId).Select(p => p.Product.ProdName).LastOrDefault().ToString();
+                    foreach(DataGridViewRow row in dgvProducts.Rows)
+                    {
+                        if(row.Cells[1].Value.ToString().Equals(idName))
+                        {
+                            row.Selected = true;
+                            dgvSuppliers.DataSource = SelectSuppFromProdID(id);
+                        }
+                    }
+                    
+
+                }
+               
+                MessageBox.Show("Products supplier added successfully!");
+                //using (TravelExpertsContext db = new TravelExpertsContext())
+                //{
+                //    db.Add(secondForm.newProductSupplier);
+                //}
+            }
+        }
     }
 }
 //private void SelectProduct(int selectedProductID)
