@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace CustomerRegistrationMVC.Models
 {
+    /*
+     * Customer model with added checking of password
+     * 
+     * Author James Straka
+     */
     public class CustomerWithCheckModel
     {
         public Customer Customer { get; set; }

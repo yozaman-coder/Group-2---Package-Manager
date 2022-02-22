@@ -12,6 +12,11 @@ using System.Windows.Forms;
 
 namespace Package_Manager
 {
+    /*
+     * Author James Straka.
+     * Adds new product supplier using dropdowns
+     * 
+     */
     public partial class frmAddProdSup : Form
     {
         public ProductsSupplier newProductsSupplier;

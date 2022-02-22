@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 
 namespace ProductData
 {
+    /*
+     * Class library for working with packages
+     * 
+     * Author James Straka
+     * 
+     */
     public class PackageManager
     {
         /// <summary>

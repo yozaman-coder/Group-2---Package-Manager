@@ -5,6 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+/*
+ * Packages sorting view component
+ * 
+ * Author Brett Dawson, James Straka
+ */
 namespace CustomerRegistrationMVC.ViewComponents
 {
     public class PackagesSortingViewComponent : ViewComponent

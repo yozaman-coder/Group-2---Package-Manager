@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProductData
 {
+    /*
+     * Class library for working with products
+     * 
+     * Author James Straka
+     */
     public class ProductManager
     {
         /// <summary>

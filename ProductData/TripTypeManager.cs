@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProductData
 {
+    /*
+     * Class library for working with trip types
+     * 
+     * Author James Straka
+     */
     public static class TripTypeManager
     {
         /// <summary>

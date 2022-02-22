@@ -12,6 +12,11 @@ using System.Threading.Tasks;
 
 namespace CustomerRegistrationMVC.Controllers
 {
+    /*
+     * Booking controller for showing and creating bookings
+     * 
+     * Author James Straka
+     */
     public class BookingController : Controller
     {
         // GET: BookingController

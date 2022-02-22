@@ -15,6 +15,11 @@ using Microsoft.CSharp.RuntimeBinder;
 
 namespace CustomerRegistrationMVC.Controllers
 {
+    /*
+     * Customer controller for creating customers and logging in
+     * 
+     * Author James Straka
+     */
     public class CustomerController : Controller
     {
         // Route: /Customer/Login

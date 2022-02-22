@@ -11,6 +11,11 @@ using System.Threading.Tasks;
 
 namespace CustomerRegistrationMVC.Controllers
 {
+    /*
+     * Package controller for displaying package details and packages
+     * 
+     * Author James Straka, Brett Dawson
+     */
     public class PackageController : Controller
     {
         // GET: PackageController

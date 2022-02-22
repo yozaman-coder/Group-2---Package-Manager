@@ -10,6 +10,11 @@ using System.Threading.Tasks;
 
 namespace CustomerRegistrationMVC.Controllers
 {
+    /*
+    * Home controller for displaying home page
+    * 
+    * Author el computer
+    */
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

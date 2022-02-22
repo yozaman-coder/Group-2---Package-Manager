@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace ProductData
 {
+    /*
+     * Class library for working with customers
+     * 
+     * Author James Straka
+     * 
+     */
     public class CustomerManager
     {
         /// <summary>

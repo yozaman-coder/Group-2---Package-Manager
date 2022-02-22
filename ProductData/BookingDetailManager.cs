@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProductData
 {
+    /*
+     * UNUSED
+     * Author James Straka
+     * 
+     */
     public class BookingDetailManager
     {
 
