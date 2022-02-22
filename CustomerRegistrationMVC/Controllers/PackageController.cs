@@ -23,23 +23,25 @@ namespace CustomerRegistrationMVC.Controllers
         // GET: PackageController/Details/5
         public ActionResult Details(int id, int pageTracker)
         {
-          
             List<Product> ProductList = new List<Product>();
             var package = PackageManager.GetPackageById(id);
-            if (package != null)
+
+            if (package != null) // There is a package with that id
             {
+                // Gets all products of package to list and then sends them all to viewbag
                 var products = PackagesProductsSupplierManager.GetProductsOfPackage(package.PackageId);
                 foreach (var product in products)
                 {
                     var productSupplier = ProductSupplierManager.GetProductSupplierWithID(product.ProductSupplierId);
                     ProductList.Add(ProductManager.GetProductWithID((int)productSupplier.ProductId));
                 }
-                ViewBag.ProductList = ProductList;
+                ViewBag.ProductList = ProductList; 
             }
-            ViewBag.PageTracker = pageTracker;
+            ViewBag.PageTracker = pageTracker; // Sends page tracker to page for changing items based on what page the user came from
             return View(package);
         }
-        // Get list of all packages as key:value pairs
+
+        // Get list of all packages as key value pairs for select list
         private IEnumerable GetPackagesWithAll()
         {
             var packages = PackageManager.GetPackagesAsKeyValuePairs();

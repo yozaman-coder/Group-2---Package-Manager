@@ -90,14 +90,14 @@ namespace CustomerRegistrationMVC.Controllers
         {
             try
             {
-                CustomerWithCheckModel customer = new CustomerWithCheckModel();
+                CustomerWithCheckModel customer = new CustomerWithCheckModel(); // Make new empty customer
                 if(HttpContext.Session.GetInt32("CurrentCustomer") != null) // Customer is signed in
                 {
-                    ViewBag.CustomerID = HttpContext.Session.GetInt32("CurrentCustomer");
-                    customer.Customer = CustomerManager.GetCustomerById(ViewBag.CustomerID);
-                    ViewBag.CustomerEmail = customer.Customer.CustEmail;
+                    ViewBag.CustomerID = HttpContext.Session.GetInt32("CurrentCustomer"); //Give customer ID to view bag
+                    customer.Customer = CustomerManager.GetCustomerById(ViewBag.CustomerID); // Gets current customer and sets it to customer
+                    ViewBag.CustomerEmail = customer.Customer.CustEmail; // gives customer email to view bag
                 }
-                ViewBag.Provinces = GetProvinces();
+                ViewBag.Provinces = GetProvinces(); // Gets all provinces for display in dropdown
                 return View(customer);
             }
             catch (DbException)
@@ -116,7 +116,7 @@ namespace CustomerRegistrationMVC.Controllers
          
         }
 
-        // Gets all provinces 
+        // Seeds list of provinces and returns Select List
         private SelectList GetProvinces()
         {
             List<Province> list = new List<Province>();
@@ -147,10 +147,11 @@ namespace CustomerRegistrationMVC.Controllers
                 try
                 {
                     int CustID = newCustomer.Customer.CustomerId;
-                    if (CustID != 0)
+                    if (CustID != 0) // There is a customer already signed in
                     {
-                        if(newCustomer.Customer.CustPassword != newCustomer.PassCheck)
+                        if(newCustomer.Customer.CustPassword != newCustomer.PassCheck) // password is not the same as the check
                         {
+                            // Redisplay everything with error
                             TempData["IsError"] = true;
                             ViewBag.Provinces = GetProvinces();
                             ViewBag.CustomerID = HttpContext.Session.GetInt32("CurrentCustomer");
@@ -159,12 +160,14 @@ namespace CustomerRegistrationMVC.Controllers
                         }
                         else
                         {
+                            // Update the old customer info
                             CustomerManager.UpdateCustomer(newCustomer.Customer);
                             return RedirectToAction("Index", "Home");
                         }
                     }
+                    // Check if email exists in db
                     bool dbEmail = CustomerManager.SearchForCustEmail(newCustomer.Customer.CustEmail);
-                    if (newCustomer.Customer.CustPassword == newCustomer.PassCheck && dbEmail != true)
+                    if (newCustomer.Customer.CustPassword == newCustomer.PassCheck && dbEmail != true) // Email does not exist in db and password check is good
                     {
                         //Adds customer with the form data
                         CustomerManager.AddCustomer(newCustomer.Customer);
@@ -172,6 +175,7 @@ namespace CustomerRegistrationMVC.Controllers
                     }
                     else
                     {
+                        // Redisplays page with error if email is taken or passwords are different
                         TempData["IsError"] = true;
                         ViewBag.Provinces = GetProvinces();
                         if (dbEmail == true)

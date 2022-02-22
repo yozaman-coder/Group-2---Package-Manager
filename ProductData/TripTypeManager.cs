@@ -9,6 +9,10 @@ namespace ProductData
 {
     public static class TripTypeManager
     {
+        /// <summary>
+        /// Gets all trip types as key value pairs
+        /// </summary>
+        /// <returns>Returns IList of Pairs of trip types</returns>
         public static IList GetAllAsKeyValuePairs()
         {
             TravelExpertsContext db = new TravelExpertsContext();

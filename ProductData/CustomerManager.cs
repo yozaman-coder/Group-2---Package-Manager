@@ -38,7 +38,11 @@ namespace ProductData
 
 
         }
-
+        /// <summary>
+        /// Gets customer using their id
+        /// </summary>
+        /// <param name="id">id of customer you wish to get</param>
+        /// <returns>customer object of respective id</returns>
         public static Customer GetCustomerById(int id)
         {
             TravelExpertsContext db = new TravelExpertsContext();
@@ -46,6 +50,10 @@ namespace ProductData
             return customer;
         }
 
+        /// <summary>
+        /// Updates customer information with new customer input
+        /// </summary>
+        /// <param name="customer">new customer data input</param>
         public static void UpdateCustomer(Customer customer)
         {
             TravelExpertsContext db = new TravelExpertsContext();
@@ -64,6 +72,10 @@ namespace ProductData
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Gets last customer in db
+        /// </summary>
+        /// <returns>last customer id in db</returns>
         public static int GetLastCustomer()
         {
             TravelExpertsContext db = new TravelExpertsContext();
@@ -71,6 +83,11 @@ namespace ProductData
             return result.CustomerId;
         }
 
+        /// <summary>
+        /// Gets customer email with id
+        /// </summary>
+        /// <param name="customerId">id to find customer email</param>
+        /// <returns>Customer email with respective id</returns>
         public static string GetCustEmail(int customerId)
         {
             TravelExpertsContext db = new TravelExpertsContext();
@@ -78,6 +95,11 @@ namespace ProductData
             return result;
         }
 
+        /// <summary>
+        /// Checks for customer with specific email
+        /// </summary>
+        /// <param name="custEmail">Email to check</param>
+        /// <returns>true if customer with email was found false if not</returns>
         public static bool SearchForCustEmail(string custEmail)
         {
             TravelExpertsContext db = new TravelExpertsContext();

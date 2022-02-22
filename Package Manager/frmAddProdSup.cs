@@ -27,6 +27,7 @@ namespace Package_Manager
 
         private void LoadProductsAndSuppliers()
         {
+            // Gets all products and suppliers and displays them in combo box
             var prodList = ProductManager.GetAllProducts();
             cboProd.DataSource = prodList.Select(p => p.ProdName).ToList();
             var supList = SupplierManager.GetAllSuppliers();
@@ -45,20 +46,24 @@ namespace Package_Manager
             {
                 ProductsSupplier newProdSup = new ProductsSupplier();
 
+                // Searches for product id with name from combo box
                 newProdSup.ProductId = db.Products
                     .Where(p => p.ProdName == cboProd.Text)
                     .Select(p => p.ProductId)
                     .FirstOrDefault();
 
+                // Searches for supplier id with name from combo box
                 newProdSup.SupplierId = db.Suppliers
                     .Where(p => p.SupName == cboSup.Text)
                     .Select(p => p.SupplierId)
                     .FirstOrDefault();
 
+                // Checks for product supplier that already exists
                 var check = db.ProductsSuppliers
                     .Where(p => p.ProductId == newProdSup.ProductId && p.SupplierId == newProdSup.SupplierId)
                     .FirstOrDefault();
 
+                // Little error check to check for null supplier Id or prod Id somehow
                 if(newProdSup.SupplierId == null || newProdSup.ProductId == null)
                 {
                     MessageBox.Show("Error");
@@ -66,13 +71,13 @@ namespace Package_Manager
                 }
                 else
                 {
-                    if (check == null)
+                    if (check == null) // There is no product supplier in db
                     {
-                        db.Add(newProdSup);
+                        db.Add(newProdSup); // Create a new product supplier
                         db.SaveChanges();
                         this.DialogResult = DialogResult.OK;
                     }
-                    else
+                    else // There already is a product supplier with this combo
                     {
                         MessageBox.Show("This product supplier already exists!");
                     }

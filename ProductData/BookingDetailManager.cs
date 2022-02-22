@@ -10,10 +10,10 @@ namespace ProductData
     public class BookingDetailManager
     {
 
-        public static BookingDetail GetBookingDetailWithBookingID(int id)
-        {
-            TravelExpertsContext db = new TravelExpertsContext();
-            return db.BookingDetails.Include(b => b.Booking).Where(bd => bd.BookingId == id).FirstOrDefault();
-        }
+        //public static BookingDetail GetBookingDetailWithBookingID(int id)
+        //{
+        //    TravelExpertsContext db = new TravelExpertsContext();
+        //    return db.BookingDetails.Include(b => b.Booking).Where(bd => bd.BookingId == id).FirstOrDefault();
+        //}
     }
 }

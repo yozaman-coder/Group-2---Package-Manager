@@ -291,19 +291,20 @@ namespace Package_Manager
         {
             frmAddProdSup secondForm = new frmAddProdSup();
             DialogResult result = secondForm.ShowDialog();
-            if (result == DialogResult.OK)
+            if (result == DialogResult.OK) // New product supplier was added
             {
-                DisplayProducts();
+                DisplayProducts(); // Update display
                 using(TravelExpertsContext db = new TravelExpertsContext())
                 {
+                    // Get newest products supplier id and Product name
                     int id = db.ProductsSuppliers.OrderBy(p => p.ProductSupplierId).Select(p => p.ProductId).LastOrDefault().Value;
                     string idName = db.ProductsSuppliers.OrderBy(p => p.ProductSupplierId).Select(p => p.Product.ProdName).LastOrDefault().ToString();
-                    foreach(DataGridViewRow row in dgvProducts.Rows)
+                    foreach(DataGridViewRow row in dgvProducts.Rows) // Search DGV for name of product
                     {
-                        if(row.Cells[1].Value.ToString().Equals(idName))
+                        if(row.Cells[1].Value.ToString().Equals(idName)) // Find product name
                         {
-                            row.Selected = true;
-                            dgvSuppliers.DataSource = SelectSuppFromProdID(id);
+                            row.Selected = true; // Selects that row
+                            dgvSuppliers.DataSource = SelectSuppFromProdID(id);// Updates supplier data grid view
                         }
                     }
                     

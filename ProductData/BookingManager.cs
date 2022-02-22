@@ -20,6 +20,10 @@ namespace ProductData
             return db.Bookings.Include(p => p.Package).Include(tt => tt.TripType).Where(b => b.CustomerId == custID).ToList();
         }
         
+        /// <summary>
+        /// Adds new booking
+        /// </summary>
+        /// <param name="booking">Booking to add</param>
         public static void AddBooking(Booking booking)
         {
             TravelExpertsContext db = new TravelExpertsContext();
@@ -27,6 +31,10 @@ namespace ProductData
             db.SaveChanges();
         }
 
+        /// <summary>
+        /// Gets the most recent booking id
+        /// </summary>
+        /// <returns>Id of most recent booking in an int</returns>
         public static int GetMostRecentBookingID()
         {
             TravelExpertsContext db = new TravelExpertsContext();
