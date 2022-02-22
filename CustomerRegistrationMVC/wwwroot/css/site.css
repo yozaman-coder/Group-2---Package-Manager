@@ -1,5 +1,9 @@
 ﻿
-/*CSS Mostly done By Brendan, Im not sure who else added to it*/
+/*CSS Mostly done By Brendan, Im not sure who else added to it
+
+    On every View I did some sort of change for styling reasons, 
+    dont want to go writing my name everywhere for adding a section stuff like that
+*/
 
 
 html {
@@ -24,18 +28,18 @@ label{
     width: 100%;
     white-space: nowrap;
     color:white;
-    line-height: 30px; /* Vertically center the text there */
+    line-height: 30px; 
 }
-
+/*Background Image*/
 body {
-    /* Margin bottom by footer height */
     margin-bottom: 60px;
     background-image: url(/Img/plane2.jpg);
     background-size: cover;
-    background-color: rgba(100, 149, 237, 0.6);
+    background-color: white;
+    opacity:0.9;
 }
 
-/*first box on each page css template*/
+/*differnt boxes on each page*/
 .jumbotron {
     background-color: rgba(0,0,0,0.3);
     color: white;
@@ -147,7 +151,7 @@ li a {
     font-size: 20px;
     text-align: center;
 }
-
+/*Booking table, base table template*/
 table {
     border: 4px ridge rgba(100, 149, 237, 0.6);
     font-size: 0.9em;
@@ -160,16 +164,6 @@ table {
     margin: 25px 0;
     color: white;
     background-color: rgba(0, 0, 0, 0.6);
-}
-
-.container {
-    width: fit-content;
-    align-content: center;
-}
-
-/*login form*/
-.container-login {
-    transform: translate(25%);
 }
 
 tr:nth-child(even):hover {
@@ -192,10 +186,7 @@ th {
     border: 1px solid Black;
     text-align: center;
     position: sticky;
-}
-
-.opacity{
-    opacity: 0.5;
+    padding:8px;
 }
 
 thead {
@@ -391,4 +382,14 @@ body2 {
     overflow-x: hidden;
     margin: 25px 0;
     display: table;
+}
+
+.container {
+    width: fit-content;
+    align-content: center;
+}
+
+/*login form*/
+.container-login {
+    transform: translate(25%);
 }
